@@ -1,0 +1,199 @@
+{% extends "admin/login.html" %}
+{% load static %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    /* Tùy chỉnh màu nền trang */
+    body.login {
+        font-family: 'Inter', sans-serif !important;
+        background: linear-gradient(135deg, #0f172a 100%, #1e293b 0%) !important;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+    }
+
+    /* Khung form đăng nhập trung tâm */
+    .login #container {
+        width: 100%;
+        max-width: 440px;
+        background: #ffffff !important;
+        border-radius: 16px !important;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35) !important;
+        overflow: hidden;
+        border: none !important;
+        margin: 20px !important;
+    }
+
+    /* Tiêu đề & Header */
+    .login #header {
+        background: #ffffff !important;
+        padding: 32px 24px 20px 24px !important;
+        text-align: center;
+        border-bottom: none !important;
+    }
+
+    .login #header h1 {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Vùng chứa form */
+    .login #content {
+        padding: 10px 32px 36px 32px !important;
+    }
+
+    .login .form-row {
+        margin-bottom: 18px !important;
+        padding: 0 !important;
+        border: none !important;
+        background: transparent !important;
+    }
+
+    .login .form-row label {
+        color: #4b5563 !important;
+        font-weight: 500 !important;
+        font-size: 14px !important;
+        display: block !important;
+        margin-bottom: 6px !important;
+    }
+
+    /* Ô nhập liệu Input (Username & Password) */
+    .login input[type="text"], 
+    .login input[type="password"] {
+        width: 100% !important;
+        height: 48px !important;
+        padding: 0 16px !important;
+        background-color: #f9fafb !important;
+        border: 1px solid #d1d5db !important;
+        border-radius: 10px !important;
+        font-size: 14.5px !important;
+        color: #1f2937 !important;
+        box-sizing: border-box !important;
+        outline: none !important;
+        transition: all 0.25s ease !important;
+        box-shadow: none !important;
+    }
+
+    .login input[type="text"]:hover, 
+    .login input[type="password"]:hover {
+        border-color: #9ca3af !important;
+        background-color: #ffffff !important;
+    }
+
+    .login input[type="text"]:focus, 
+    .login input[type="password"]:focus {
+        background-color: #ffffff !important;
+        border-color: #104BC0 !important;
+        box-shadow: 0 0 12px rgba(16, 75, 192, 0.25) !important;
+    }
+
+    /* Nút bấm đăng nhập (Log in button) kèm hiệu ứng mũi tên dịch chuyển */
+    .login form .submit-row {
+        padding: 8px 0 0 0 !important;
+        margin: 0 !important;
+        background: transparent !important;
+        border: none !important;
+    }
+
+    .login form .submit-row input {
+        position: relative !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        height: 48px !important;
+        background-color: #104BC0 !important;
+        color: #ffffff !important;
+        border: 1px solid #104BC0 !important;
+        border-radius: 10px !important;
+        font-size: 15.5px !important;
+        font-weight: 600 !important;
+        cursor: pointer !important;
+        letter-spacing: 0.03rem !important;
+        box-shadow: 0 4px 12px rgba(16, 75, 192, 0.3) !important;
+        transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.15s ease !important;
+    }
+
+    .login form .submit-row input:hover {
+        background-color: #0d3b96 !important;
+        border-color: #3b82f6 !important;
+        box-shadow: 0 6px 16px rgba(16, 75, 192, 0.5) !important;
+    }
+
+    .login form .submit-row input:active {
+        transform: scale(0.98);
+    }
+
+    /* Thêm mũi tên phía sau nút thông qua pseudo-element giả lập hoặc wrapper nếu cần, 
+       hoặc dùng kỹ thuật value kết hợp icon thuần CSS */
+    .login-btn-container {
+        position: relative;
+        width: 100%;
+    }
+    
+    .login-arrow-icon {
+        position: absolute;
+        right: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #ffffff;
+        pointer-events: none;
+        transition: transform 0.25s ease;
+    }
+
+    .login form .submit-row:hover .login-arrow-icon {
+        transform: translateY(-50%) translateX(4px);
+    }
+
+    /* Link phụ (Quên mật khẩu) */
+    .password-reset-link {
+        text-align: center !important;
+        margin-top: 16px !important;
+    }
+
+    .password-reset-link a {
+        color: #9ca3af !important;
+        font-size: 13.5px !important;
+        text-decoration: none !important;
+        transition: color 0.2s ease;
+    }
+
+    .password-reset-link a:hover {
+        color: #104BC0 !important;
+        text-decoration: underline !important;
+    }
+</style>
+{% endblock %}
+
+{% block branding %}
+<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;">
+    <!-- Phần Logo và Tên thương hiệu -->
+    <a href="{% url 'admin:index' %}" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
+        <img src="{% static 'images/reconnect360_logo.png' %}" 
+             alt="Reconnect 360°" 
+             style="height: 44px; width: auto; border-radius: 50%; object-fit: contain;">
+        <h2 style="color: #104BC0; font-size: 20px; font-weight: 700; margin: 0; letter-spacing: -0.025em;">Reconnect 360°</h2>
+    </a>
+    <!-- Dòng chữ Quản Trị -->
+    <span style="color: #64748b; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">Hệ Thống Quản Trị</span>
+    
+    <!-- Đường gạch ngang phân cách -->
+    <hr style="width: 100%; border: none; border-top: 1px solid #e2e8f0; margin: 4px 0 0 0;">
+</div>
+{% endblock %}
+
+{% block submit-row %}
+<div class="login-btn-container">
+    {{ block.super }}
+    <span class="login-arrow-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+    </span>
+</div>
+{% endblock %}

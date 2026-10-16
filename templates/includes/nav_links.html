@@ -47,10 +47,19 @@
         <!-- Tiêu đề -->
         <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; margin-bottom: 16px; border-bottom: 1px solid #f3f4f6;">
             <div>
-                <h3 style="font-size: 14px; font-weight: 700; color: var(--color-text-main); margin: 0;">Chọn khối lớp học</h3>
-                <p style="font-size: 12px; color: #9ca3af; margin: 2px 0 0 0;">Chọn cấp học và lớp của bạn</p>
+                <h3 style="font-size: 14px; font-weight: 700; color: var(--color-text-main); margin: 0;">
+                    <span class="lang-vi">Chọn khối lớp học</span>
+                    <span class="lang-en" style="display: none;">Select Grade Level</span>
+                </h3>
+                <p style="font-size: 12px; color: #9ca3af; margin: 2px 0 0 0;">
+                    <span class="lang-vi">Chọn cấp học và lớp của bạn</span>
+                    <span class="lang-en" style="display: none;">Choose your education level and grade</span>
+                </p>
             </div>
-            <span style="font-size: 12px; font-weight: 500; color: var(--color-primary); background-color: rgba(var(--color-primary-rgb, 249, 115, 22), 0.1); padding: 4px 10px; border-radius: 9999px;">Khối 7 - 12</span>
+            <span style="font-size: 12px; font-weight: 500; color: var(--color-primary); background-color: rgba(var(--color-primary-rgb, 249, 115, 22), 0.1); padding: 4px 10px; border-radius: 9999px;">
+                <span class="lang-vi">Khối 7 - 12</span>
+                <span class="lang-en" style="display: none;">Grade 7 - 12</span>
+            </span>
         </div>
         
         <!-- Nội dung Grid bắt buộc chia 2 cột rõ ràng, không bị dồn -->
@@ -58,15 +67,24 @@
             
             <!-- Cột THCS -->
             <div style="background-color: rgba(249, 250, 251, 0.8); padding: 12px; border-radius: 14px; border: 1px solid #f3f4f6;">
-                <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #9ca3af; margin-bottom: 10px; padding-left: 4px;">TRUNG HỌC CƠ SỞ</div>
+                <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #9ca3af; margin-bottom: 10px; padding-left: 4px;">
+                    <span class="lang-vi">TRUNG HỌC CƠ SỞ</span>
+                    <span class="lang-en" style="display: none;">MIDDLE SCHOOL</span>
+                </div>
                 
                 <div style="display: flex; flex-direction: column; gap: 8px;">
                     <!-- Lớp 7 -->
                     <a href="#" onclick="selectGrade(7); return false;" class="grade-item" style="display: flex; align-items: center; gap: 12px; padding: 10px; background: #ffffff; border-radius: 10px; border: 1px solid #e5e7eb; text-decoration: none; transition: all 0.2s;">
                         <div style="width: 36px; height: 36px; background-color: #ffedd5; color: var(--color-primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; flex-shrink: 0;" class="grade-badge">7</div>
                         <div>
-                            <div style="font-size: 13px; font-weight: 700; color: var(--color-text-main);" class="grade-title">Lớp 7</div>
-                            <div style="font-size: 11px; color: #9ca3af;" class="grade-sub">Khối 7 THCS</div>
+                            <div style="font-size: 13px; font-weight: 700; color: var(--color-text-main);" class="grade-title">
+                                <span class="lang-vi">Lớp 7</span>
+                                <span class="lang-en" style="display: none;">Grade 7</span>
+                            </div>
+                            <div style="font-size: 11px; color: #9ca3af;" class="grade-sub">
+                                <span class="lang-vi">Khối 7 THCS</span>
+                                <span class="lang-en" style="display: none;">Middle School 7</span>
+                            </div>
                         </div>
                     </a>
 
@@ -74,8 +92,14 @@
                     <a href="#" onclick="selectGrade(8); return false;" class="grade-item" style="display: flex; align-items: center; gap: 12px; padding: 10px; background: #ffffff; border-radius: 10px; border: 1px solid #e5e7eb; text-decoration: none; transition: all 0.2s;">
                         <div style="width: 36px; height: 36px; background-color: #ffedd5; color: var(--color-primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; flex-shrink: 0;" class="grade-badge">8</div>
                         <div>
-                            <div style="font-size: 13px; font-weight: 700; color: var(--color-text-main);" class="grade-title">Lớp 8</div>
-                            <div style="font-size: 11px; color: #9ca3af;" class="grade-sub">Khối 8 THCS</div>
+                            <div style="font-size: 13px; font-weight: 700; color: var(--color-text-main);" class="grade-title">
+                                <span class="lang-vi">Lớp 8</span>
+                                <span class="lang-en" style="display: none;">Grade 8</span>
+                            </div>
+                            <div style="font-size: 11px; color: #9ca3af;" class="grade-sub">
+                                <span class="lang-vi">Khối 8 THCS</span>
+                                <span class="lang-en" style="display: none;">Middle School 8</span>
+                            </div>
                         </div>
                     </a>
 
@@ -83,8 +107,14 @@
                     <a href="#" onclick="selectGrade(9); return false;" class="grade-item" style="display: flex; align-items: center; gap: 12px; padding: 10px; background: #ffffff; border-radius: 10px; border: 1px solid #e5e7eb; text-decoration: none; transition: all 0.2s;">
                         <div style="width: 36px; height: 36px; background-color: #ffedd5; color: var(--color-primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; flex-shrink: 0;" class="grade-badge">9</div>
                         <div>
-                            <div style="font-size: 13px; font-weight: 700; color: var(--color-text-main);" class="grade-title">Lớp 9</div>
-                            <div style="font-size: 11px; color: #9ca3af;" class="grade-sub">Khối 9 THCS</div>
+                            <div style="font-size: 13px; font-weight: 700; color: var(--color-text-main);" class="grade-title">
+                                <span class="lang-vi">Lớp 9</span>
+                                <span class="lang-en" style="display: none;">Grade 9</span>
+                            </div>
+                            <div style="font-size: 11px; color: #9ca3af;" class="grade-sub">
+                                <span class="lang-vi">Khối 9 THCS</span>
+                                <span class="lang-en" style="display: none;">Middle School 9</span>
+                            </div>
                         </div>
                     </a>
                 </div>
@@ -92,15 +122,24 @@
 
             <!-- Cột THPT -->
             <div style="background-color: rgba(249, 250, 251, 0.8); padding: 12px; border-radius: 14px; border: 1px solid #f3f4f6;">
-                <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #9ca3af; margin-bottom: 10px; padding-left: 4px;">TRUNG HỌC PHỔ THÔNG</div>
+                <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #9ca3af; margin-bottom: 10px; padding-left: 4px;">
+                    <span class="lang-vi">TRUNG HỌC PHỔ THÔNG</span>
+                    <span class="lang-en" style="display: none;">HIGH SCHOOL</span>
+                </div>
                 
                 <div style="display: flex; flex-direction: column; gap: 8px;">
                     <!-- Lớp 10 -->
                     <a href="#" onclick="selectGrade(10); return false;" class="grade-item" style="display: flex; align-items: center; gap: 12px; padding: 10px; background: #ffffff; border-radius: 10px; border: 1px solid #e5e7eb; text-decoration: none; transition: all 0.2s;">
                         <div style="width: 36px; height: 36px; background-color: #ffedd5; color: var(--color-primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; flex-shrink: 0;" class="grade-badge">10</div>
                         <div>
-                            <div style="font-size: 13px; font-weight: 700; color: var(--color-text-main);" class="grade-title">Lớp 10</div>
-                            <div style="font-size: 11px; color: #9ca3af;" class="grade-sub">Khối 10 THPT</div>
+                            <div style="font-size: 13px; font-weight: 700; color: var(--color-text-main);" class="grade-title">
+                                <span class="lang-vi">Lớp 10</span>
+                                <span class="lang-en" style="display: none;">Grade 10</span>
+                            </div>
+                            <div style="font-size: 11px; color: #9ca3af;" class="grade-sub">
+                                <span class="lang-vi">Khối 10 THPT</span>
+                                <span class="lang-en" style="display: none;">High School 10</span>
+                            </div>
                         </div>
                     </a>
 
@@ -108,8 +147,14 @@
                     <a href="#" onclick="selectGrade(11); return false;" class="grade-item" style="display: flex; align-items: center; gap: 12px; padding: 10px; background: #ffffff; border-radius: 10px; border: 1px solid #e5e7eb; text-decoration: none; transition: all 0.2s;">
                         <div style="width: 36px; height: 36px; background-color: #ffedd5; color: var(--color-primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; flex-shrink: 0;" class="grade-badge">11</div>
                         <div>
-                            <div style="font-size: 13px; font-weight: 700; color: var(--color-text-main);" class="grade-title">Lớp 11</div>
-                            <div style="font-size: 11px; color: #9ca3af;" class="grade-sub">Khối 11 THPT</div>
+                            <div style="font-size: 13px; font-weight: 700; color: var(--color-text-main);" class="grade-title">
+                                <span class="lang-vi">Lớp 11</span>
+                                <span class="lang-en" style="display: none;">Grade 11</span>
+                            </div>
+                            <div style="font-size: 11px; color: #9ca3af;" class="grade-sub">
+                                <span class="lang-vi">Khối 11 THPT</span>
+                                <span class="lang-en" style="display: none;">High School 11</span>
+                            </div>
                         </div>
                     </a>
 
@@ -117,8 +162,14 @@
                     <a href="#" onclick="selectGrade(12); return false;" class="grade-item" style="display: flex; align-items: center; gap: 12px; padding: 10px; background: #ffffff; border-radius: 10px; border: 1px solid #e5e7eb; text-decoration: none; transition: all 0.2s;">
                         <div style="width: 36px; height: 36px; background-color: #ffedd5; color: var(--color-primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; flex-shrink: 0;" class="grade-badge">12</div>
                         <div>
-                            <div style="font-size: 13px; font-weight: 700; color: var(--color-text-main);" class="grade-title">Lớp 12</div>
-                            <div style="font-size: 11px; color: #9ca3af;" class="grade-sub">Khối 12 THPT</div>
+                            <div style="font-size: 13px; font-weight: 700; color: var(--color-text-main);" class="grade-title">
+                                <span class="lang-vi">Lớp 12</span>
+                                <span class="lang-en" style="display: none;">Grade 12</span>
+                            </div>
+                            <div style="font-size: 11px; color: #9ca3af;" class="grade-sub">
+                                <span class="lang-vi">Khối 12 THPT</span>
+                                <span class="lang-en" style="display: none;">High School 12</span>
+                            </div>
                         </div>
                     </a>
                 </div>
@@ -144,7 +195,7 @@
 }
 </style>
 
-<!-- JavaScript xử lý Dropdown -->
+<!-- JavaScript xử lý Dropdown và Đa ngôn ngữ -->
 <script>
 function toggleGradeDropdown() {
     const menu = document.getElementById('gradeDropdownMenu');
@@ -175,24 +226,43 @@ function closeGradeDropdown() {
     }, 200);
 }
 
-    const gradeUrlTemplate = "/users/dashboard/grade-0/";
+const gradeUrlTemplate = "/users/dashboard/grade-0/";
 
-    function selectGrade(grade) {
-        // Lưu lại khối lớp học sinh đã chọn vào localStorage
-        localStorage.setItem('mentiq_selected_grade', grade);
-        
-        console.log("Đã chọn lớp: " + grade);
-        closeGradeDropdown();
-        
-        // Thay số '0' bằng giá trị grade thực tế
-        window.location.href = `/users/dashboard/grade-${grade}/`;
-    }
+function selectGrade(grade) {
+    // Lưu lại khối lớp học sinh đã chọn vào localStorage
+    localStorage.setItem('mentiq_selected_grade', grade);
+    
+    console.log("Đã chọn lớp: " + grade);
+    closeGradeDropdown();
+    
+    // Thay số '0' bằng giá trị grade thực tế
+    window.location.href = `/users/dashboard/grade-${grade}/`;
+}
 
 window.addEventListener('click', function(e) {
     const wrapper = document.getElementById('gradeDropdownWrapper');
     if (!wrapper.contains(e.target)) {
         closeGradeDropdown();
     }
+});
+
+// Hàm quản lý đa ngôn ngữ
+function applyGlobalLanguage() {
+    const currentLang = "{{ request.LANGUAGE_CODE }}" || "vi";
+    
+    // Ẩn/hiện các khối Tiếng Việt
+    document.querySelectorAll('.lang-vi').forEach(el => {
+        el.style.display = (currentLang === 'vi') ? '' : 'none';
+    });
+    
+    // Ẩn/hiện các khối Tiếng Anh
+    document.querySelectorAll('.lang-en').forEach(el => {
+        el.style.display = (currentLang === 'en') ? '' : 'none';
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    applyGlobalLanguage();
 });
 </script>
 
