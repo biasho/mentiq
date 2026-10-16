@@ -13,6 +13,7 @@ urlpatterns = [
     
     # Trang Hồ sơ cá nhân (Profile)
     path('dashboard/', views.dashboard, name='dashboard'),
+    path('dashboard/grade-<int:grade_id>/', views.grade_dashboard_view, name='grade_dashboard'),
     path('profile/', views.profile_view, name='profile'),
     path('settings/', views.settings_view, name='settings'),
 

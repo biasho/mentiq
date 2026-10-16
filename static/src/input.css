@@ -1,1 +1,75 @@
 @import "tailwindcss";
+
+/* 1. Kích hoạt variant cho chế độ dark dựa trên class .dark */
+@variant dark (&:where(.dark, .dark *));
+
+/* 2. Giữ các theme tùy chỉnh của bạn (orchid, violet, teal, red) ở chế độ sáng nếu cần */
+:root,
+[data-theme="orchid"] {
+  --color-primary: #4C35B7;
+  --color-primary-dark: #3b2896;
+  --color-accent: #FFC107;
+  --color-background: #f6f6f8;
+  --color-card-bg: #ffffff;
+  --color-text-main: #0d121b;
+  --color-text-sub: #4c669a;
+  --color-border: #e5e7eb;
+}
+
+[data-theme="violet"] {
+  --color-primary: #C344CE;
+  --color-primary-dark: #a22fb0;
+  --color-accent: #FFC107;
+  --color-background: #f6f6f8;
+  --color-card-bg: #ffffff;
+  --color-text-main: #0d121b;
+  --color-text-sub: #4c669a;
+  --color-border: #e5e7eb;
+}
+
+[data-theme="teal"] {
+  --color-primary: #34C2D1;
+  --color-primary-dark: #26ABB9;
+  --color-accent: #FFC107;
+  --color-background: #f6f6f8;
+  --color-card-bg: #ffffff;
+  --color-text-main: #0d121b;
+  --color-text-sub: #4c669a;
+  --color-border: #e5e7eb;
+}
+
+[data-theme="red"] {
+  --color-primary: #e11d48;
+  --color-primary-dark: #9f1239;
+  --color-accent: #f59e0b;
+  --color-background: #fff1f2;
+  --color-card-bg: #ffffff;
+  --color-text-main: #4c0519;
+  --color-text-sub: #9f1239;
+  --color-border: #fecdd3;
+}
+
+/* 3. Dark mode dùng hoàn toàn hệ màu chuẩn nguyên bản của Tailwind (Slate & Blue) */
+.dark, 
+[data-theme="dark"] {
+  --color-primary: #3b82f6;       /* Blue-500 chuẩn Tailwind */
+  --color-primary-dark: #1d4ed8;  /* Blue-700 chuẩn Tailwind */
+  --color-accent: #f59e0b;        /* Amber-500 chuẩn Tailwind */
+  --color-background: #0f172a;    /* Slate-900 chuẩn Tailwind */
+  --color-card-bg: #1e293b;       /* Slate-800 chuẩn Tailwind */
+  --color-text-main: #f8fafc;     /* Slate-50 chuẩn Tailwind */
+  --color-text-sub: #94a3b8;      /* Slate-400 chuẩn Tailwind */
+  --color-border: #334155;        /* Slate-700 chuẩn Tailwind */
+}
+
+/* 4. Đăng ký các biến màu với Tailwind v4 */
+@theme {
+  --color-primary: var(--color-primary);
+  --color-primary-dark: var(--color-primary-dark);
+  --color-accent: var(--color-accent);
+  --color-background: var(--color-background);
+  --color-card: var(--color-card-bg);
+  --color-main: var(--color-text-main);
+  --color-sub: var(--color-text-sub);
+  --color-line: var(--color-border);
+}

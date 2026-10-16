@@ -24,3 +24,7 @@ Thumbs.db
 
 # Log hệ thống
 *.log
+
+# Large media / video files (Bỏ qua file video nặng để không lỗi GitHub 100MB)
+static/videos/intro_video.mp4
+static/videos/*.mp4

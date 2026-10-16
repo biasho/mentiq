@@ -5,17 +5,34 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="flex items-center gap-2 text-primary">
-               <a href="{% url 'pages:home' %}" class="flex items-center gap-2 text-[var(--color-primary)] hover:text-[var(--color-primary-dark)] transition-colors duration-200 shrink-0">
-                <img src="{% static 'images/reconnect360_logo.png' %}" alt="Reconnect 360°" class="h-12 w-auto object-contain">
-                <h2 class="text-[var(--color-text-main)] hover:text-[var(--color-primary)] transition-colors duration-200 text-xl font-bold tracking-tight">Reconnect 360°</h2>
-            </a>
+                <a href="{% url 'pages:home' %}" class="flex items-center gap-2 shrink-0">
+                    <img src="{% static 'images/mentiq_logo.png' %}" 
+                         alt="Mentiq" 
+                         class="h-10 md:h-12 w-auto rounded-full mix-blend-multiply bg-white object-contain animate-spin-slow hover:scale-110 transition-transform duration-300">
+                    <h2 class="text-xl font-bold tracking-tight flex items-center">
+                        <span style="color: #C640CF !important;">MEN</span>
+                        <span style="color: #27ABB8 !important;">TI</span>
+                        <span style="color: #4D34B9 !important;">Q</span>
+                    </h2>
+                </a>
             </div>
+            
             <div class="flex gap-8 text-sm text-text-sub">
-                <a class="hover:text-[var(--color-primary)] transition-colors duration-200" href="{% url 'pages:privacy' %}">Chính sách bảo mật</a>
-                <a class="hover:text-[var(--color-primary)] transition-colors duration-200" href="{% url 'pages:terms' %}">Điều khoản sử dụng</a>
-                <a class="hover:text-[var(--color-primary)] transition-colors duration-200" href="{% url 'pages:sitemap' %}">Sơ đồ trang</a>
+                <a class="hover:text-[var(--color-primary)] transition-colors duration-200" href="{% url 'pages:privacy' %}">
+                    <span class="lang-vi">Chính sách bảo mật</span>
+                    <span class="lang-en" style="display: none;">Privacy Policy</span>
+                </a>
+                <a class="hover:text-[var(--color-primary)] transition-colors duration-200" href="{% url 'pages:terms' %}">
+                    <span class="lang-vi">Điều khoản sử dụng</span>
+                    <span class="lang-en" style="display: none;">Terms of Use</span>
+                </a>
+                <a class="hover:text-[var(--color-primary)] transition-colors duration-200" href="#">
+                    <span class="lang-vi">Sơ đồ trang</span>
+                    <span class="lang-en" style="display: none;">Sitemap</span>
+                </a>
             </div>
-            <p class="text-sm text-text-sub">&copy; 2026 Reconnect 360°. All rights reserved.</p>
+
+            <p class="text-sm text-text-sub">&copy; 2026 Mentiq. All rights reserved.</p>
         </div>
     </div>
 </footer>

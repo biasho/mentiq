@@ -245,3 +245,14 @@ def submission_detail(request, pk):
         return JsonResponse({'error': str(e)}, status=500)
 
 #
+
+def grade_dashboard_view(request, grade_id):
+    # Kiểm tra khối lớp hợp lệ (từ 7 đến 12)
+    if grade_id not in range(7, 13):
+        return redirect('pages:home')
+    
+    context = {
+        'current_grade': grade_id,
+        # Truyền thêm dữ liệu môn học hoặc nội dung học tập tương ứng nếu cần
+    }
+    return render(request, 'users/grade_dashboard.html', context)

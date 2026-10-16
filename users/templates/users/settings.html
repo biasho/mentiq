@@ -1,14 +1,20 @@
 {% extends 'base_dashboard.html' %}
 
-{% block title %}Cài đặt | Reconnect 360°{% endblock %}
+{% block title %}Cài đặt | Mentiq{% endblock %}
 
 {% block header_title %}
-  <h1 class="text-lg md:text-xl font-bold text-gray-800 dark:text-gray-100">Cài đặt hệ thống</h1>
+  <h1 class="text-lg md:text-xl font-bold text-gray-800 dark:text-gray-100">
+    <span class="lang-vi">Cài đặt hệ thống</span>
+    <span class="lang-en" style="display: none;">System Settings</span>
+  </h1>
 {% endblock %}
 
 {% block content %}
 <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-slate-700 max-w-4xl transition-colors">
-  <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-4 pb-2 border-b border-gray-100 dark:border-slate-700">Tùy chọn cấu hình</h2>
+  <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-4 pb-2 border-b border-gray-100 dark:border-slate-700">
+    <span class="lang-vi">Tùy chọn cấu hình</span>
+    <span class="lang-en" style="display: none;">Configuration Options</span>
+  </h2>
   
   <form method="post" class="space-y-6">
     {% csrf_token %}
@@ -18,8 +24,14 @@
       <!-- Thông báo Email -->
       <div class="flex items-center justify-between">
         <div>
-          <p class="font-medium text-gray-700 dark:text-gray-200">Thông báo Email</p>
-          <p class="text-sm text-gray-500 dark:text-gray-400">Nhận thông báo khi có báo cáo hoặc khảo sát mới.</p>
+          <p class="font-medium text-gray-700 dark:text-gray-200">
+            <span class="lang-vi">Thông báo Email</span>
+            <span class="lang-en" style="display: none;">Email Notifications</span>
+          </p>
+          <p class="text-sm text-gray-500 dark:text-gray-400">
+            <span class="lang-vi">Nhận thông báo khi có báo cáo hoặc khảo sát mới.</span>
+            <span class="lang-en" style="display: none;">Receive notifications when there are new reports or surveys.</span>
+          </p>
         </div>
         <input type="checkbox" name="email_notifications" class="w-5 h-5 text-blue-600 rounded border-gray-300 dark:border-slate-600 focus:ring-blue-500" checked>
       </div>
@@ -27,8 +39,14 @@
       <!-- Dark Mode Toggle -->
       <div class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-slate-700">
         <div>
-          <p class="font-medium text-gray-700 dark:text-gray-200">Chế độ tối (Dark Mode)</p>
-          <p class="text-sm text-gray-500 dark:text-gray-400">Bật/tắt giao diện tối cho trang quản trị (Dashboard).</p>
+          <p class="font-medium text-gray-700 dark:text-gray-200">
+            <span class="lang-vi">Chế độ tối (Dark Mode)</span>
+            <span class="lang-en" style="display: none;">Dark Mode</span>
+          </p>
+          <p class="text-sm text-gray-500 dark:text-gray-400">
+            <span class="lang-vi">Bật/tắt giao diện tối cho trang quản trị (Dashboard).</span>
+            <span class="lang-en" style="display: none;">Toggle dark interface for the management page (Dashboard).</span>
+          </p>
         </div>
         <label class="relative inline-flex items-center cursor-pointer">
           <input type="checkbox" id="dark-mode-toggle" class="sr-only peer">
@@ -40,7 +58,8 @@
     <!-- Nút Lưu -->
     <div class="pt-4 border-t border-gray-100 dark:border-slate-700 flex justify-end">
       <button type="submit" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors">
-        Lưu thay đổi
+        <span class="lang-vi">Lưu thay đổi</span>
+        <span class="lang-en" style="display: none;">Save Changes</span>
       </button>
     </div>
   </form>

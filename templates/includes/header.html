@@ -1,117 +1,42 @@
 <!-- HEADER / NAVBAR -->
 {% load static %}
 {% load survey_reconnect360 %}
-<style>
-    /* Hiệu ứng xoay mượt cho Logo */
-    @keyframes spinSlow {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-    }
-    .animate-spin-slow {
-        animation: spinSlow 10s linear infinite;
-    }
-</style>
+{% load i18n %}
 <header
     class="sticky top-0 z-50 w-full border-b border-[var(--color-border)] bg-[var(--color-card-bg)]/95 backdrop-blur-sm transition-colors">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex h-16 items-center justify-between gap-2">
-           <a href="{% url 'pages:home' %}" class="flex items-center gap-2 text-[var(--color-primary)] shrink-0">
-    <img src="{% static 'images/reconnect360_logo.png' %}" 
-                 alt="Reconnect 360°" 
-                 class="h-12 md:h-16 w-auto rounded-full mix-blend-multiply dark:mix-blend-normal object-contain animate-spin-slow hover:scale-110 transition-transform duration-300">
-    <h2 class="text-[var(--color-text-main)] text-xl font-bold tracking-tight">Reconnect 360°</h2>
+          <a href="{% url 'pages:home' %}" class="flex items-center gap-2 shrink-0">
+    <!-- Giảm chiều cao ảnh từ h-12 md:h-16 xuống h-10 md:h-12 -->
+    <img src="{% static 'images/mentiq_logo.png' %}" 
+         alt="Mentiq" 
+         class="h-10 md:h-12 w-auto rounded-full mix-blend-multiply bg-white object-contain animate-spin-slow hover:scale-110 transition-transform duration-300">
+    <!-- Giảm kích thước chữ từ text-xl xuống text-lg -->
+    <h2 class="text-lg font-bold tracking-tight flex items-center">
+        <span style="color: #C640CF !important;">MEN</span>
+        <span style="color: #27ABB8 !important;">TI</span>
+        <span style="color: #4D34B9 !important;">Q</span>
+    </h2>
 </a>
 
-            <!-- Desktop Navigation (Sử dụng component dùng chung) -->
+            <!-- Desktop Navigation -->
             <nav class="hidden md:flex items-center gap-4 lg:gap-6">
                 {% include 'includes/nav_links.html' %}
             </nav>
 
-            <!-- Actions & Theme Switcher -->
+            <!-- Actions -->
             <div class="flex items-center gap-2 shrink-0">
 
-                <!-- NÚT THAM GIA KHẢO SÁT DESKTOP -->
-                <div class="hidden sm:block">
-                    {% thcs_survey_button %}
-                </div>
+                <!-- INCLUDE COMPONENT CHỌN NGÔN NGỮ TÁCH RỜI -->
+                {% include 'includes/language_switcher.html' %}
+                {% include 'includes/theme_switcher.html' %}
 
-                <!-- DROPDOWN CHUYỂN THEME -->
-                <div class="relative inline-block text-left group">
-                    <button id="theme-dropdown-btn" type="button" aria-label="Đổi giao diện"
-                        class="flex items-center gap-1 h-8 px-2.5 rounded-lg border border-[var(--color-border)] bg-[var(--color-card-bg)] text-[var(--color-text-main)] group-hover:border-[var(--color-primary)] transition-colors text-xs font-semibold">
-                        <span class="material-symbols-outlined text-[18px] text-[var(--color-primary)]">palette</span>
-                        <span
-                            class="material-symbols-outlined text-[18px] text-[var(--color-text-sub)] transition-transform duration-200 group-hover:rotate-180">
-                            keyboard_arrow_down
-                        </span>
-                    </button>
-
-                    <!-- Menu xổ xuống -->
-                    <div id="theme-dropdown-menu" class="hidden group-hover:block absolute right-0 pt-1 w-48 z-50">
-                        <div
-                            class="rounded-xl border border-[var(--color-border)] bg-[var(--color-card-bg)] p-1.5 shadow-sm">
-                            <div
-                                class="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-sub)] px-3 py-1.5 mb-1 bg-[var(--color-background)] rounded-lg">
-                                Chọn giao diện
-                            </div>
-
-                            <div class="flex flex-col gap-1">
-                                <!-- Option Sáng -->
-                                <button onclick="changeUserTheme('light')"
-                                    class="theme-option-btn flex items-center justify-between w-full px-3 py-2 rounded-lg text-xs font-medium text-[var(--color-text-main)] hover:bg-[var(--color-background)] hover:text-amber-600 transition-colors group/item">
-                                    <div class="flex items-center gap-2.5">
-                                        <span
-                                            class="material-symbols-outlined text-[18px] text-amber-500">light_mode</span>
-                                        <span>Sáng</span>
-                                    </div>
-                                    <span
-                                        class="material-symbols-outlined text-[16px] opacity-0 group-hover/item:opacity-100 transition-opacity text-amber-500">check</span>
-                                </button>
-
-                                <!-- Option Tối -->
-                                <button onclick="changeUserTheme('dark')"
-                                    class="theme-option-btn flex items-center justify-between w-full px-3 py-2 rounded-lg text-xs font-medium text-[var(--color-text-main)] hover:bg-[var(--color-background)] hover:text-indigo-400 transition-colors group/item">
-                                    <div class="flex items-center gap-2.5">
-                                        <span
-                                            class="material-symbols-outlined text-[18px] text-indigo-400">dark_mode</span>
-                                        <span>Tối</span>
-                                    </div>
-                                    <span
-                                        class="material-symbols-outlined text-[16px] opacity-0 group-hover/item:opacity-100 transition-opacity text-indigo-400">check</span>
-                                </button>
-
-                                <!-- Option Theme Đỏ -->
-                                <button onclick="changeUserTheme('red')"
-                                    class="theme-option-btn flex items-center justify-between w-full px-3 py-2 rounded-lg text-xs font-medium text-[var(--color-text-main)] hover:bg-[var(--color-background)] hover:text-red-500 transition-colors group/item">
-                                    <div class="flex items-center gap-2.5">
-                                        <span class="material-symbols-outlined text-[18px] text-red-500">palette</span>
-                                        <span>Theme Đỏ</span>
-                                    </div>
-                                    <span
-                                        class="material-symbols-outlined text-[16px] opacity-0 group-hover/item:opacity-100 transition-opacity text-red-500">check</span>
-                                </button>
-
-                                <div class="border-t border-[var(--color-border)] my-0.5"></div>
-
-                                <!-- Option Mặc định -->
-                                <button onclick="changeUserTheme('reset')"
-                                    class="theme-option-btn flex items-center justify-between w-full px-3 py-2 rounded-lg text-xs font-medium text-[var(--color-text-sub)] hover:bg-[var(--color-background)] hover:text-[var(--color-text-main)] transition-colors group/item">
-                                    <div class="flex items-center gap-2.5">
-                                        <span class="material-symbols-outlined text-[18px]">restart_alt</span>
-                                        <span>Mặc định</span>
-                                    </div>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- DESKTOP USER DROPDOWN (Luôn hiển thị trên Laptop/Desktop) -->
+                <!-- DESKTOP USER DROPDOWN -->
                 <div class="hidden md:flex items-center">
                     {% include 'users/includes/user_dropdown.html' %}
                 </div>
 
-                <!-- NÚT HAMBURGER MOBILE (Ẩn tuyệt đối từ màn hình md trở lên) -->
+                <!-- NÚT HAMBURGER MOBILE -->
                 <button id="mobile-menu-btn" type="button" aria-label="Toggle Menu"
                     class="flex md:!hidden size-9 items-center justify-center rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] text-[var(--color-text-main)] hover:bg-[var(--color-card-bg)] transition-colors">
                     <span id="menu-icon" class="material-symbols-outlined text-[22px]">menu</span>
@@ -120,140 +45,64 @@
         </div>
     </div>
 
-    <!-- Mobile Navigation Drawer (Chỉ mở ra trên Mobile) -->
-<div id="mobile-menu"
-    class="hidden md:!hidden border-t border-[var(--color-border)] bg-[var(--color-card-bg)] px-4 pt-3 pb-6 transition-all">
-    <nav class="flex flex-col gap-3">
-        <!-- Mobile Navigation Links -->
-        {% include 'includes/nav_links_mobile.html' %}
-
-        <div class="w-full border-t border-[var(--color-border)] my-2 pt-3 flex flex-col gap-2">
-            <!-- MOBILE AUTH USER OPTIONS -->
-            <!-- MOBILE AUTH USER OPTIONS -->
-            {% if user.is_authenticated %}
-            <div class="w-full bg-[var(--color-background)] border border-[var(--color-border)] rounded-2xl p-3 flex flex-col gap-2.5">
-                <!-- Header: Avatar + Username + Logout -->
-                <div class="flex items-center justify-between pb-2 border-b border-[var(--color-border)]">
-                    <div class="flex items-center gap-2.5 min-w-0">
-                        <div class="w-8 h-8 rounded-full bg-[var(--color-primary)] text-white font-bold flex items-center justify-center text-xs uppercase shadow-sm shrink-0">
-                            {{ user.username|slice:":1" }}
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden md:!hidden border-t border-[var(--color-border)] bg-[var(--color-card-bg)] px-4 pt-3 pb-6 transition-all">
+        <nav class="flex flex-col gap-3">
+            {% include 'includes/nav_links_mobile.html' %}
+            <div class="w-full border-t border-[var(--color-border)] my-2 pt-3 flex flex-col gap-2">
+                {% if user.is_authenticated %}
+                <div class="w-full bg-[var(--color-background)] border border-[var(--color-border)] rounded-2xl p-3 flex flex-col gap-2.5">
+                    <div class="flex items-center justify-between pb-2 border-b border-[var(--color-border)]">
+                        <div class="flex items-center gap-2.5 min-w-0">
+                            <div class="w-8 h-8 rounded-full bg-[var(--color-primary)] text-white font-bold flex items-center justify-center text-xs uppercase shadow-sm shrink-0">
+                                {{ user.username|slice:":1" }}
+                            </div>
+                            <div class="flex flex-col min-w-0">
+                                <span class="text-[11px] text-[var(--color-text-sub)] leading-none">{% trans "Tài khoản" %}</span>
+                                <span class="text-sm font-bold text-[var(--color-text-main)] truncate mt-0.5">{{ user.username }}</span>
+                            </div>
                         </div>
-                        <div class="flex flex-col min-w-0">
-                            <span class="text-[11px] text-[var(--color-text-sub)] leading-none">Tài khoản</span>
-                            <span class="text-sm font-bold text-[var(--color-text-main)] truncate mt-0.5">{{ user.username }}</span>
-                        </div>
+                        <a href="{% url 'users:logout' %}" 
+                           class="px-2.5 py-1 rounded-lg text-xs font-semibold text-red-600 bg-red-50 hover:bg-red-100 transition-colors shrink-0">
+                            {% trans "Đăng xuất" %}
+                        </a>
                     </div>
-                    <a href="{% url 'users:logout' %}" 
-                       class="px-2.5 py-1 rounded-lg text-xs font-semibold text-red-600 bg-red-50 hover:bg-red-100 dark:bg-red-950/40 dark:text-red-400 transition-colors shrink-0">
-                        Đăng xuất
+                    <a href="{% url 'users:dashboard' %}"
+                       class="flex items-center gap-2.5 text-sm font-medium text-[var(--color-text-main)] px-2 py-1.5 rounded-xl hover:bg-[var(--color-card-bg)] transition-all">
+                        <span>{% trans "Bảng điều khiển" %}</span>
                     </a>
                 </div>
-
-                <!-- Link Bảng điều khiển -->
-                <a href="{% url 'users:dashboard' %}"
-                   class="flex items-center gap-2.5 text-sm font-medium text-[var(--color-text-main)] px-2 py-1.5 rounded-xl hover:bg-[var(--color-card-bg)] transition-all">
-                    <svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-                    </svg>
-                    <span>Bảng điều khiển</span>
+                {% else %}
+                <a href="{% url 'users:login' %}"
+                    class="flex items-center gap-2.5 text-[var(--color-text-main)] text-sm font-semibold hover:text-[var(--color-primary)] py-2.5 px-3 rounded-xl hover:bg-gray-100 transition-colors">
+                    <span>{% trans "Đăng nhập" %}</span>
                 </a>
+                {% endif %}
+               
             </div>
-            {% else %}
-            <a href="{% url 'users:login' %}"
-                class="flex items-center gap-2.5 text-[var(--color-text-main)] text-sm font-semibold hover:text-[var(--color-primary)] py-2.5 px-3 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                <svg class="w-4 h-4 text-[var(--color-primary)] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
-                </svg>
-                <span>Đăng nhập</span>
-            </a>
-            {% endif %}
-
-            <!-- NÚT THAM GIA KHẢO SÁT MOBILE -->
-            <div class="sm:hidden pt-2">
-                {% thcs_survey_button %}
-            </div>
-        </div>
-    </nav>
-</div>
+        </nav>
+    </div>
 </header>
 
-<!-- LOGIC XỬ LÝ THEME DÙNG CHUNG CHO CẢ WEB & DỰNG BIỂU ĐỒ -->
+<!-- LOGIC XỬ LÝ SỰ KIỆN (Đã bỏ phần theme) -->
 <script>
-    function setCookie(name, value, days = 365) {
-        const d = new Date();
-        d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
-        document.cookie = `${name}=${value};expires=${d.toUTCString()};path=/;SameSite=Lax`;
-    }
-
-    function deleteCookie(name) {
-        document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;SameSite=Lax`;
-    }
-
-    function updateChartColorsCookie() {
-        setTimeout(() => {
-            const computedStyle = getComputedStyle(document.documentElement);
-            const themeColors = {
-                primary: computedStyle.getPropertyValue('--color-primary').trim() || '#1152D4',
-                text_main: computedStyle.getPropertyValue('--color-text-main').trim() || '#0D121B',
-                text_sub: computedStyle.getPropertyValue('--color-text-sub').trim() || '#4C669A',
-                border: computedStyle.getPropertyValue('--color-border').trim() || '#E5E7EB',
-                other_bar: computedStyle.getPropertyValue('--color-other-bar').trim() || '#CBD5E1',
-                user_line: computedStyle.getPropertyValue('--color-user-line').trim() || '#F43F5E'
-            };
-            setCookie('chart_colors', encodeURIComponent(JSON.stringify(themeColors)));
-        }, 50);
-    }
-
-    function updateThemeButtonsUI(activeTheme) {
-        const themeButtons = document.querySelectorAll('[onclick^="changeUserTheme"]');
-        themeButtons.forEach(btn => {
-            btn.classList.remove('theme-btn-active', 'border-l-4', 'border-blue-500', 'bg-[var(--color-background)]');
-            if (btn.getAttribute('onclick').includes(`'${activeTheme}'`)) {
-                btn.classList.add('theme-btn-active', 'border-l-4', 'border-blue-500', 'bg-[var(--color-background)]');
-            }
-        });
-    }
-
-    function changeUserTheme(themeName) {
-        if (themeName === 'reset') {
-            localStorage.removeItem('user-custom-theme');
-            deleteCookie('theme');
-            deleteCookie('chart_colors');
-            document.documentElement.removeAttribute('data-theme');
-            location.reload();
-        } else {
-            document.documentElement.setAttribute('data-theme', themeName);
-            localStorage.setItem('user-custom-theme', themeName);
-            setCookie('theme', themeName);
-
-            updateThemeButtonsUI(themeName);
-            updateChartColorsCookie();
-        }
-
-        const themeMenu = document.getElementById('theme-dropdown-menu');
-        if (themeMenu) themeMenu.classList.add('hidden');
-    }
-
     document.addEventListener('DOMContentLoaded', function () {
-        const storedTheme = localStorage.getItem('user-custom-theme');
-        if (storedTheme) {
-            document.documentElement.setAttribute('data-theme', storedTheme);
-            setCookie('theme', storedTheme);
-        }
-
-        const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-        updateThemeButtonsUI(currentTheme);
-        updateChartColorsCookie();
-
         document.addEventListener('click', function (e) {
-            const themeBtn = e.target.closest('#theme-dropdown-btn');
-            const themeMenu = document.getElementById('theme-dropdown-menu');
-            if (themeBtn && themeMenu) {
-                themeMenu.classList.toggle('hidden');
-            } else if (themeMenu && !e.target.closest('#theme-dropdown-menu')) {
-                themeMenu.classList.add('hidden');
+            // Xử lý Dropdown Ngôn ngữ
+            const langBtn = e.target.closest('#language-dropdown-btn');
+            const langMenu = document.getElementById('language-dropdown-menu');
+            const langArrow = document.getElementById('language-arrow');
+
+            if (langBtn && langMenu) {
+                langMenu.classList.toggle('hidden');
+                if (langArrow) langArrow.classList.toggle('rotate-180');
+                return;
+            } else if (langMenu && !langMenu.classList.contains('hidden') && !e.target.closest('#language-dropdown-menu')) {
+                langMenu.classList.add('hidden');
+                if (langArrow) langArrow.classList.remove('rotate-180');
             }
 
+            // Xử lý Mobile Menu
             const mobileBtn = e.target.closest('#mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             if (mobileBtn && mobileMenu) {

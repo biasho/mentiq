@@ -1,59 +1,56 @@
 {% extends 'base.html' %}
 {% load static %}
 
-<!-- Đặt theme mặc định cho trang chủ là LIGHT -->
-{% block default_theme %}light{% endblock %}
+<!-- Đặt theme mặc định cho trang chủ là orchid -->
+{% block default_theme %}orchid{% endblock %}
 
-{% block title %}Trang chủ - Reconnect 360°{% endblock %}
+{% block title %}Trang chủ - Mentiq Personalized AI Learning Agent{% endblock %}
 
 {% block content %}
 <!-- Breadcrumbs -->
 <nav class="flex items-center text-sm text-[var(--color-text-sub)] mb-6">
     <a class="hover:text-[var(--color-primary)] inline-flex items-center" href="{% url 'pages:home' %}" title="Trang chủ">
-        <!-- Thêm style chỉnh độ dày nét về 100 -->
         <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'wght' 100;">home</span>
     </a>
-    
-    <!-- Thêm style chỉnh độ dày nét về 100 -->
     <span class="material-symbols-outlined text-[16px] mx-1 select-none text-[var(--color-text-sub)]" style="font-variation-settings: 'wght' 100;">chevron_right</span>
-    
-    <span class="text-[var(--color-text-main)] font-medium">Kết nối bản thân • Kết nối mọi người • Kết nối tương lai</span>
+    <span class="text-[var(--color-text-main)] font-medium">Personalized AI Learning & Assessment Agent</span>
 </nav>
-
-
 
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
     <!-- Left Column: Main Content -->
     <div class="lg:col-span-8 flex flex-col gap-10">
         <!-- Hero Section -->
-        <section
-            class="relative overflow-hidden rounded-2xl bg-[var(--color-card-bg)] shadow-sm ring-1 ring-[var(--color-border)]">
+        <section class="relative overflow-hidden rounded-2xl bg-[var(--color-card-bg)] shadow-sm ring-1 ring-[var(--color-border)]">
             <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent z-10"></div>
             <div class="h-[400px] w-full bg-cover bg-center"
-                style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop');">
-            </div>
+     style="background-image: url('{% static 'images/banner.jpg' %}');">
+</div>
             <div class="absolute bottom-0 left-0 z-20 p-8 w-full max-w-2xl">
-                <span
-                    class="inline-flex items-center rounded-full bg-[var(--color-accent)] px-3 py-1 text-xs font-bold text-gray-900 mb-4">
-                    <span class="material-symbols-outlined text-[14px] mr-1">verified</span> Hệ thống hàng đầu 2026
+                <span class="inline-flex items-center rounded-full bg-[var(--color-accent)] px-3 py-1 text-xs font-bold text-gray-900 mb-4">
+                    <span class="material-symbols-outlined text-[14px] mr-1">smart_toy</span>
+                    <span class="lang-vi">Trợ lý AI Thông minh 2026</span>
+                    <span class="lang-en" style="display: none;">Smart AI Assistant 2026</span>
                 </span>
-              <h1 class="text-2xl sm:text-3xl lg:text-5xl font-black text-white leading-tight mb-4">
-    Khảo sát & Đánh giá toàn diện
-</h1>
-                <p class="text-gray-200 text-lg font-medium leading-relaxed mb-6">
-                    Phân tích và tối ưu hóa hệ thống 24/7 với dữ liệu thời gian thực và báo cáo trực
-                    quan.
+                <h1 class="text-2xl sm:text-3xl lg:text-5xl font-black text-white leading-tight mb-4">
+                    <span class="lang-vi">Đánh giá & Định hướng thông minh cùng AI</span>
+                    <span class="lang-en" style="display: none;">Smart Assessment & Guidance with AI</span>
+                </h1>
+                <p class="text-gray-200 text-lg font-black text-white leading-relaxed mb-6">
+                    <span class="lang-vi">Hệ thống trợ lý học tập cá nhân hóa sử dụng AI phân tích sâu sắc đánh giá năng lực để đồng hành cùng học sinh mỗi ngày.</span>
+                    <span class="lang-en" style="display: none;">Personalized learning assistant system using AI for deep competency analysis to accompany students every day.</span>
                 </p>
                 <div class="flex flex-wrap gap-4">
                     <a href="{% url 'surveys:reconnect360_detail' %}"
                         class="flex items-center justify-center rounded-lg h-12 px-6 bg-[var(--color-primary)] hover:opacity-90 text-white font-bold shadow-lg transition-transform hover:scale-105">
-                        <span class="material-symbols-outlined mr-2">quiz</span>
-                        Khám phá Khảo sát
+                        <span class="material-symbols-outlined mr-2">psychology</span>
+                        <span class="lang-vi">Trải nghiệm học cùng AI</span>
+                        <span class="lang-en" style="display: none;">Experience AI Learning</span>
                     </a>
-                    <a href="{% url 'pages:about' %}"
-                        class="flex items-center justify-center rounded-lg h-12 px-6 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 font-bold transition-colors">
+                    <a href="{% url 'pages:about_us' %}"
+                        class="flex items-center justify-center rounded-lg h-12 px-6 bg-white/10 hover:bg-white/25 backdrop-blur-md text-white border border-white/30 font-bold transition-colors">
                         <span class="material-symbols-outlined mr-2">info</span>
-                        Tìm hiểu thêm
+                        <span class="lang-vi">Về chúng tôi</span>
+                        <span class="lang-en" style="display: none;">About Us</span>
                     </a>
                 </div>
             </div>
@@ -67,17 +64,20 @@
                     <button
                         class="tab-btn active pb-4 border-b-2 border-transparent text-[var(--color-text-sub)] hover:text-[var(--color-text-main)] font-medium text-base transition-colors"
                         id="tab-coverage" onclick="switchTab('coverage')">
-                        Quyền lợi & Tính năng
+                        <span class="lang-vi">Tính năng AI Trợ lý</span>
+                        <span class="lang-en" style="display: none;">AI Assistant Features</span>
                     </button>
                     <button
                         class="tab-btn pb-4 border-b-2 border-transparent text-[var(--color-text-sub)] hover:text-[var(--color-text-main)] font-medium text-base transition-colors"
                         id="tab-exclusions" onclick="switchTab('exclusions')">
-                        Giới hạn & Quy định
+                        <span class="lang-vi">Tiêu chuẩn & Nguyên tắc</span>
+                        <span class="lang-en" style="display: none;">Standards & Principles</span>
                     </button>
                     <button
                         class="tab-btn pb-4 border-b-2 border-transparent text-[var(--color-text-sub)] hover:text-[var(--color-text-main)] font-medium text-base transition-colors"
                         id="tab-claims" onclick="switchTab('claims')">
-                        Quy trình thực hiện
+                        <span class="lang-vi">Quy trình Cá nhân hóa</span>
+                        <span class="lang-en" style="display: none;">Personalization Process</span>
                     </button>
                 </div>
             </div>
@@ -85,105 +85,122 @@
             <!-- Tab 1: Coverage Benefits -->
             <div class="tab-content active space-y-8" id="content-coverage">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div
-                        class="flex gap-4 p-4 rounded-lg bg-[var(--color-background)] hover:opacity-90 transition-opacity group border border-[var(--color-border)]">
-                        <div
-                            class="size-12 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center text-[var(--color-primary)] shrink-0 group-hover:bg-[var(--color-primary)] group-hover:text-white transition-colors">
-                            <span class="material-symbols-outlined">analytics</span>
+                    <div class="flex gap-4 p-4 rounded-lg bg-[var(--color-background)] hover:opacity-90 transition-opacity group border border-[var(--color-border)]">
+                        <div class="size-12 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center text-[var(--color-primary)] shrink-0 group-hover:bg-[var(--color-primary)] group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined">insights</span>
                         </div>
                         <div>
-                            <h3 class="text-lg font-bold text-[var(--color-text-main)] mb-1">Thống kê Thời gian thực
+                            <h3 class="text-lg font-bold text-[var(--color-text-main)] mb-1">
+                                <span class="lang-vi">Phân tích năng lực cực chuẩn</span>
+                                <span class="lang-en" style="display: none;">Precise Competency Analysis</span>
                             </h3>
-                            <p class="text-sm text-[var(--color-text-sub)]">Xem ngay kết quả đánh giá và biểu đồ
-                                phân tích sau mỗi câu trả lời.</p>
+                            <p class="text-sm text-[var(--color-text-sub)]">
+                                <span class="lang-vi">AI đánh giá năng lực qua bài kiểm tra của từng học sinh.</span>
+                                <span class="lang-en" style="display: none;">AI evaluates capabilities through each student's assessment.</span>
+                            </p>
                         </div>
                     </div>
 
-                    <div
-                        class="flex gap-4 p-4 rounded-lg bg-[var(--color-background)] hover:opacity-90 transition-opacity group border border-[var(--color-border)]">
-                        <div
-                            class="size-12 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center text-[var(--color-primary)] shrink-0 group-hover:bg-[var(--color-primary)] group-hover:text-white transition-colors">
+                    <div class="flex gap-4 p-4 rounded-lg bg-[var(--color-background)] hover:opacity-90 transition-opacity group border border-[var(--color-border)]">
+                        <div class="size-12 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center text-[var(--color-primary)] shrink-0 group-hover:bg-[var(--color-primary)] group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined">auto_awesome</span>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-[var(--color-text-main)] mb-1">
+                                <span class="lang-vi">Gợi ý Lộ trình Riêng biệt</span>
+                                <span class="lang-en" style="display: none;">Custom Roadmap Suggestions</span>
+                            </h3>
+                            <p class="text-sm text-[var(--color-text-sub)]">
+                                <span class="lang-vi">Đề xuất các phương pháp cải thiện và kết nối tối ưu dựa trên kết quả thực tế.</span>
+                                <span class="lang-en" style="display: none;">Recommend optimal improvement and connection methods based on actual results.</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 p-4 rounded-lg bg-[var(--color-background)] hover:opacity-90 transition-opacity group border border-[var(--color-border)]">
+                        <div class="size-12 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center text-[var(--color-primary)] shrink-0 group-hover:bg-[var(--color-primary)] group-hover:text-white transition-colors">
                             <span class="material-symbols-outlined">security</span>
                         </div>
                         <div>
-                            <h3 class="text-lg font-bold text-[var(--color-text-main)] mb-1">Bảo mật Dữ liệu</h3>
-                            <p class="text-sm text-[var(--color-text-sub)]">Cam kết bảo mật thông tin người tham gia
-                                khảo sát tuyệt đối.</p>
-                        </div>
-                    </div>
-
-                    <div
-                        class="flex gap-4 p-4 rounded-lg bg-[var(--color-background)] hover:opacity-90 transition-opacity group border border-[var(--color-border)]">
-                        <div
-                            class="size-12 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center text-[var(--color-primary)] shrink-0 group-hover:bg-[var(--color-primary)] group-hover:text-white transition-colors">
-                            <span class="material-symbols-outlined">devices</span>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-bold text-[var(--color-text-main)] mb-1">Tương thích Đa thiết bị
+                            <h3 class="text-lg font-bold text-[var(--color-text-main)] mb-1">
+                                <span class="lang-vi">Bảo mật Tuyệt đối</span>
+                                <span class="lang-en" style="display: none;">Absolute Security</span>
                             </h3>
-                            <p class="text-sm text-[var(--color-text-sub)]">Giao diện tối ưu hoàn hảo trên PC, máy
-                                tính bảng và điện thoại.</p>
+                            <p class="text-sm text-[var(--color-text-sub)]">
+                                <span class="lang-vi">Thông tin và dữ liệu cá nhân của học sinh được mã hóa và bảo vệ nghiêm ngặt.</span>
+                                <span class="lang-en" style="display: none;">Student personal information and data are encrypted and strictly protected.</span>
+                            </p>
                         </div>
                     </div>
 
-                    <div
-                        class="flex gap-4 p-4 rounded-lg bg-[var(--color-background)] hover:opacity-90 transition-opacity group border border-[var(--color-border)]">
-                        <div
-                            class="size-12 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center text-[var(--color-primary)] shrink-0 group-hover:bg-[var(--color-primary)] group-hover:text-white transition-colors">
+                    <div class="flex gap-4 p-4 rounded-lg bg-[var(--color-background)] hover:opacity-90 transition-opacity group border border-[var(--color-border)]">
+                        <div class="size-12 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center text-[var(--color-primary)] shrink-0 group-hover:bg-[var(--color-primary)] group-hover:text-white transition-colors">
                             <span class="material-symbols-outlined">support_agent</span>
                         </div>
                         <div>
-                            <h3 class="text-lg font-bold text-[var(--color-text-main)] mb-1">Hỗ trợ 24/7</h3>
-                            <p class="text-sm text-[var(--color-text-sub)]">Đội ngũ kỹ thuật sẵn sàng hỗ trợ giải
-                                đáp mọi thắc mắc.</p>
+                            <h3 class="text-lg font-bold text-[var(--color-text-main)] mb-1">
+                                <span class="lang-vi">Đồng hành 24/7</span>
+                                <span class="lang-en" style="display: none;">24/7 Companionship</span>
+                            </h3>
+                            <p class="text-sm text-[var(--color-text-sub)]">
+                                <span class="lang-vi">Hệ thống trợ lý ảo sẵn sàng hỗ trợ giải đáp và tổng hợp báo cáo bất cứ lúc nào.</span>
+                                <span class="lang-en" style="display: none;">Virtual assistant system ready to support Q&A and report synthesis anytime.</span>
+                            </p>
                         </div>
                     </div>
                 </div>
 
                 <div class="mt-6 pt-6 border-t border-[var(--color-border)]">
-                    <h4 class="text-sm font-semibold uppercase tracking-wider text-[var(--color-text-sub)] mb-4">Các
-                        tính năng mở rộng
+                    <h4 class="text-sm font-semibold uppercase tracking-wider text-[var(--color-text-sub)] mb-4">
+                        <span class="lang-vi">Giá trị cốt lõi mang lại</span>
+                        <span class="lang-en" style="display: none;">Core Values Delivered</span>
                     </h4>
                     <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-[var(--color-text-main)]">
-                        <li class="flex items-center gap-2"><span
-                                class="material-symbols-outlined text-green-500 text-lg">check_circle</span> Xuất báo
-                            cáo Excel / PDF</li>
-                        <li class="flex items-center gap-2"><span
-                                class="material-symbols-outlined text-green-500 text-lg">check_circle</span> Tùy biến
-                            giao diện câu hỏi</li>
-                        <li class="flex items-center gap-2"><span
-                                class="material-symbols-outlined text-green-500 text-lg">check_circle</span> Phân quyền
-                            tài khoản quản trị</li>
-                        <li class="flex items-center gap-2"><span
-                                class="material-symbols-outlined text-green-500 text-lg">check_circle</span> Tích hợp
-                            API khảo sát</li>
+                        <li class="flex items-center gap-2"><span class="material-symbols-outlined text-green-500 text-lg">check_circle</span> 
+                            <span class="lang-vi">Báo cáo PDF phân tích thông minh</span>
+                            <span class="lang-en" style="display: none;">Smart intelligent PDF analysis reports</span>
+                        </li>
+                        <li class="flex items-center gap-2"><span class="material-symbols-outlined text-green-500 text-lg">check_circle</span> 
+                            <span class="lang-vi">Cá nhân hóa giao diện theo ý thích</span>
+                            <span class="lang-en" style="display: none;">Personalized UI according to preferences</span>
+                        </li>
                     </ul>
                 </div>
             </div>
 
             <!-- Tab 2: Exclusions -->
             <div class="tab-content space-y-6" id="content-exclusions">
-                <div class="bg-red-50 dark:bg-red-900/10 border-l-4 border-red-500 p-4 rounded-r-lg">
-                    <p class="text-red-700 dark:text-red-300 font-medium">Lưu ý các quy định không áp dụng trong tiêu
-                        chuẩn miễn phí.</p>
+                <div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                    <p class="text-amber-700 dark:text-amber-300 font-medium">
+                        <span class="lang-vi">Quy tắc chuẩn mực trong quá trình đánh giá và tương tác cùng AI.</span>
+                        <span class="lang-en" style="display: none;">Standard rules during assessment and AI interaction.</span>
+                    </p>
                 </div>
                 <ul class="space-y-4">
                     <li class="flex gap-3 items-start">
                         <span class="material-symbols-outlined text-red-500 mt-0.5">cancel</span>
                         <div>
-                            <h4 class="font-bold text-[var(--color-text-main)]">Spam & Báo cáo giả mạo</h4>
-                            <p class="text-sm text-[var(--color-text-sub)]">Không chấp nhận các khảo sát chứa nội dung
-                                vi phạm pháp
-                                luật hoặc spam.</p>
+                            <h4 class="font-bold text-[var(--color-text-main)]">
+                                <span class="lang-vi">Thông tin không chính xác</span>
+                                <span class="lang-en" style="display: none;">Inaccurate Information</span>
+                            </h4>
+                            <p class="text-sm text-[var(--color-text-sub)]">
+                                <span class="lang-vi">Đề xuất người tham gia cung cấp thông tin trung thực để AI đưa ra phân tích chính xác nhất.</span>
+                                <span class="lang-en" style="display: none;">Participants are advised to provide truthful information for the most accurate AI analysis.</span>
+                            </p>
                         </div>
                     </li>
                     <li class="flex gap-3 items-start">
                         <span class="material-symbols-outlined text-red-500 mt-0.5">cancel</span>
                         <div>
-                            <h4 class="font-bold text-[var(--color-text-main)]">Tài khoản chưa xác thực</h4>
-                            <p class="text-sm text-[var(--color-text-sub)]">Một số tính năng nâng cao yêu cầu tài khoản
-                                đã được xác
-                                minh email.</p>
+                            <h4 class="font-bold text-[var(--color-text-main)]">
+                                <span class="lang-vi">Nội dung không chuẩn mực</span>
+                                <span class="lang-en" style="display: none;">Non-standard Content</span>
+                            </h4>
+                            <p class="text-sm text-[var(--color-text-sub)]">
+                                <span class="lang-vi">Hệ thống từ chối xử lý các nội dung vi phạm tiêu chuẩn cộng đồng hoặc thông tin rác.</span>
+                                <span class="lang-en" style="display: none;">The system refuses to process content violating community standards or spam info.</span>
+                            </p>
                         </div>
                     </li>
                 </ul>
@@ -194,21 +211,27 @@
                 <div class="relative">
                     <div class="absolute left-4 top-0 bottom-0 w-0.5 bg-[var(--color-border)]"></div>
                     <div class="relative pl-12 pb-8">
-                        <div
-                            class="absolute left-0 top-0 size-8 rounded-full bg-[var(--color-primary)] text-white flex items-center justify-center font-bold z-10">
-                            1</div>
-                        <h4 class="text-lg font-bold text-[var(--color-text-main)] mb-2">Thực hiện khảo sát</h4>
-                        <p class="text-[var(--color-text-sub)] text-sm">Nhập thông tin, trả lời các câu hỏi.</p>
+                        <div class="absolute left-0 top-0 size-8 rounded-full bg-[var(--color-primary)] text-white flex items-center justify-center font-bold z-10">1</div>
+                        <h4 class="text-lg font-bold text-[var(--color-text-main)] mb-2">
+                            <span class="lang-vi">Khảo sát & Tương tác</span>
+                            <span class="lang-en" style="display: none;">Survey & Interaction</span>
+                        </h4>
+                        <p class="text-[var(--color-text-sub)] text-sm">
+                            <span class="lang-vi">Học sinh hoàn thành các kiểm tra AI cung cấp.</span>
+                            <span class="lang-en" style="display: none;">Students complete tests provided by AI.</span>
+                        </p>
                     </div>
                     <div class="relative pl-12 pb-8">
-                        <div
-                            class="absolute left-0 top-0 size-8 rounded-full bg-[var(--color-card-bg)] border-2 border-[var(--color-primary)] text-[var(--color-primary)] flex items-center justify-center font-bold z-10">
-                            2</div>
-                        <h4 class="text-lg font-bold text-[var(--color-text-main)] mb-2">Xem kết quả</h4>
-                        <p class="text-[var(--color-text-sub)] text-sm">Hệ thống tự động tổng hợp kết quả theo dạng biểu
-                            đồ trực quan.</p>
+                        <div class="absolute left-0 top-0 size-8 rounded-full bg-[var(--color-card-bg)] border-2 border-[var(--color-primary)] text-[var(--color-primary)] flex items-center justify-center font-bold z-10">2</div>
+                        <h4 class="text-lg font-bold text-[var(--color-text-main)] mb-2">
+                            <span class="lang-vi">AI Phân tích & Đề xuất</span>
+                            <span class="lang-en" style="display: none;">AI Analysis & Recommendations</span>
+                        </h4>
+                        <p class="text-[var(--color-text-sub)] text-sm">
+                            <span class="lang-vi">Hệ thống AI xử lý dữ liệu theo thời gian thực và xuất bản báo cáo cá nhân hóa trực quan.</span>
+                            <span class="lang-en" style="display: none;">The AI system processes data in real-time and publishes visual personalized reports.</span>
+                        </p>
                     </div>
-                   
                 </div>
             </div>
         </section>
@@ -217,23 +240,44 @@
         <section class="grid grid-cols-2 md:grid-cols-4 gap-6 py-4">
             <div class="flex flex-col items-center text-center gap-2">
                 <span class="material-symbols-outlined text-4xl text-[var(--color-primary)]">support_agent</span>
-                <h4 class="font-bold text-[var(--color-text-main)]">Hỗ trợ 24/7</h4>
-                <p class="text-xs text-[var(--color-text-sub)]">Luôn sẵn sàng hỗ trợ bạn.</p>
+                <h4 class="font-bold text-[var(--color-text-main)]">
+                    <span class="lang-vi">Hỗ trợ 24/7</span>
+                    <span class="lang-en" style="display: none;">24/7 Support</span>
+                </h4>
+                <p class="text-xs text-[var(--color-text-sub)]">
+                    <span class="lang-vi">Luôn đồng hành cùng bạn.</span>
+                    <span class="lang-en" style="display: none;">Always by your side.</span>
+                </p>
             </div>
             <div class="flex flex-col items-center text-center gap-2">
                 <span class="material-symbols-outlined text-4xl text-[var(--color-primary)]">verified_user</span>
                 <h4 class="font-bold text-[var(--color-text-main)]">99.9% Tin cậy</h4>
-                <p class="text-xs text-[var(--color-text-sub)]">Hệ thống vận hành ổn định.</p>
+                <p class="text-xs text-[var(--color-text-sub)]">
+                    <span class="lang-vi">Thuật toán AI chuẩn xác.</span>
+                    <span class="lang-en" style="display: none;">Accurate AI algorithms.</span>
+                </p>
             </div>
             <div class="flex flex-col items-center text-center gap-2">
                 <span class="material-symbols-outlined text-4xl text-[var(--color-primary)]">speed</span>
-                <h4 class="font-bold text-[var(--color-text-main)]">Tốc độ cao</h4>
-                <p class="text-xs text-[var(--color-text-sub)]">Phản hồi tính bằng ms.</p>
+                <h4 class="font-bold text-[var(--color-text-main)]">
+                    <span class="lang-vi">Phản hồi Tức thì</span>
+                    <span class="lang-en" style="display: none;">Instant Response</span>
+                </h4>
+                <p class="text-xs text-[var(--color-text-sub)]">
+                    <span class="lang-vi">Xử lý dữ liệu tính bằng ms.</span>
+                    <span class="lang-en" style="display: none;">Data processing in ms.</span>
+                </p>
             </div>
             <div class="flex flex-col items-center text-center gap-2">
                 <span class="material-symbols-outlined text-4xl text-[var(--color-primary)]">cloud_done</span>
-                <h4 class="font-bold text-[var(--color-text-main)]">Lưu trữ đám mây</h4>
-                <p class="text-xs text-[var(--color-text-sub)]">Dữ liệu được đồng bộ hóa.</p>
+                <h4 class="font-bold text-[var(--color-text-main)]">
+                    <span class="lang-vi">Đồng bộ Đám mây</span>
+                    <span class="lang-en" style="display: none;">Cloud Sync</span>
+                </h4>
+                <p class="text-xs text-[var(--color-text-sub)]">
+                    <span class="lang-vi">Lưu trữ an toàn tuyệt đối.</span>
+                    <span class="lang-en" style="display: none;">Absolute secure storage.</span>
+                </p>
             </div>
         </section>
     </div>
@@ -241,28 +285,32 @@
     <!-- Right Column: Sticky Widget -->
     <div class="lg:col-span-4 relative">
         <div class="sticky top-24 space-y-6">
-
-            <!-- Nhúng Widget Video Youtube & Khảo sát vào đây -->
-
-            {% include 'components/youtube_widget.html' %}
-            {% include 'components/club.html' %}
+            {% include 'components/video_intro.html' %}
 
             <!-- Contact/Support Mini Card -->
             <div class="bg-[var(--color-card-bg)] rounded-xl p-6 shadow-sm ring-1 ring-[var(--color-border)]">
-                <h4 class="font-bold text-[var(--color-text-main)] mb-4">Bạn có câu hỏi?</h4>
+                <h4 class="font-bold text-[var(--color-text-main)] mb-4">
+                    <span class="lang-vi">Cần trợ giúp từ AI Agent?</span>
+                    <span class="lang-en" style="display: none;">Need help from AI Agent?</span>
+                </h4>
                 <div class="flex items-center gap-4 mb-4">
-                    <div
-                        class="size-10 rounded-full bg-[var(--color-background)] flex items-center justify-center text-[var(--color-primary)]">
-                        <span class="material-symbols-outlined">call</span>
+                    <div class="flex items-center justify-center p-4">
+                        <a href="tel:0938039000" class="group relative inline-flex items-center justify-center p-3 rounded-full shrink-0">
+                            <span class="absolute inset-[-4px] rounded-full bg-orange-500 opacity-75 animate-ping pointer-events-none" style="animation-duration: 2s;"></span>
+                            <span class="absolute inset-[-8px] rounded-full bg-orange-400 opacity-60 blur-lg group-hover:opacity-95 transition-opacity pointer-events-none"></span>
+                            <div class="relative size-12 rounded-full bg-[var(--color-primary)] text-white flex items-center justify-center shadow-xl group-hover:bg-[var(--color-text-main)] group-hover:scale-110 transition-all duration-300 z-10">
+                                <span class="material-symbols-outlined text-2xl animate-phone-icon">call</span>
+                            </div>
+                        </a>
                     </div>
                     <div>
-                        <p class="text-xs text-[var(--color-text-sub)] uppercase font-bold">Hotline 24/7</p>
-                        <p class="text-lg font-bold text-[var(--color-text-main)]">1900-360°</p>
+                        <p class="text-xs text-[var(--color-text-sub)] uppercase font-bold">
+                            <span class="lang-vi">Hotline Trợ lý 24/7</span>
+                            <span class="lang-en" style="display: none;">24/7 Assistant Hotline</span>
+                        </p>
+                        <p class="text-lg font-bold text-[var(--color-text-main)]">Mentiq AI</p>
                     </div>
                 </div>
-                <a class="block text-center text-sm font-semibold text-[var(--color-primary)] hover:underline"
-                    href="#">Trò chuyện với
-                    tư vấn viên</a>
             </div>
         </div>
     </div>
@@ -270,22 +318,31 @@
 
 <!-- FAQ Section -->
 <section class="mt-16 border-t border-[var(--color-border)] pt-10">
-    <h2 class="text-2xl font-bold text-[var(--color-text-main)] mb-8">Các câu hỏi thường gặp</h2>
+    <h2 class="text-2xl font-bold text-[var(--color-text-main)] mb-8">
+        <span class="lang-vi">Các câu hỏi thường gặp</span>
+        <span class="lang-en" style="display: none;">Frequently Asked Questions</span>
+    </h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
-            <h5 class="font-bold text-[var(--color-text-main)] mb-2">Hệ thống có thu phí tạo khảo sát không?</h5>
-            <p class="text-[var(--color-text-sub)] text-sm leading-relaxed">Reconnect 360° cung cấp hoàn
-                toàn miễn phí cho mọi cá nhân tham gia khảo sát</p>
+            <h5 class="font-bold text-[var(--color-text-main)] mb-2">
+                <span class="lang-vi">Hệ thống trợ lý AI có thu phí không?</span>
+                <span class="lang-en" style="display: none;">Is the AI assistant system free?</span>
+            </h5>
+            <p class="text-[var(--color-text-sub)] text-sm leading-relaxed">
+                <span class="lang-vi">Mentiq cung cấp hoàn toàn miễn phí cho học sinh và nhà trường trải nghiệm đánh giá toàn diện.</span>
+                <span class="lang-en" style="display: none;">Mentiq provides a completely free comprehensive assessment experience for students and schools.</span>
+            </p>
         </div>
         <div>
-            <h5 class="font-bold text-[var(--color-text-main)] mb-2">Tôi có thể xuất dữ liệu ra file Pdf được không?
+            <h5 class="font-bold text-[var(--color-text-main)] mb-2">
+                <span class="lang-vi">Tôi có thể nhận báo cáo phân tích qua email không?</span>
+                <span class="lang-en" style="display: none;">Can I receive analytical reports via email?</span>
             </h5>
-            <p class="text-[var(--color-text-sub)] text-sm leading-relaxed">Có, bạn có thể dễ dàng tải xuống báo cáo
-                tổng hợp dưới dạng
-                file `.pdf` bất kỳ lúc nào.</p>
+            <p class="text-[var(--color-text-sub)] text-sm leading-relaxed">
+                <span class="lang-vi">Có, hệ thống sẽ tự động tổng hợp và gửi file `.pdf` chi tiết đến email ngay sau khi hoàn thành đánh giá.</span>
+                <span class="lang-en" style="display: none;">Yes, the system will automatically synthesize and send a detailed `.pdf` file to your email right after completing the assessment.</span>
+            </p>
         </div>
     </div>
 </section>
-           {% include 'surveys/single/feedback_button_floating_bottom.html' %}
-
 {% endblock %}

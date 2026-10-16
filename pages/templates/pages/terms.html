@@ -1,11 +1,17 @@
 {% extends 'base.html' %}
 
-{% block title %}Điều Khoản Sử Dụng - Reconnect 360°{% endblock %}
+{% block title %}Điều Khoản Sử Dụng - Mentiq{% endblock %}
 
 {% block content %}
 <div class="mb-6">
-    <h1 class="text-3xl font-black tracking-tight text-[var(--color-text-main)] sm:text-4xl">📜 Điều Khoản Sử Dụng</h1>
-    <p class="mt-2 text-base text-[var(--color-text-muted, #64748b)]">Các quy định, quyền hạn và trách nhiệm khi bạn sử dụng dịch vụ trên Reconnect 360°.</p>
+    <h1 class="text-3xl font-black tracking-tight text-[var(--color-text-main)] sm:text-4xl">
+        <span class="lang-vi">📜 Điều Khoản Sử Dụng</span>
+        <span class="lang-en" style="display: none;">📜 Terms of Use</span>
+    </h1>
+    <p class="mt-2 text-base text-[var(--color-text-muted, #64748b)]">
+        <span class="lang-vi">Các quy định, quyền hạn và trách nhiệm khi bạn sử dụng dịch vụ trên Mentiq.</span>
+        <span class="lang-en" style="display: none;">Regulations, rights, and responsibilities when using services on Mentiq.</span>
+    </p>
 </div>
 
 <!-- Layout chia 2 cột: Sidebar & Content Panel -->
@@ -13,38 +19,62 @@
     
     <!-- SIDEBAR MENU: Sticky cố định khi cuộn trang -->
     <aside class="w-full lg:w-72 shrink-0 bg-[var(--color-surface, #ffffff)] rounded-xl p-3 sm:p-4 sticky top-16 lg:top-20 z-30 about-aside-box shadow-md lg:shadow-sm transition-all">
-        <h3 class="hidden lg:block text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted, #94a3b8)] px-3 mb-3">Mục điều khoản</h3>
+        <h3 class="hidden lg:block text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted, #94a3b8)] px-3 mb-3">
+            <span class="lang-vi">Mục điều khoản</span>
+            <span class="lang-en" style="display: none;">Terms Sections</span>
+        </h3>
         
         <!-- Scroll Container cho Mobile -->
         <div class="about-scroll-container relative overflow-hidden">
             <nav id="about-nav-scroll" onscroll="handleAboutMenuScroll()" class="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0 scrollbar-none w-full snap-x snap-mandatory lg:snap-none">
                 <button onclick="switchAboutTab('accept')" onmouseenter="handleTabHover('accept')" onmouseleave="cancelTabHover()" id="atab-accept" data-tab="accept" class="about-tab-btn shrink-0 lg:shrink flex items-center gap-2.5 px-3.5 py-2.5 lg:px-4 lg:py-3 text-left rounded-lg text-sm font-semibold transition-all about-tab-active whitespace-nowrap lg:whitespace-normal snap-center">
                     <span class="material-symbols-outlined text-lg">gavel</span>
-                    <span>1. Chấp nhận điều khoản</span>
+                    <span>
+                        <span class="lang-vi">1. Chấp nhận điều khoản</span>
+                        <span class="lang-en" style="display: none;">1. Acceptance of Terms</span>
+                    </span>
                 </button>
                 <button onclick="switchAboutTab('account')" onmouseenter="handleTabHover('account')" onmouseleave="cancelTabHover()" id="atab-account" data-tab="account" class="about-tab-btn shrink-0 lg:shrink flex items-center gap-2.5 px-3.5 py-2.5 lg:px-4 lg:py-3 text-left rounded-lg text-sm font-semibold transition-all about-tab-inactive whitespace-nowrap lg:whitespace-normal snap-center">
                     <span class="material-symbols-outlined text-lg">account_circle</span>
-                    <span>2. Tài khoản người dùng</span>
+                    <span>
+                        <span class="lang-vi">2. Tài khoản người dùng</span>
+                        <span class="lang-en" style="display: none;">2. User Accounts</span>
+                    </span>
                 </button>
                 <button onclick="switchAboutTab('usage')" onmouseenter="handleTabHover('usage')" onmouseleave="cancelTabHover()" id="atab-usage" data-tab="usage" class="about-tab-btn shrink-0 lg:shrink flex items-center gap-2.5 px-3.5 py-2.5 lg:px-4 lg:py-3 text-left rounded-lg text-sm font-semibold transition-all about-tab-inactive whitespace-nowrap lg:whitespace-normal snap-center">
                     <span class="material-symbols-outlined text-lg">rule</span>
-                    <span>3. Quy định sử dụng</span>
+                    <span>
+                        <span class="lang-vi">3. Quy định sử dụng</span>
+                        <span class="lang-en" style="display: none;">3. Usage Rules</span>
+                    </span>
                 </button>
                 <button onclick="switchAboutTab('intellectual')" onmouseenter="handleTabHover('intellectual')" onmouseleave="cancelTabHover()" id="atab-intellectual" data-tab="intellectual" class="about-tab-btn shrink-0 lg:shrink flex items-center gap-2.5 px-3.5 py-2.5 lg:px-4 lg:py-3 text-left rounded-lg text-sm font-semibold transition-all about-tab-inactive whitespace-nowrap lg:whitespace-normal snap-center">
                     <span class="material-symbols-outlined text-lg">copyright</span>
-                    <span>4. Sở hữu trí tuệ</span>
+                    <span>
+                        <span class="lang-vi">4. Sở hữu trí tuệ</span>
+                        <span class="lang-en" style="display: none;">4. Intellectual Property</span>
+                    </span>
                 </button>
                 <button onclick="switchAboutTab('disclaimer')" onmouseenter="handleTabHover('disclaimer')" onmouseleave="cancelTabHover()" id="atab-disclaimer" data-tab="disclaimer" class="about-tab-btn shrink-0 lg:shrink flex items-center gap-2.5 px-3.5 py-2.5 lg:px-4 lg:py-3 text-left rounded-lg text-sm font-semibold transition-all about-tab-inactive whitespace-nowrap lg:whitespace-normal snap-center">
                     <span class="material-symbols-outlined text-lg">shield</span>
-                    <span>5. Giới hạn trách nhiệm</span>
+                    <span>
+                        <span class="lang-vi">5. Giới hạn trách nhiệm</span>
+                        <span class="lang-en" style="display: none;">5. Limitation of Liability</span>
+                    </span>
                 </button>
                 <button onclick="switchAboutTab('updates')" onmouseenter="handleTabHover('updates')" onmouseleave="cancelTabHover()" id="atab-updates" data-tab="updates" class="about-tab-btn shrink-0 lg:shrink flex items-center gap-2.5 px-3.5 py-2.5 lg:px-4 lg:py-3 text-left rounded-lg text-sm font-semibold transition-all about-tab-inactive whitespace-nowrap lg:whitespace-normal snap-center">
                     <span class="material-symbols-outlined text-lg">edit_note</span>
-                    <span>6. Thay đổi điều khoản</span>
+                    <span>
+                        <span class="lang-vi">6. Thay đổi điều khoản</span>
+                        <span class="lang-en" style="display: none;">6. Terms Updates</span>
+                    </span>
                 </button>
                 <button onclick="switchAboutTab('contact')" onmouseenter="handleTabHover('contact')" onmouseleave="cancelTabHover()" id="atab-contact" data-tab="contact" class="about-tab-btn shrink-0 lg:shrink flex items-center gap-2.5 px-3.5 py-2.5 lg:px-4 lg:py-3 text-left rounded-lg text-sm font-semibold transition-all about-tab-inactive whitespace-nowrap lg:whitespace-normal snap-center">
                     <span class="material-symbols-outlined text-lg">mail</span>
-                    <span>7. Liên hệ</span>
+                    <span>
+                        <span class="lang-vi">7. Liên hệ</span>
+                        <span class="lang-en" style="display: none;">7. Contact</span>
+                    </span>
                 </button>
             </nav>
         </div>
@@ -67,67 +97,110 @@
         <!-- Tab 1: Chấp nhận điều khoản -->
         <div id="acontent-accept" class="about-content active space-y-4">
             <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-                <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">1. Chấp nhận điều khoản</h2>
-                <span class="text-xs text-[var(--color-text-muted, #94a3b8)]">Cập nhật: Tháng 8, 2026</span>
+                <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">
+                    <span class="lang-vi">1. Chấp nhận điều khoản</span>
+                    <span class="lang-en" style="display: none;">1. Acceptance of Terms</span>
+                </h2>
+                <span class="text-xs text-[var(--color-text-muted, #94a3b8)]">
+                    <span class="lang-vi">Cập nhật: Tháng 8, 2026</span>
+                    <span class="lang-en" style="display: none;">Updated: August, 2026</span>
+                </span>
             </div>
             <p class="text-sm sm:text-base leading-relaxed text-[var(--color-text-muted, #475569)]">
-                Khi truy cập và sử dụng dịch vụ tại <strong>Reconnect 360°</strong>, bạn đồng ý tuân thủ toàn bộ các quy định và điều khoản được đề cập tại đây.
+                <span class="lang-vi">Khi truy cập và sử dụng dịch vụ tại <strong>Mentiq</strong>, bạn đồng ý tuân thủ toàn bộ các quy định và điều khoản được đề cập tại đây.</span>
+                <span class="lang-en" style="display: none;">By accessing and using services at <strong>Mentiq</strong>, you agree to comply with all regulations and terms mentioned herein.</span>
             </p>
             <div class="p-4 bg-[var(--color-background, #f8fafc)] border-l-4 border-[var(--color-primary, #1152d4)] rounded-r-lg mt-4">
                 <p class="text-sm text-[var(--color-text-main)]">
-                    Nếu bạn không đồng ý với bất kỳ điều khoản nào trong thỏa thuận này, vui lòng ngừng truy cập và sử dụng các dịch vụ trên hệ thống.
+                    <span class="lang-vi">Nếu bạn không đồng ý với bất kỳ điều khoản nào trong thỏa thuận này, vui lòng ngừng truy cập và sử dụng các dịch vụ trên hệ thống.</span>
+                    <span class="lang-en" style="display: none;">If you do not agree with any terms in this agreement, please stop accessing and using services on the system.</span>
                 </p>
             </div>
         </div>
 
         <!-- Tab 2: Tài khoản người dùng -->
         <div id="acontent-account" class="about-content space-y-4">
-            <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">2. Tài khoản người dùng</h2>
+            <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">
+                <span class="lang-vi">2. Tài khoản người dùng</span>
+                <span class="lang-en" style="display: none;">2. User Accounts</span>
+            </h2>
             <p class="text-sm sm:text-base leading-relaxed text-[var(--color-text-muted, #475569)]">
-                Để đảm bảo tính chính xác của các bài đánh giá và an toàn hệ thống, người dùng có trách nhiệm tuân thủ các nghĩa vụ sau:
+                <span class="lang-vi">Để đảm bảo tính chính xác của các bài đánh giá và an toàn hệ thống, người dùng có trách nhiệm tuân thủ các nghĩa vụ sau:</span>
+                <span class="lang-en" style="display: none;">To ensure assessment accuracy and system security, users are responsible for complying with the following obligations:</span>
             </p>
             <ul class="space-y-3 pt-1">
                 <li class="flex items-start gap-3 p-3.5 rounded-lg border border-slate-200/80 bg-[var(--color-background, #f8fafc)] text-sm sm:text-base text-[var(--color-text-muted, #475569)]">
                     <span class="material-symbols-outlined text-[var(--color-primary)] text-xl shrink-0 mt-0.5">lock_reset</span>
-                    <span>Bạn có trách nhiệm bảo mật thông tin đăng nhập và chịu trách nhiệm cho mọi hoạt động diễn ra dưới tài khoản của mình.</span>
+                    <span>
+                        <span class="lang-vi">Bạn có trách nhiệm bảo mật thông tin đăng nhập và chịu trách nhiệm cho mọi hoạt động diễn ra dưới tài khoản của mình.</span>
+                        <span class="lang-en" style="display: none;">You are responsible for securing your login information and for all activities under your account.</span>
+                    </span>
                 </li>
                 <li class="flex items-start gap-3 p-3.5 rounded-lg border border-slate-200/80 bg-[var(--color-background, #f8fafc)] text-sm sm:text-base text-[var(--color-text-muted, #475569)]">
                     <span class="material-symbols-outlined text-[var(--color-primary)] text-xl shrink-0 mt-0.5">fact_check</span>
-                    <span>Thông tin cung cấp khi đăng ký thủ công hoặc xác thực ủy quyền qua Google Login phải đảm bảo tính chính xác và đầy đủ.</span>
+                    <span>
+                        <span class="lang-vi">Thông tin cung cấp khi đăng ký thủ công hoặc xác thực ủy quyền qua Google Login phải đảm bảo tính chính xác và đầy đủ.</span>
+                        <span class="lang-en" style="display: none;">Information provided during manual registration or Google Login authorization must be accurate and complete.</span>
+                    </span>
                 </li>
                 <li class="flex items-start gap-3 p-3.5 rounded-lg border border-slate-200/80 bg-[var(--color-background, #f8fafc)] text-sm sm:text-base text-[var(--color-text-muted, #475569)]">
                     <span class="material-symbols-outlined text-[var(--color-primary)] text-xl shrink-0 mt-0.5">block</span>
-                    <span>Tuyệt đối không chia sẻ tài khoản cho người khác sử dụng với mục đích vi phạm quy định pháp luật hoặc gian lận kết quả khảo sát.</span>
+                    <span>
+                        <span class="lang-vi">Tuyệt đối không chia sẻ tài khoản cho người khác sử dụng với mục đích vi phạm quy định pháp luật hoặc gian lận kết quả khảo sát.</span>
+                        <span class="lang-en" style="display: none;">Strictly do not share accounts with others for purposes that violate laws or manipulate survey results.</span>
+                    </span>
                 </li>
             </ul>
         </div>
 
         <!-- Tab 3: Quy định sử dụng -->
         <div id="acontent-usage" class="about-content space-y-4">
-            <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">3. Quy định sử dụng dịch vụ</h2>
+            <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">
+                <span class="lang-vi">3. Quy định sử dụng dịch vụ</span>
+                <span class="lang-en" style="display: none;">3. Service Usage Rules</span>
+            </h2>
             <p class="text-sm sm:text-base leading-relaxed text-[var(--color-text-muted, #475569)]">
-                Khi sử dụng nền tảng Reconnect 360°, bạn cam kết nghiêm túc không thực hiện các hành vi cấm sau đây:
+                <span class="lang-vi">Khi sử dụng nền tảng Mentiq, bạn cam kết nghiêm túc không thực hiện các hành vi cấm sau đây:</span>
+                <span class="lang-en" style="display: none;">When using the Mentiq platform, you commit strictly not to perform the following prohibited behaviors:</span>
             </p>
             <div class="grid grid-cols-1 gap-3 pt-2">
                 <div class="p-4 border border-rose-100 rounded-lg bg-rose-50/30 dark:bg-rose-950/10 flex gap-3 items-start">
                     <span class="material-symbols-outlined text-2xl text-rose-600 shrink-0">smart_toy</span>
                     <div>
-                        <h3 class="font-bold text-base text-[var(--color-text-main)] mb-1">Can thiệp tự động</h3>
-                        <p class="text-sm text-[var(--color-text-muted, #475569)]">Sử dụng công cụ tự động (bot, script, crawler) để can thiệp vào kết quả đánh giá, làm sai lệch dữ liệu khảo sát.</p>
+                        <h3 class="font-bold text-base text-[var(--color-text-main)] mb-1">
+                            <span class="lang-vi">Can thiệp tự động</span>
+                            <span class="lang-en" style="display: none;">Automated Interference</span>
+                        </h3>
+                        <p class="text-sm text-[var(--color-text-muted, #475569)]">
+                            <span class="lang-vi">Sử dụng công cụ tự động (bot, script, crawler) để can thiệp vào kết quả đánh giá, làm sai lệch dữ liệu khảo sát.</span>
+                            <span class="lang-en" style="display: none;">Using automated tools (bots, scripts, crawlers) to interfere with assessment results or distort survey data.</span>
+                        </p>
                     </div>
                 </div>
                 <div class="p-4 border border-rose-100 rounded-lg bg-rose-50/30 dark:bg-rose-950/10 flex gap-3 items-start">
                     <span class="material-symbols-outlined text-2xl text-rose-600 shrink-0">warning</span>
                     <div>
-                        <h3 class="font-bold text-base text-[var(--color-text-main)] mb-1">Gây gián đoạn hệ thống</h3>
-                        <p class="text-sm text-[var(--color-text-muted, #475569)]">Cố ý tấn công, phá hoại, gây gián đoạn hoặc làm quá tải cơ sở hạ tầng máy chủ Reconnect 360°.</p>
+                        <h3 class="font-bold text-base text-[var(--color-text-main)] mb-1">
+                            <span class="lang-vi">Gây gián đoạn hệ thống</span>
+                            <span class="lang-en" style="display: none;">System Disruption</span>
+                        </h3>
+                        <p class="text-sm text-[var(--color-text-muted, #475569)]">
+                            <span class="lang-vi">Cố ý tấn công, phá hoại, gây gián đoạn hoặc làm quá tải cơ sở hạ tầng máy chủ Mentiq.</span>
+                            <span class="lang-en" style="display: none;">Intentionally attacking, sabotaging, disrupting, or overloading the Mentiq server infrastructure.</span>
+                        </p>
                     </div>
                 </div>
                 <div class="p-4 border border-rose-100 rounded-lg bg-rose-50/30 dark:bg-rose-950/10 flex gap-3 items-start">
                     <span class="material-symbols-outlined text-2xl text-rose-600 shrink-0">campaign</span>
                     <div>
-                        <h3 class="font-bold text-base text-[var(--color-text-main)] mb-1">Phát tán nội dung độc hại</h3>
-                        <p class="text-sm text-[var(--color-text-muted, #475569)]">Phát tán thông tin sai lệch, xâm phạm bản quyền hoặc lưu trữ các nội dung vi phạm thuần phong mỹ tục và pháp luật.</p>
+                        <h3 class="font-bold text-base text-[var(--color-text-main)] mb-1">
+                            <span class="lang-vi">Phát tán nội dung độc hại</span>
+                            <span class="lang-en" style="display: none;">Spreading Malicious Content</span>
+                        </h3>
+                        <p class="text-sm text-[var(--color-text-muted, #475569)]">
+                            <span class="lang-vi">Phát tán thông tin sai lệch, xâm phạm bản quyền hoặc lưu trữ các nội dung vi phạm thuần phong mỹ tục và pháp luật.</span>
+                            <span class="lang-en" style="display: none;">Spreading misinformation, infringing copyright, or storing content violating cultural norms and laws.</span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -135,56 +208,81 @@
 
         <!-- Tab 4: Sở hữu trí tuệ -->
         <div id="acontent-intellectual" class="about-content space-y-4">
-            <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">4. Quyền sở hữu trí tuệ</h2>
+            <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">
+                <span class="lang-vi">4. Quyền sở hữu trí tuệ</span>
+                <span class="lang-en" style="display: none;">4. Intellectual Property Rights</span>
+            </h2>
             <p class="text-sm sm:text-base leading-relaxed text-[var(--color-text-muted, #475569)]">
-                Toàn bộ tài nguyên trên hệ thống Reconnect 360° được bảo hộ theo luật sở hữu trí tuệ:
+                <span class="lang-vi">Toàn bộ tài nguyên trên hệ thống Mentiq được bảo hộ theo luật sở hữu trí tuệ:</span>
+                <span class="lang-en" style="display: none;">All resources on the Mentiq system are protected under intellectual property laws:</span>
             </p>
             <div class="p-5 border border-slate-200/80 rounded-lg bg-[var(--color-background, #f8fafc)] space-y-3">
                 <div class="flex items-center gap-3">
                     <span class="material-symbols-outlined text-3xl text-[var(--color-primary)]">verified</span>
-                    <h3 class="font-bold text-lg text-[var(--color-text-main)]">Bản quyền thuộc Reconnect 360°</h3>
+                    <h3 class="font-bold text-lg text-[var(--color-text-main)]">
+                        <span class="lang-vi">Bản quyền thuộc Mentiq</span>
+                        <span class="lang-en" style="display: none;">Copyright Belongs to Mentiq</span>
+                    </h3>
                 </div>
                 <p class="text-sm sm:text-base leading-relaxed text-[var(--color-text-muted, #475569)]">
-                    Toàn bộ nội dung, giao diện thiết kế, bộ câu hỏi đánh giá, thuật toán tính toán và logo thuộc quyền sở hữu trí tuệ hợp pháp của chúng tôi. Bạn không được phép sao chép, trích xuất, sửa đổi hoặc thương mại hóa dưới mọi hình thức khi chưa có sự đồng ý bằng văn bản.
+                    <span class="lang-vi">Toàn bộ nội dung, giao diện thiết kế, bộ câu hỏi đánh giá, thuật toán tính toán và logo thuộc quyền sở hữu trí tuệ hợp pháp của chúng tôi. Bạn không được phép sao chép, trích xuất, sửa đổi hoặc thương mại hóa dưới mọi hình thức khi chưa có sự đồng ý bằng văn bản.</span>
+                    <span class="lang-en" style="display: none;">All content, UI design, assessment questionnaires, calculation algorithms, and logos belong to our legal intellectual property. You are not allowed to copy, extract, modify, or commercialize in any form without written consent.</span>
                 </p>
             </div>
         </div>
 
         <!-- Tab 5: Giới hạn trách nhiệm -->
         <div id="acontent-disclaimer" class="about-content space-y-4">
-            <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">5. Giới hạn trách nhiệm</h2>
+            <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">
+                <span class="lang-vi">5. Giới hạn trách nhiệm</span>
+                <span class="lang-en" style="display: none;">5. Limitation of Liability</span>
+            </h2>
             <p class="text-sm sm:text-base leading-relaxed text-[var(--color-text-muted, #475569)]">
-                Các kết quả đánh giá và biểu đồ phân tích trên Reconnect 360° được thiết kế nhằm mục đích hỗ trợ kết nối, tham khảo cá nhân và phục vụ nghiên cứu giáo dục.
+                <span class="lang-vi">Các kết quả đánh giá và biểu đồ phân tích trên Mentiq được thiết kế nhằm mục đích hỗ trợ kết nối, tham khảo cá nhân và phục vụ nghiên cứu giáo dục.</span>
+                <span class="lang-en" style="display: none;">Assessment results and analytical charts on Mentiq are designed for connection support, personal reference, and educational research.</span>
             </p>
             <div class="p-4 bg-[var(--color-background, #f8fafc)] border-l-4 border-amber-500 rounded-r-lg">
                 <p class="text-sm text-[var(--color-text-main)]">
-                    Chúng tôi không chịu trách nhiệm pháp lý đối với bất kỳ quyết định cá nhân, tổ chức hoặc thiệt hại gián tiếp nào phát sinh dựa trên việc diễn giải thông tin từ các báo cáo khảo sát của hệ thống.
+                    <span class="lang-vi">Chúng tôi không chịu trách nhiệm pháp lý đối với bất kỳ quyết định cá nhân, tổ chức hoặc thiệt hại gián tiếp nào phát sinh dựa trên việc diễn giải thông tin từ các báo cáo khảo sát của hệ thống.</span>
+                    <span class="lang-en" style="display: none;">We assume no legal liability for any personal or organizational decisions or indirect damages arising from interpreting information from system survey reports.</span>
                 </p>
             </div>
         </div>
 
         <!-- Tab 6: Thay đổi điều khoản -->
         <div id="acontent-updates" class="about-content space-y-4">
-            <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">6. Cập nhật & Thay đổi điều khoản</h2>
+            <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">
+                <span class="lang-vi">6. Cập nhật & Thay đổi điều khoản</span>
+                <span class="lang-en" style="display: none;">6. Updates & Changes to Terms</span>
+            </h2>
             <p class="text-sm sm:text-base leading-relaxed text-[var(--color-text-muted, #475569)]">
-                Chúng tôi có quyền sửa đổi, bổ sung hoặc cập nhật các điều khoản này bất kỳ lúc nào để phù hợp với sự phát triển của nền tảng và quy định pháp luật.
+                <span class="lang-vi">Chúng tôi có quyền sửa đổi, bổ sung hoặc cập nhật các điều khoản này bất kỳ lúc nào để phù hợp với sự phát triển của nền tảng và quy định pháp luật.</span>
+                <span class="lang-en" style="display: none;">We reserve the right to modify, supplement, or update these terms at any time to suit platform development and legal regulations.</span>
             </p>
             <p class="text-sm sm:text-base leading-relaxed text-[var(--color-text-muted, #475569)]">
-                Các thay đổi sẽ có hiệu lực ngay khi được đăng tải công khai trên website. Việc bạn tiếp tục sử dụng dịch vụ sau khi điều khoản thay đổi đồng nghĩa với việc bạn chấp nhận toàn bộ quy định mới.
+                <span class="lang-vi">Các thay đổi sẽ có hiệu lực ngay khi được đăng tải công khai trên website. Việc bạn tiếp tục sử dụng dịch vụ sau khi điều khoản thay đổi đồng nghĩa với việc bạn chấp nhận toàn bộ quy định mới.</span>
+                <span class="lang-en" style="display: none;">Changes will take effect immediately upon public posting on the website. Continuing to use services after term changes implies acceptance of all new regulations.</span>
             </p>
         </div>
 
         <!-- Tab 7: Liên hệ -->
         <div id="acontent-contact" class="about-content space-y-4">
-            <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">7. Thông tin liên hệ</h2>
+            <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">
+                <span class="lang-vi">7. Thông tin liên hệ</span>
+                <span class="lang-en" style="display: none;">7. Contact Information</span>
+            </h2>
             <p class="text-sm sm:text-base leading-relaxed text-[var(--color-text-muted, #475569)]">
-                Nếu bạn có bất kỳ câu hỏi, đóng góp ý kiến hoặc khiếu nại liên quan đến Điều khoản sử dụng này, vui lòng gửi phản hồi về cho chúng tôi qua:
+                <span class="lang-vi">Nếu bạn có bất kỳ câu hỏi, đóng góp ý kiến hoặc khiếu nại liên quan đến Điều khoản sử dụng này, vui lòng gửi phản hồi về cho chúng tôi qua:</span>
+                <span class="lang-en" style="display: none;">If you have any questions, feedback, or complaints regarding these Terms of Use, please send feedback to us via:</span>
             </p>
             <div class="p-4 border border-slate-200/80 rounded-lg bg-[var(--color-background, #f8fafc)] flex items-center gap-3">
                 <span class="material-symbols-outlined text-2xl text-[var(--color-primary)]">alternate_email</span>
                 <div>
-                    <span class="text-xs text-[var(--color-text-muted, #94a3b8)] block">Email hỗ trợ</span>
-                    <a href="mailto:support@reconnect360.vn" class="text-base font-bold text-[var(--color-primary)] hover:underline">support@reconnect360.vn</a>
+                    <span class="text-xs text-[var(--color-text-muted, #94a3b8)] block">
+                        <span class="lang-vi">Email hỗ trợ</span>
+                        <span class="lang-en" style="display: none;">Support Email</span>
+                    </span>
+                    <a href="mailto:support@reconnect360.vn" class="text-base font-bold text-[var(--color-primary)] hover:underline">support@mentiq.vn</a>
                 </div>
             </div>
         </div>

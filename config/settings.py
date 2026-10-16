@@ -5,6 +5,7 @@ Django settings for config project.
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,6 +24,7 @@ ALLOWED_HOSTS = [host.strip() for host in os.getenv('ALLOWED_HOSTS', '').split('
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,8 +50,10 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware', # <-- Đã bổ sung Middleware xử lý ngôn ngữ
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -70,6 +74,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.i18n', # <-- Đã bổ sung context processor i18n
             ],
         },
     },
@@ -82,11 +87,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.postgresql'),
-        'NAME': os.getenv('DB_NAME', 'hikikocheck'),
+        'NAME': os.getenv('DB_NAME', 'mentiq'),
         'USER': os.getenv('DB_USER', 'postgres'),
-        'PASSWORD': os.getenv('DB_PASSWORD', 'root'),
+        'PASSWORD': os.getenv('DB_PASSWORD', 'Mentiq@2026#db'),
         'HOST': os.getenv('DB_HOST', 'localhost'),
-        'PORT': os.getenv('DB_PORT', '5432'),
+        'PORT': os.getenv('DB_PORT', '5433'),
     }
 }
 
@@ -101,10 +106,21 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'vi' # Đặt ngôn ngữ mặc định là Tiếng Việt
 TIME_ZONE = 'Asia/Ho_Chi_Minh'
 USE_I18N = True
 USE_TZ = True
+
+# Danh sách ngôn ngữ hỗ trợ
+LANGUAGES = [
+    ('vi', _('Tiếng Việt')),
+    ('en', _('English')),
+]
+
+# Thư mục lưu file dịch thuật
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),
+]
 
 
 # Static & Media files
@@ -135,7 +151,7 @@ EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'True').lower() in ('true', '1', 't')
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
-DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'Reconnect360 Support <support@reconnect360.vn>')
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'Mentiq Support <support@mentiq.vn>')
 
 reply_to_env = os.getenv('REPLY_TO_EMAIL')
 REPLY_TO_EMAIL = [reply_to_env] if reply_to_env else [DEFAULT_FROM_EMAIL]
@@ -163,3 +179,18 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+
+# Cho phép tất cả các nguồn gọi API vào (Thích hợp cho giai đoạn phát triển)
+#CORS_ALLOW_ALL_ORIGINS = True 
+
+# Đã bổ sung cấu hình CSRF Trusted Origins đầy đủ cả non-www và www
+CSRF_TRUSTED_ORIGINS = [
+    "https://mentiq.vn",
+    "https://www.mentiq.vn",
+]
+# Buộc Django tin tưởng header HTTPS truyền từ Nginx xuống qua Unix Socket
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
+USE_X_FORWARDED_PORT = True
+from django.http import HttpRequest
+HttpRequest.scheme = property(lambda self: 'https')

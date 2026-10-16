@@ -1,11 +1,11 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="vi" data-theme="{% block default_theme %}light{% endblock %}">
+<html lang="vi" data-theme="{% block default_theme %}orchid{% endblock %}">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}Reconnect 360°{% endblock %}</title>
+    <title>{% block title %}Mentiq{% endblock %}</title>
 
     <!-- Favicon Configuration -->
     <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon" />
@@ -30,9 +30,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" rel="stylesheet" />
 
     <!-- Static CSS -->
-    <link rel="stylesheet" href="{% static 'css/theme.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     
+    <link rel="stylesheet" href="{% static 'dist/output.css' %}">
     <style>
         /* CSS hỗ trợ Anti-Flicker cho màu nền HTML gốc */
         html {
@@ -165,11 +164,29 @@
 
         {% endblock %}
     </main>
-   <!-- FLOATING SURVEY BUTTON (Xuất hiện toàn trang) -->
-    {% include 'surveys/reconnect360/survey_button_floating.html' %}
+  
     <!-- 3. FOOTER -->
     {% include 'includes/footer.html' %}
+   <script>
+    // Hàm áp dụng ngôn ngữ toàn trang
+    function applyGlobalLanguage() {
+        const currentLang = "{{ request.LANGUAGE_CODE }}" || "vi";
+        
+        // Ẩn/hiện các khối Tiếng Việt
+        document.querySelectorAll('.lang-vi').forEach(el => {
+            el.style.display = (currentLang === 'vi') ? '' : 'none';
+        });
+        
+        // Ẩn/hiện các khối Tiếng Anh
+        document.querySelectorAll('.lang-en').forEach(el => {
+            el.style.display = (currentLang === 'en') ? '' : 'none';
+        });
+    }
 
+    document.addEventListener('DOMContentLoaded', function () {
+        applyGlobalLanguage();
+    });
+</script>
     <!-- GLOBAL TAB SWITCHING SCRIPT -->
     <script>
         function switchTab(tabId) {

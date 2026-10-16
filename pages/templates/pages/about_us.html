@@ -1,174 +1,223 @@
 {% extends 'base.html' %}
 
-{% block title %}Về chúng tôi - Reconnect 360°{% endblock %}
+{% block title %}Về chúng tôi - Mentiq Personalized AI Learning Agent{% endblock %}
 
 {% block content %}
 <div class="mb-6">
-    <h1 class="text-3xl font-black tracking-tight text-[var(--color-text-main)] sm:text-4xl">👥 Về chúng tôi</h1>
-    <p class="mt-2 text-base text-[var(--color-text-muted, #64748b)]">Tìm hiểu về đội ngũ phát triển, mục tiêu và những người đồng hành đứng sau dự án Reconnect 360°.</p>
+    <h1 class="text-3xl font-black tracking-tight text-[var(--color-text-main)] sm:text-4xl flex items-center gap-3">
+        <span class="material-symbols-outlined text-[var(--color-primary)] text-4xl">groups</span>
+        <span class="lang-vi">Về chúng tôi</span>
+        <span class="lang-en" style="display: none;">About Us</span>
+    </h1>
+    <p class="mt-2 text-base text-[var(--color-text-sub, #64748b)]">
+        <span class="lang-vi">Khám phá tầm nhìn, đội ngũ phát triển và sứ mệnh của trợ lý học tập cá nhân hóa Mentiq.</span>
+        <span class="lang-en" style="display: none;">Explore the vision, development team, and mission of Mentiq Personalized AI Learning Agent.</span>
+    </p>
 </div>
 
-<!-- Layout chia 2 cột: Bỏ 'relative' ở container cha để sticky hoạt động chuẩn trên Desktop -->
+<!-- Layout chia 2 cột -->
 <div class="flex flex-col lg:flex-row gap-6 lg:gap-8 items-start">
     
-    <!-- SIDEBAR MENU: Sticky cố định khi cuộn trang trên Desktop -->
-    <aside class="w-full lg:w-72 shrink-0 bg-[var(--color-surface, #ffffff)] rounded-xl p-3 sm:p-4 sticky top-16 lg:top-20 z-30 about-aside-box shadow-md lg:shadow-sm transition-all">
-        <h3 class="hidden lg:block text-xs font-bold uppercase tracking-wider text-[var(--color-text-muted, #94a3b8)] px-3 mb-3">Thông tin chung</h3>
+    <!-- SIDEBAR MENU -->
+    <aside class="w-full lg:w-72 shrink-0 bg-[var(--color-surface)] rounded-xl p-3 sm:p-4 sticky top-16 lg:top-20 z-30 about-aside-box shadow-md lg:shadow-sm transition-all">
+        <h3 class="hidden lg:block text-xs font-bold uppercase tracking-wider text-[var(--color-text-sub, #94a3b8)] px-3 mb-3">
+            <span class="lang-vi">Thông tin chung</span>
+            <span class="lang-en" style="display: none;">General Info</span>
+        </h3>
         
         <!-- Wrapper menu trượt ngang trên mobile -->
         <div class="about-scroll-container relative overflow-hidden">
             <nav id="about-nav-scroll" onscroll="handleAboutMenuScroll()" class="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0 scrollbar-none w-full snap-x snap-mandatory lg:snap-none">
+                
+                <!-- Tab 1 -->
                 <button onclick="switchAboutTab('intro')" onmouseenter="handleTabHover('intro')" onmouseleave="cancelTabHover()" id="atab-intro" data-tab="intro" class="about-tab-btn shrink-0 lg:shrink flex items-center gap-2.5 px-3.5 py-2.5 lg:px-4 lg:py-3 text-left rounded-lg text-sm font-semibold transition-all about-tab-active whitespace-nowrap lg:whitespace-normal snap-center">
-                    <span class="material-symbols-outlined text-lg">groups</span>
-                    <span>Nhóm phát triển</span>
+                    <span class="material-symbols-outlined text-lg">smart_toy</span>
+                    <span>
+                        <span class="lang-vi">Giới thiệu chung</span>
+                        <span class="lang-en" style="display: none;">Introduction</span>
+                    </span>
                 </button>
+
+                <!-- Tab 2 -->
                 <button onclick="switchAboutTab('members')" onmouseenter="handleTabHover('members')" onmouseleave="cancelTabHover()" id="atab-members" data-tab="members" class="about-tab-btn shrink-0 lg:shrink flex items-center gap-2.5 px-3.5 py-2.5 lg:px-4 lg:py-3 text-left rounded-lg text-sm font-semibold transition-all about-tab-inactive whitespace-nowrap lg:whitespace-normal snap-center">
                     <span class="material-symbols-outlined text-lg">badge</span>
-                    <span>Thành viên nhóm</span>
+                    <span>
+                        <span class="lang-vi">Tác giả dự án</span>
+                        <span class="lang-en" style="display: none;">Project Authors</span>
+                    </span>
                 </button>
+
+                <!-- Tab 3 -->
                 <button onclick="switchAboutTab('advisor')" onmouseenter="handleTabHover('advisor')" onmouseleave="cancelTabHover()" id="atab-advisor" data-tab="advisor" class="about-tab-btn shrink-0 lg:shrink flex items-center gap-2.5 px-3.5 py-2.5 lg:px-4 lg:py-3 text-left rounded-lg text-sm font-semibold transition-all about-tab-inactive whitespace-nowrap lg:whitespace-normal snap-center">
                     <span class="material-symbols-outlined text-lg">school</span>
-                    <span>Giáo viên hướng dẫn</span>
+                    <span>
+                        <span class="lang-vi">Cố vấn chuyên môn</span>
+                        <span class="lang-en" style="display: none;">Advisors</span>
+                    </span>
                 </button>
+
+                <!-- Tab 4 -->
                 <button onclick="switchAboutTab('goals')" onmouseenter="handleTabHover('goals')" onmouseleave="cancelTabHover()" id="atab-goals" data-tab="goals" class="about-tab-btn shrink-0 lg:shrink flex items-center gap-2.5 px-3.5 py-2.5 lg:px-4 lg:py-3 text-left rounded-lg text-sm font-semibold transition-all about-tab-inactive whitespace-nowrap lg:whitespace-normal snap-center">
                     <span class="material-symbols-outlined text-lg">target</span>
-                    <span>Mục tiêu dự án</span>
+                    <span>
+                        <span class="lang-vi">Tầm nhìn & Sứ mệnh</span>
+                        <span class="lang-en" style="display: none;">Vision & Mission</span>
+                    </span>
                 </button>
             </nav>
         </div>
 
-        <!-- Thanh chỉ báo vuốt (Dots) giữ cố định cùng khối Aside -->
-        <div class="flex lg:hidden items-center justify-center gap-1.5 pt-2 border-t border-slate-100 dark:border-slate-800 mt-1">
+        <!-- Thanh chỉ báo vuốt (Dots) -->
+        <div class="flex lg:hidden items-center justify-center gap-1.5 pt-2 border-t border-slate-200/40 mt-1">
             <span class="scroll-dot w-5 h-1 rounded-full bg-[var(--color-primary)] transition-all duration-300" data-index="0"></span>
-            <span class="scroll-dot w-2 h-1 rounded-full bg-slate-300 transition-all duration-300" data-index="1"></span>
-            <span class="scroll-dot w-2 h-1 rounded-full bg-slate-300 transition-all duration-300" data-index="2"></span>
-            <span class="scroll-dot w-2 h-1 rounded-full bg-slate-300 transition-all duration-300" data-index="3"></span>
+            <span class="scroll-dot w-2 h-1 rounded-full bg-slate-400/50 transition-all duration-300" data-index="1"></span>
+            <span class="scroll-dot w-2 h-1 rounded-full bg-slate-400/50 transition-all duration-300" data-index="2"></span>
+            <span class="scroll-dot w-2 h-1 rounded-full bg-slate-400/50 transition-all duration-300" data-index="3"></span>
         </div>
     </aside>
 
     <!-- NỘI DUNG CHI TIẾT (CONTENT PANEL) -->
-    <div class="flex-1 w-full bg-[var(--color-surface, #ffffff)] rounded-xl p-5 sm:p-8 about-content-box shadow-sm z-10">
+    <div class="flex-1 w-full bg-[var(--color-surface)] rounded-xl p-5 sm:p-8 about-content-box shadow-sm z-10">
         
-        <!-- Tab 1: Nhóm phát triển -->
+        <!-- Tab 1: Giới thiệu chung -->
         <div id="acontent-intro" class="about-content active space-y-4">
-            <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">Những người đứng sau Reconnect 360°</h2>
-            <p class="text-sm sm:text-base leading-relaxed text-[var(--color-text-muted, #475569)]">
-                <strong>Reconnect 360°</strong> là dự án được xây dựng và phát triển bởi <strong>Trần Ngọc Mai Khôi</strong> (lớp 9A15) và <strong>Võ Dương Nhân Kiệt</strong> (lớp 9A12), học sinh Trường THPT Chuyên Trần Đại Nghĩa, Thành phố Hồ Chí Minh.
+            <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">
+                <span class="lang-vi">Hệ thống Trợ lý Học tập Mentiq</span>
+                <span class="lang-en" style="display: none;">Mentiq Learning Assistant System</span>
+            </h2>
+            <p class="text-sm sm:text-base leading-relaxed text-[var(--color-text-sub)]">
+                <span class="lang-vi">Trong bối cảnh giáo dục hiện đại, việc thấu hiểu tâm lý học đường và cảm xúc của học sinh đóng vai trò cốt lõi. Ra đời từ tâm huyết của những học sinh trẻ tuổi, <strong>Mentiq</strong> (Personalized AI Learning Agent) kết hợp giữa công nghệ trí tuệ nhân tạo (AI) và khoa học hành vi, mang đến hệ sinh thái đánh giá, phân tích và đồng hành thông minh.</span>
+                <span class="lang-en" style="display: none;">In the context of modern education, understanding school psychology and student emotions plays a core role. Born from the dedication of young students, <strong>Mentiq</strong> (Personalized AI Learning Agent) combines artificial intelligence (AI) technology with behavioral science to deliver a smart assessment, analysis, and accompaniment ecosystem.</span>
             </p>
-            <p class="text-sm sm:text-base leading-relaxed text-[var(--color-text-muted, #475569)]">
-                Dự án được thực hiện dưới sự hướng dẫn và hỗ trợ chuyên môn của <strong>cô Lý Thị Thùy Duyên</strong>, giáo viên Tổ Sinh học, Trường THPT Chuyên Trần Đại Nghĩa.
+            <p class="text-sm sm:text-base leading-relaxed text-[var(--color-text-sub)]">
+                <span class="lang-vi">Dự án được khởi nguồn từ những thành viên có niềm đam mê lớn về Trí tuệ Nhân tạo (AI) và mong muốn ứng dụng công nghệ vào thực tiễn giáo dục. Mentiq là minh chứng rõ nét cho tư duy sáng tạo, tinh thần trách nhiệm cộng đồng và khả năng làm chủ công nghệ của thế hệ trẻ.</span>
+                <span class="lang-en" style="display: none;">The project originated from members with a great passion for Artificial Intelligence (AI) and a desire to apply technology to practical education. Mentiq is a clear testament to creative thinking, community responsibility, and technological mastery of the young generation.</span>
             </p>
-            <p class="text-sm sm:text-base leading-relaxed text-[var(--color-text-muted, #475569)]">
-                Xuất phát từ sự quan tâm đến sức khỏe tinh thần học đường và chất lượng các mối quan hệ xã hội của học sinh THCS - THPT, chúng tôi nhận thấy rằng nhiều bạn trẻ đang gặp khó khăn trong việc giao tiếp, hòa nhập hoặc chia sẻ cảm xúc với những người xung quanh. Trong khi đó, việc hiểu rõ bản thân và xây dựng các kết nối xã hội tích cực đóng vai trò quan trọng đối với sự phát triển toàn diện của mỗi học sinh.
-            </p>
-            <p class="text-sm sm:text-base leading-relaxed text-[var(--color-text-muted, #475569)]">
-                Từ thực tế đó, ý tưởng về Reconnect 360° được hình thành bởi Trần Ngọc Mai Khôi với mong muốn tạo ra một công cụ giúp học sinh tự nhìn nhận mức độ kết nối xã hội của bản thân thông qua các khảo sát khoa học, thân thiện và dễ tiếp cận. Sau đó, Võ Dương Nhân Kiệt cùng tham gia phát triển dự án, đóng góp vào quá trình nghiên cứu nội dung, thiết kế và hoàn thiện hệ thống.
-            </p>
-            <div class="p-4 bg-[var(--color-background, #f8fafc)] border-l-4 border-[var(--color-primary, #1152d4)] rounded-r-lg mt-4">
-                <p class="text-sm italic text-[var(--color-text-main)]">"Kết nối bản thân là bước đầu tiên để kết nối với mọi người và hướng tới tương lai."</p>
-            </div>
-        </div>
-
-        <!-- Tab 2: Thành viên nhóm -->
-        <div id="acontent-members" class="about-content space-y-6">
-            <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">Thành viên nhóm phát triển</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="p-5 border border-slate-200/80 rounded-lg bg-[var(--color-background, #f8fafc)] space-y-2">
-                    <div class="flex items-center gap-3">
-                        <span class="material-symbols-outlined text-3xl text-[var(--color-primary, #1152d4)]">account_circle</span>
-                        <div>
-                            <h3 class="font-bold text-lg text-[var(--color-text-main)]">Trần Ngọc Mai Khôi</h3>
-                            <span class="text-xs font-semibold px-2.5 py-0.5 bg-blue-100/80 text-blue-800 rounded-full inline-block">Lớp 9A15</span>
-                        </div>
-                    </div>
-                    <p class="text-sm leading-relaxed text-[var(--color-text-muted, #475569)] pt-2">
-                        Là người đưa ra ý tưởng ban đầu cho Reconnect 360°, Mai Khôi phụ trách định hướng phát triển dự án, thiết kế và xây dựng hệ thống. Với niềm yêu thích công nghệ và mong muốn tạo ra những sản phẩm có giá trị cho cộng đồng học sinh, Mai Khôi tập trung phát triển nền tảng trực tuyến giúp người dùng dễ dàng tiếp cận, thực hiện khảo sát và theo dõi kết quả một cách trực quan.
-                    </p>
-                </div>
-
-                <div class="p-5 border border-slate-200/80 rounded-lg bg-[var(--color-background, #f8fafc)] space-y-2">
-                    <div class="flex items-center gap-3">
-                        <span class="material-symbols-outlined text-3xl text-[var(--color-primary, #1152d4)]">account_circle</span>
-                        <div>
-                            <h3 class="font-bold text-lg text-[var(--color-text-main)]">Võ Dương Nhân Kiệt</h3>
-                            <span class="text-xs font-semibold px-2.5 py-0.5 bg-blue-100/80 text-blue-800 rounded-full inline-block">Lớp 9A12</span>
-                        </div>
-                    </div>
-                    <p class="text-sm leading-relaxed text-[var(--color-text-muted, #475569)] pt-2">
-                        Nhân Kiệt phụ trách nghiên cứu tài liệu, xây dựng nội dung khảo sát và phối hợp phát triển các giải pháp nhằm đảm bảo tính thực tiễn của dự án. Với sự quan tâm đến đời sống học đường và sự phát triển của thanh thiếu niên, Nhân Kiệt mong muốn Reconnect 360° có thể góp phần giúp học sinh hiểu rõ bản thân hơn và xây dựng những mối quan hệ tích cực trong cuộc sống.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tab 3: Giáo viên hướng dẫn -->
-        <div id="acontent-advisor" class="about-content space-y-4">
-            <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">Vai trò của giáo viên hướng dẫn</h2>
-            
-            <div class="p-5 border border-slate-200/80 rounded-lg bg-[var(--color-background, #f8fafc)] space-y-3">
-                <div class="flex items-center gap-3">
-                    <span class="material-symbols-outlined text-3xl text-[var(--color-primary, #1152d4)]">supervisor_account</span>
-                    <div>
-                        <h3 class="font-bold text-lg text-[var(--color-text-main)]">Cô Lý Thị Thùy Duyên</h3>
-                        <p class="text-xs font-medium text-[var(--color-text-muted, #64748b)]">Giáo viên Tổ Sinh học - Trường THPT Chuyên Trần Đại Nghĩa</p>
-                    </div>
-                </div>
-                <p class="text-sm sm:text-base leading-relaxed text-[var(--color-text-muted, #475569)] pt-1">
-                    Trong quá trình thực hiện dự án, cô Lý Thị Thùy Duyên đã đồng hành với nhóm với vai trò cố vấn chuyên môn, hỗ trợ định hướng nghiên cứu, góp ý về nội dung khảo sát và phương pháp tiếp cận phù hợp với đối tượng học sinh THCS - THPT. Những góp ý và sự hướng dẫn tận tình của cô là nguồn động viên quan trọng giúp nhóm hoàn thiện dự án một cách khoa học, thực tiễn và hướng đến giá trị giáo dục tích cực.
+            <div class="p-4 bg-[var(--color-background)] border-l-4 border-[var(--color-primary)] rounded-r-lg mt-4">
+                <p class="text-sm italic text-[var(--color-text-main)]">
+                    <span class="lang-vi">"Hãy đến với Mentiq để có kết quả học tập tốt hơn."</span>
+                    <span class="lang-en" style="display: none;">"Come to Mentiq for better study results."</span>
                 </p>
             </div>
         </div>
 
-        <!-- Tab 4: Mục tiêu dự án -->
+       <!-- Tab 2: Thành viên nhóm -->
+        <div id="acontent-members" class="about-content space-y-6">
+            <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">
+                <span class="lang-vi">Đội ngũ tác giả dự án</span>
+                <span class="lang-en" style="display: none;">Project Authors</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="p-5 border border-slate-200/40 dark:border-slate-800 rounded-lg bg-[var(--color-background)] space-y-2">
+                    <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-3xl text-[var(--color-primary)]">account_circle</span>
+                        <div>
+                            <h3 class="font-bold text-lg text-[var(--color-text-main)]">
+                                <span class="lang-vi">Những học sinh xuất sắc</span>
+                                <span class="lang-en" style="display: none;">Outstanding Students</span>
+                            </h3>
+                            <span class="text-xs font-semibold px-2.5 py-0.5 bg-[var(--color-primary)]/10 text-[var(--color-primary)] rounded-full inline-block">
+                                <span class="lang-vi">Đồng tác giả ý tưởng & Hệ thống</span>
+                                <span class="lang-en" style="display: none;">Idea & System Co-authors</span>
+                            </span>
+                        </div>
+                    </div>
+                    <p class="text-sm leading-relaxed text-[var(--color-text-sub)] pt-2">
+                        <span class="lang-vi">Đến từ các bạn học sinh Việt Nam đầy nhiệt huyết và sáng tạo, phụ trách định hướng phát triển, thiết kế hệ thống và xây dựng nền tảng trực tuyến giúp người dùng dễ dàng tiếp cận các giải pháp công nghệ giáo dục.</span>
+                        <span class="lang-en" style="display: none;">Coming from enthusiastic and creative Vietnamese students, in charge of development orientation, system design, and building online platforms to help users easily access educational technology solutions.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+      <!-- Tab 3: Cố vấn chuyên môn -->
+        <div id="acontent-advisor" class="about-content space-y-4">
+            <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">
+                <span class="lang-vi">Cố vấn chuyên môn & Phát triển</span>
+                <span class="lang-en" style="display: none;">Advisors & Development</span>
+            </h2>
+            
+            <div class="p-5 border border-slate-200/40 dark:border-slate-800 rounded-lg bg-[var(--color-background)] space-y-3">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-3xl text-[var(--color-primary)]">supervisor_account</span>
+                    <div>
+                        <h3 class="font-bold text-lg text-[var(--color-text-main)]">
+                            <span class="lang-vi">Đội ngũ Cố vấn Giáo dục & Chuyên gia</span>
+                            <span class="lang-en" style="display: none;">Educational Advisors & Experts</span>
+                        </h3>
+                        <p class="text-xs font-medium text-[var(--color-text-sub)]">
+                            <span class="lang-vi">Các nhà giáo và chuyên gia trình độ chuyên môn cao trong ngành</span>
+                            <span class="lang-en" style="display: none;">Highly qualified educators and industry experts</span>
+                        </p>
+                    </div>
+                </div>
+                <p class="text-sm sm:text-base leading-relaxed text-[var(--color-text-sub)] pt-1">
+                    <span class="lang-vi">Quá trình xây dựng và phát triển hệ thống Mentiq luôn nhận được sự đồng hành, tư vấn chiến lược và định hướng chuyên môn sâu sát từ đội ngũ các nhà giáo, chuyên gia giàu kinh nghiệm trong lĩnh vực giáo dục và tâm lý học học đường. Những đóng góp quý báu này là nền tảng vững chắc giúp Mentiq đảm bảo tiêu chuẩn khoa học khắt khe, mang lại giá trị thực tiễn và tác động tích cực đối với sự phát triển của học sinh.</span>
+                    <span class="lang-en" style="display: none;">The construction and development process of the Mentiq system has always received close companionship, strategic consulting, and professional direction from a team of experienced educators and experts in education and school psychology. These invaluable contributions serve as a solid foundation for Mentiq to ensure rigorous scientific standards, delivering practical value and positive impacts on student development.</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Tab 4: Tầm nhìn & Sứ mệnh -->
         <div id="acontent-goals" class="about-content space-y-4">
-            <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">Mục tiêu của dự án</h2>
-            <p class="text-sm sm:text-base leading-relaxed text-[var(--color-text-muted, #475569)]">
-                Thông qua Reconnect 360°, chúng tôi mong muốn hướng đến các mục tiêu thiết thực:
+            <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">
+                <span class="lang-vi">Tầm nhìn & Mục tiêu dự án</span>
+                <span class="lang-en" style="display: none;">Vision & Project Goals</span>
+            </h2>
+            <p class="text-sm sm:text-base leading-relaxed text-[var(--color-text-sub)]">
+                <span class="lang-vi">Thông qua hệ thống Mentiq, chúng tôi hướng đến các mục tiêu chiến lược:</span>
+                <span class="lang-en" style="display: none;">Through the Mentiq system, we aim for strategic objectives:</span>
             </p>
             <ul class="space-y-3 pt-1">
-                <li class="flex items-start gap-3 p-3 rounded-lg border border-slate-200/60 bg-[var(--color-background, #f8fafc)] text-sm sm:text-base text-[var(--color-text-muted, #475569)]">
+                <li class="flex items-start gap-3 p-3 rounded-lg border border-slate-200/40 dark:border-slate-800 bg-[var(--color-background)] text-sm sm:text-base text-[var(--color-text-sub)]">
                     <span class="material-symbols-outlined text-emerald-600 text-xl shrink-0 mt-0.5">check_circle</span>
-                    <span>Giúp học sinh THCS - THPT hiểu rõ hơn về mức độ kết nối xã hội của bản thân.</span>
+                    <span>
+                        <span class="lang-vi">Cung cấp trợ lý học tập AI cá nhân hóa giúp học sinh thấu hiểu năng lực và những gì cần cải thiện học tập của bản thân.</span>
+                        <span class="lang-en" style="display: none;">Provide a personalized AI learning assistant helping students understand their capabilities and areas for improvement.</span>
+                    </span>
                 </li>
-                <li class="flex items-start gap-3 p-3 rounded-lg border border-slate-200/60 bg-[var(--color-background, #f8fafc)] text-sm sm:text-base text-[var(--color-text-muted, #475569)]">
+                <li class="flex items-start gap-3 p-3 rounded-lg border border-slate-200/40 dark:border-slate-800 bg-[var(--color-background)] text-sm sm:text-base text-[var(--color-text-sub)]">
                     <span class="material-symbols-outlined text-emerald-600 text-xl shrink-0 mt-0.5">check_circle</span>
-                    <span>Khuyến khích xây dựng các mối quan hệ tích cực với gia đình, bạn bè và thầy cô.</span>
+                    <span>
+                        <span class="lang-vi">Phát triển nền tảng giáo dục thời gian thực như <a href="{% url 'surveys:reconnect360_detail' %}" class="text-[var(--color-primary)] font-semibold hover:underline">Mentiq</a> để đánh giá năng lực học sinh.</span>
+                        <span class="lang-en" style="display: none;">Develop real-time educational platforms like <a href="{% url 'surveys:reconnect360_detail' %}" class="text-[var(--color-primary)] font-semibold hover:underline">Mentiq</a> to evaluate student capacity.</span>
+                    </span>
                 </li>
-                <li class="flex items-start gap-3 p-3 rounded-lg border border-slate-200/60 bg-[var(--color-background, #f8fafc)] text-sm sm:text-base text-[var(--color-text-muted, #475569)]">
+                <li class="flex items-start gap-3 p-3 rounded-lg border border-slate-200/40 dark:border-slate-800 bg-[var(--color-background)] text-sm sm:text-base text-[var(--color-text-sub)]">
                     <span class="material-symbols-outlined text-emerald-600 text-xl shrink-0 mt-0.5">check_circle</span>
-                    <span>Nâng cao nhận thức về vai trò của kết nối xã hội đối với sức khỏe tinh thần.</span>
+                    <span>
+                        <span class="lang-vi">Tự động hóa báo cáo phân tích dưới dạng biểu đồ và file PDF trực quan, hỗ trợ tối đa cho nhà trường và phụ huynh.</span>
+                        <span class="lang-en" style="display: none;">Automate analytical reports in visual charts and PDF formats, providing maximum support for schools and parents.</span>
+                    </span>
                 </li>
-                <li class="flex items-start gap-3 p-3 rounded-lg border border-slate-200/60 bg-[var(--color-background, #f8fafc)] text-sm sm:text-base text-[var(--color-text-muted, #475569)]">
+                <li class="flex items-start gap-3 p-3 rounded-lg border border-slate-200/40 dark:border-slate-800 bg-[var(--color-background)] text-sm sm:text-base text-[var(--color-text-sub)]">
                     <span class="material-symbols-outlined text-emerald-600 text-xl shrink-0 mt-0.5">check_circle</span>
-                    <span>Tạo ra một công cụ trực tuyến thân thiện, dễ sử dụng và phù hợp với học sinh.</span>
-                </li>
-                <li class="flex items-start gap-3 p-3 rounded-lg border border-slate-200/60 bg-[var(--color-background, #f8fafc)] text-sm sm:text-base text-[var(--color-text-muted, #475569)]">
-                    <span class="material-symbols-outlined text-emerald-600 text-xl shrink-0 mt-0.5">check_circle</span>
-                    <span>Góp phần xây dựng môi trường học đường gắn kết, an toàn và giàu sự sẻ chia.</span>
+                    <span>
+                        <span class="lang-vi">Xây dựng môi trường học đường gắn kết, an toàn và tràn đầy sự sẻ chia thông qua công nghệ.</span>
+                        <span class="lang-en" style="display: none;">Build a connected, safe, and sharing-filled school environment through technology.</span>
+                    </span>
                 </li>
             </ul>
         </div>
 
     </div>
 </div>
-            {% include 'components/tacgia.html' %}
 
+{% include 'components/tacgia.html' %}
 {% endblock %}
 
 {% block extra_css %}
 <style>
     .about-aside-box {
-        border: 1px solid rgba(226, 232, 240, 0.9) !important;
-        background-color: var(--color-surface, #ffffff) !important;
+        border: 1px solid var(--color-border, rgba(226, 232, 240, 0.9)) !important;
+        background-color: var(--color-surface) !important;
         z-index: 30 !important;
     }
-
     .about-content-box {
-        border: 1px solid rgba(226, 232, 240, 0.8) !important;
+        border: 1px solid var(--color-border, rgba(226, 232, 240, 0.8)) !important;
         box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.03);
     }
-
     @media (max-width: 1023px) {
         .about-scroll-container::after {
             content: '';
@@ -177,19 +226,13 @@
             right: 0;
             width: 24px;
             height: 100%;
-            background: linear-gradient(to right, transparent, var(--color-surface, #ffffff));
+            background: linear-gradient(to right, transparent, var(--color-surface));
             pointer-events: none;
         }
-
         .about-content-box {
             scroll-margin-top: 120px;
         }
-
-        .about-aside-box {
-            box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.08) !important;
-        }
     }
-
     .about-content {
         display: none;
         opacity: 0;
@@ -197,35 +240,29 @@
         transition: opacity 0.3s ease-out, transform 0.3s ease-out;
         will-change: opacity, transform;
     }
-
     .about-content.active {
         display: block;
     }
-
     .about-content.show {
         opacity: 1;
         transform: translateY(0);
     }
-
     .about-tab-active {
-        background-color: var(--color-primary, #1152d4) !important;
+        background-color: var(--color-primary) !important;
         color: #ffffff !important;
-        border: 1px solid var(--color-primary, #1152d4) !important;
+        border: 1px solid var(--color-primary) !important;
         box-shadow: 0 2px 8px rgba(17, 82, 212, 0.25);
     }
-
     .about-tab-inactive {
-        background-color: transparent;
-        color: var(--color-text-main, #0f172a);
-        border: 1px solid transparent;
+        background-color: transparent !important;
+        color: var(--color-text-main) !important;
+        border: 1px solid transparent !important;
     }
-
     .about-tab-inactive:hover {
-        background-color: var(--color-background, #f8fafc) !important;
-        color: var(--color-primary, #1152d4) !important;
+        background-color: var(--color-background) !important;
+        color: var(--color-primary) !important;
         border-color: rgba(17, 82, 212, 0.2) !important;
     }
-
     .scrollbar-none::-webkit-scrollbar {
         display: none;
     }
@@ -243,11 +280,25 @@
     let hoverTimeout;
     let currentTab = 'intro';
 
+    // Hàm tự động ẩn/hiện ngôn ngữ dựa theo biến ngôn ngữ hiện tại của Django (ví dụ: lấy từ thẻ html lang hoặc qua cookie)
+    function applyPageLanguage() {
+        // Hoặc check trực tiếp từ Django template tag nếu có, hoặc đọc thông qua class/attribute
+        const currentLang = "{{ request.LANGUAGE_CODE }}" || "vi";
+        
+        document.querySelectorAll('.lang-vi').forEach(el => {
+            el.style.display = (currentLang === 'vi') ? 'inline' : 'none';
+        });
+        document.querySelectorAll('.lang-en').forEach(el => {
+            el.style.display = (currentLang === 'en') ? 'inline' : 'none';
+        });
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
         const initialContent = document.getElementById('acontent-intro');
         if (initialContent) {
             initialContent.classList.add('show');
         }
+        applyPageLanguage();
     });
 
     function handleAboutMenuScroll() {
@@ -265,11 +316,11 @@
 
             dots.forEach((dot, index) => {
                 if (index === activeIndex) {
-                    dot.classList.remove('w-2', 'bg-slate-300');
+                    dot.classList.remove('w-2', 'bg-slate-400/50');
                     dot.classList.add('w-5', 'bg-[var(--color-primary)]');
                 } else {
                     dot.classList.remove('w-5', 'bg-[var(--color-primary)]');
-                    dot.classList.add('w-2', 'bg-slate-300');
+                    dot.classList.add('w-2', 'bg-slate-400/50');
                 }
             });
         }

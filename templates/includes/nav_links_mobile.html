@@ -1,4 +1,4 @@
-<!-- templates/includes/nav_links.html -->
+<!-- templates/includes/nav_links_mobile.html -->
 
 <!-- Trang chủ -->
 <a class="w-fit flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm transition-all duration-200
@@ -9,56 +9,142 @@
           {% endif %}"
    href="{% url 'pages:home' %}">
     <span class="material-symbols-outlined text-xl shrink-0">home</span>
-    <span>Trang chủ</span>
+    <span>
+        <span class="lang-vi">Trang chủ</span>
+        <span class="lang-en" style="display: none;">Home</span>
+    </span>
 </a>
 
-<!-- Giới thiệu -->
-<a class="w-fit flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm transition-all duration-200
-          {% if request.resolver_match.url_name == 'about' %}
-              bg-[var(--color-primary)]/10 text-[var(--color-primary)] font-semibold
-          {% else %}
-              text-[var(--color-text-main)] font-medium hover:bg-gray-100 dark:hover:bg-gray-800
-          {% endif %}"
-    href="{% url 'pages:about' %}">
-    <span class="material-symbols-outlined text-xl shrink-0">info</span>
-    <span>Giới thiệu</span>
-</a>
+<!-- Nút "Chọn Lớp" dùng Dropdown Mobile (Đã cô lập ID và hàm JS riêng) -->
+<div class="relative inline-block text-left w-full" id="gradeDropdownWrapperMobile" style="position: relative;">
+    <button type="button" 
+            onclick="toggleGradeDropdownMobile()"
+            class="group w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 text-[var(--color-text-main)] hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer">
+        <span class="material-symbols-outlined text-xl shrink-0 text-[var(--color-text-main)] group-hover:text-[var(--color-primary)] transition-colors">school</span>
+        <span class="text-left flex-1">
+            <span class="lang-vi">Chọn lớp</span>
+            <span class="lang-en" style="display: none;">Select Grade</span>
+        </span>
+        <svg id="gradeArrowMobile" class="w-4 h-4 ml-auto transition-transform duration-200 text-gray-500 group-hover:text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+        </svg>
+    </button>
 
-<!-- Cơ sở khoa học -->
-<a class="w-fit flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm transition-all duration-200
-          {% if request.resolver_match.url_name == 'methodology' %}
-              bg-[var(--color-primary)]/10 text-[var(--color-primary)] font-semibold
-          {% else %}
-              text-[var(--color-text-main)] font-medium hover:bg-gray-100 dark:hover:bg-gray-800
-          {% endif %}"
-    href="{% url 'pages:methodology' %}">
-    <span class="material-symbols-outlined text-xl shrink-0">science</span>
-    <span>Cơ sở khoa học</span>
-</a>
+    <!-- Khung menu thả xuống dạng Accordion dọc ngay bên dưới trên mobile -->
+    <div id="gradeDropdownMenuMobile" class="hidden flex-col gap-4 mt-2 p-3 transition-all duration-300" style="background-color: var(--color-bg-dropdown, #ffffff); border-radius: 16px; box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.08); border: 1px solid #f3f4f6; box-sizing: border-box;">
+        
+        <!-- Tiêu đề -->
+        <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 10px; border-bottom: 1px solid #f3f4f6;">
+            <div>
+                <h3 style="font-size: 13px; font-weight: 700; color: var(--color-text-main); margin: 0;">
+                    <span class="lang-vi">Chọn khối lớp học</span>
+                    <span class="lang-en" style="display: none;">Select Grade Level</span>
+                </h3>
+                <p style="font-size: 11px; color: #9ca3af; margin: 2px 0 0 0;">
+                    <span class="lang-vi">Chọn cấp học và lớp của bạn</span>
+                    <span class="lang-en" style="display: none;">Choose your school level and grade</span>
+                </p>
+            </div>
+            <span style="font-size: 11px; font-weight: 500; color: var(--color-primary); background-color: rgba(var(--color-primary-rgb, 249, 115, 22), 0.1); padding: 3px 8px; border-radius: 9999px;">
+                <span class="lang-vi">Khối 7 - 12</span>
+                <span class="lang-en" style="display: none;">Grades 7 - 12</span>
+            </span>
+        </div>
+        
+        <!-- Nội dung Grid tự động co giãn 2 cột hoặc 1 cột -->
+        <div class="grade-grid-container-mobile" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;">
+            
+            <!-- Cột THCS -->
+            <div style="background-color: rgba(249, 250, 251, 0.8); padding: 10px; border-radius: 12px; border: 1px solid #f3f4f6;">
+                <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #9ca3af; margin-bottom: 8px; padding-left: 2px; display: flex; align-items: center; gap: 4px;">
+                    <span class="material-symbols-outlined" style="font-size: 13px;">menu_book</span>
+                    <span class="lang-vi">THCS</span>
+                    <span class="lang-en" style="display: none;">Middle School</span>
+                </div>
+                
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                    <!-- Lớp 7 -->
+                    <a href="#" onclick="selectGradeMobile(7); return false;" class="grade-item-mobile" style="display: flex; align-items: center; gap: 8px; padding: 8px; background: #ffffff; border-radius: 8px; border: 1px solid #e5e7eb; text-decoration: none; transition: all 0.2s;">
+                        <div style="width: 28px; height: 28px; background-color: #ffedd5; color: var(--color-primary); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px; flex-shrink: 0;" class="grade-badge-mobile">7</div>
+                        <div>
+                            <div style="font-size: 12px; font-weight: 700; color: var(--color-text-main);" class="grade-title-mobile">
+                                <span class="lang-vi">Lớp 7</span>
+                                <span class="lang-en" style="display: none;">Grade 7</span>
+                            </div>
+                        </div>
+                    </a>
 
-<!-- Hướng dẫn -->
-<a class="w-fit flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm transition-all duration-200
-          {% if request.resolver_match.url_name == 'guide' %}
-              bg-[var(--color-primary)]/10 text-[var(--color-primary)] font-semibold
-          {% else %}
-              text-[var(--color-text-main)] font-medium hover:bg-gray-100 dark:hover:bg-gray-800
-          {% endif %}"
-    href="{% url 'pages:guide' %}">
-    <span class="material-symbols-outlined text-xl shrink-0">help</span>
-    <span>Hướng dẫn</span>
-</a>
+                    <!-- Lớp 8 -->
+                    <a href="#" onclick="selectGradeMobile(8); return false;" class="grade-item-mobile" style="display: flex; align-items: center; gap: 8px; padding: 8px; background: #ffffff; border-radius: 8px; border: 1px solid #e5e7eb; text-decoration: none; transition: all 0.2s;">
+                        <div style="width: 28px; height: 28px; background-color: #ffedd5; color: var(--color-primary); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px; flex-shrink: 0;" class="grade-badge-mobile">8</div>
+                        <div>
+                            <div style="font-size: 12px; font-weight: 700; color: var(--color-text-main);" class="grade-title-mobile">
+                                <span class="lang-vi">Lớp 8</span>
+                                <span class="lang-en" style="display: none;">Grade 8</span>
+                            </div>
+                        </div>
+                    </a>
 
-<!-- Thống kê -->
-<a class="w-fit flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm transition-all duration-200
-          {% if request.resolver_match.url_name == 'reconnect_report' %}
-              bg-[var(--color-primary)]/10 text-[var(--color-primary)] font-semibold
-          {% else %}
-              text-[var(--color-text-main)] font-medium hover:bg-gray-100 dark:hover:bg-gray-800
-          {% endif %}"
-    href="{% url 'surveys:reconnect_report' %}">
-    <span class="material-symbols-outlined text-xl shrink-0">bar_chart</span>
-    <span>Thống kê</span>
-</a>
+                    <!-- Lớp 9 -->
+                    <a href="#" onclick="selectGradeMobile(9); return false;" class="grade-item-mobile" style="display: flex; align-items: center; gap: 8px; padding: 8px; background: #ffffff; border-radius: 8px; border: 1px solid #e5e7eb; text-decoration: none; transition: all 0.2s;">
+                        <div style="width: 28px; height: 28px; background-color: #ffedd5; color: var(--color-primary); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px; flex-shrink: 0;" class="grade-badge-mobile">9</div>
+                        <div>
+                            <div style="font-size: 12px; font-weight: 700; color: var(--color-text-main);" class="grade-title-mobile">
+                                <span class="lang-vi">Lớp 9</span>
+                                <span class="lang-en" style="display: none;">Grade 9</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Cột THPT -->
+            <div style="background-color: rgba(249, 250, 251, 0.8); padding: 10px; border-radius: 12px; border: 1px solid #f3f4f6;">
+                <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #9ca3af; margin-bottom: 8px; padding-left: 2px; display: flex; align-items: center; gap: 4px;">
+                    <span class="material-symbols-outlined" style="font-size: 13px;">location_city</span>
+                    <span class="lang-vi">THPT</span>
+                    <span class="lang-en" style="display: none;">High School</span>
+                </div>
+                
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                    <!-- Lớp 10 -->
+                    <a href="#" onclick="selectGradeMobile(10); return false;" class="grade-item-mobile" style="display: flex; align-items: center; gap: 8px; padding: 8px; background: #ffffff; border-radius: 8px; border: 1px solid #e5e7eb; text-decoration: none; transition: all 0.2s;">
+                        <div style="width: 28px; height: 28px; background-color: #ffedd5; color: var(--color-primary); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px; flex-shrink: 0;" class="grade-badge-mobile">10</div>
+                        <div>
+                            <div style="font-size: 12px; font-weight: 700; color: var(--color-text-main);" class="grade-title-mobile">
+                                <span class="lang-vi">Lớp 10</span>
+                                <span class="lang-en" style="display: none;">Grade 10</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Lớp 11 -->
+                    <a href="#" onclick="selectGradeMobile(11); return false;" class="grade-item-mobile" style="display: flex; align-items: center; gap: 8px; padding: 8px; background: #ffffff; border-radius: 8px; border: 1px solid #e5e7eb; text-decoration: none; transition: all 0.2s;">
+                        <div style="width: 28px; height: 28px; background-color: #ffedd5; color: var(--color-primary); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px; flex-shrink: 0;" class="grade-badge-mobile">11</div>
+                        <div>
+                            <div style="font-size: 12px; font-weight: 700; color: var(--color-text-main);" class="grade-title-mobile">
+                                <span class="lang-vi">Lớp 11</span>
+                                <span class="lang-en" style="display: none;">Grade 11</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Lớp 12 -->
+                    <a href="#" onclick="selectGradeMobile(12); return false;" class="grade-item-mobile" style="display: flex; align-items: center; gap: 8px; padding: 8px; background: #ffffff; border-radius: 8px; border: 1px solid #e5e7eb; text-decoration: none; transition: all 0.2s;">
+                        <div style="width: 28px; height: 28px; background-color: #ffedd5; color: var(--color-primary); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px; flex-shrink: 0;" class="grade-badge-mobile">12</div>
+                        <div>
+                            <div style="font-size: 12px; font-weight: 700; color: var(--color-text-main);" class="grade-title-mobile">
+                                <span class="lang-vi">Lớp 12</span>
+                                <span class="lang-en" style="display: none;">Grade 12</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 <!-- Về chúng tôi -->
 <a class="w-fit flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm transition-all duration-200
@@ -69,5 +155,50 @@
           {% endif %}"
     href="{% url 'pages:about_us' %}">
     <span class="material-symbols-outlined text-xl shrink-0">groups</span>
-    <span>Về chúng tôi</span>
+    <span>
+        <span class="lang-vi">Về chúng tôi</span>
+        <span class="lang-en" style="display: none;">About Us</span>
+    </span>
 </a>
+
+<!-- CSS hỗ trợ hover mượt mà và responsive grid -->
+<style>
+@media (max-width: 400px) {
+    .grade-grid-container-mobile {
+        grid-template-columns: 1fr !important;
+    }
+}
+.grade-item-mobile:hover {
+    background-color: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+}
+.grade-item-mobile:hover .grade-title-mobile {
+    color: #ffffff !important;
+}
+.grade-item-mobile:hover .grade-badge-mobile {
+    background-color: #ffffff !important;
+    color: var(--color-primary) !important;
+}
+</style>
+
+<!-- JavaScript riêng biệt cho Mobile, không bị đụng độ với Desktop -->
+<script>
+function toggleGradeDropdownMobile() {
+    const menu = document.getElementById('gradeDropdownMenuMobile');
+    const arrow = document.getElementById('gradeArrowMobile');
+    
+    if (menu.classList.contains('hidden')) {
+        menu.classList.remove('hidden');
+        menu.classList.add('flex');
+        arrow.classList.add('rotate-180');
+    } else {
+        menu.classList.remove('flex');
+        menu.classList.add('hidden');
+        arrow.classList.remove('rotate-180');
+    }
+}
+
+function selectGradeMobile(grade) {
+    window.location.href = `/users/dashboard/grade-${grade}/`;
+}
+</script>

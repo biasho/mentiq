@@ -1,0 +1,190 @@
+{% load i18n %}
+
+<!-- COMPONENT CHUYỂN THEME -->
+<div class="relative inline-block text-left" id="themeDropdownWrapper">
+    <button id="theme-dropdown-btn" type="button" aria-label="Đổi giao diện" onclick="toggleThemeDropdown(event)"
+        class="flex items-center gap-1 h-8 px-2.5 rounded-lg border border-[var(--color-border)] bg-[var(--color-card-bg)] text-[var(--color-text-main)] hover:border-[var(--color-primary)] transition-colors text-xs font-semibold cursor-pointer">
+        <span class="material-symbols-outlined text-[18px] text-[var(--color-primary)]">palette</span>
+        <span id="themeArrow" class="material-symbols-outlined text-[18px] text-[var(--color-text-sub)] transition-transform duration-200">
+            keyboard_arrow_down
+        </span>
+    </button>
+
+    <!-- Menu xổ xuống (Hỗ trợ song ngữ tự động qua class .lang-vi / .lang-en) -->
+    <div id="theme-dropdown-menu" class="hidden absolute right-0 pt-1 w-48 z-50">
+        <div class="rounded-xl border border-[var(--color-border)] bg-[var(--color-card-bg)] p-1.5 shadow-sm">
+            <div class="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-sub)] px-3 py-1.5 mb-1 bg-[var(--color-background)] rounded-lg">
+                <span class="lang-vi">Chọn giao diện</span>
+                <span class="lang-en" style="display: none;">Select theme</span>
+            </div>
+
+            <div class="flex flex-col gap-1">
+                <!-- Option Orchid -->
+                <button onclick="changeUserTheme('orchid')"
+                    class="theme-option-btn flex items-center justify-between w-full px-3 py-2 rounded-lg text-xs font-medium text-[var(--color-text-main)] hover:bg-[var(--color-background)] hover:text-indigo-600 transition-colors group/item cursor-pointer">
+                    <div class="flex items-center gap-2.5">
+                        <span class="material-symbols-outlined text-[18px] text-indigo-600">spa</span>
+                        <span>Orchid</span>
+                    </div>
+                    <span class="material-symbols-outlined text-[16px] opacity-0 group-hover/item:opacity-100 transition-opacity text-indigo-600">check</span>
+                </button>
+
+                <!-- Option Violet -->
+                <button onclick="changeUserTheme('violet')"
+                    class="theme-option-btn flex items-center justify-between w-full px-3 py-2 rounded-lg text-xs font-medium text-[var(--color-text-main)] hover:bg-[var(--color-background)] hover:text-fuchsia-500 transition-colors group/item cursor-pointer">
+                    <div class="flex items-center gap-2.5">
+                        <span class="material-symbols-outlined text-[18px] text-fuchsia-500">blur_on</span>
+                        <span>Violet</span>
+                    </div>
+                    <span class="material-symbols-outlined text-[16px] opacity-0 group-hover/item:opacity-100 transition-opacity text-fuchsia-500">check</span>
+                </button>
+               
+                <!-- Option Teal -->
+                <button onclick="changeUserTheme('teal')"
+                    class="theme-option-btn flex items-center justify-between w-full px-3 py-2 rounded-lg text-xs font-medium text-[var(--color-text-main)] hover:bg-[var(--color-background)] hover:text-teal-500 transition-colors group/item cursor-pointer">
+                    <div class="flex items-center gap-2.5">
+                        <span class="material-symbols-outlined text-[18px] text-teal-500">eco</span>
+                        <span>Teal</span>
+                    </div>
+                    <span class="material-symbols-outlined text-[16px] opacity-0 group-hover/item:opacity-100 transition-opacity text-teal-500">check</span>
+                </button>
+
+                <!-- Option Theme Đỏ -->
+                <button onclick="changeUserTheme('red')"
+                    class="theme-option-btn flex items-center justify-between w-full px-3 py-2 rounded-lg text-xs font-medium text-[var(--color-text-main)] hover:bg-[var(--color-background)] hover:text-red-500 transition-colors group/item cursor-pointer">
+                    <div class="flex items-center gap-2.5">
+                        <span class="material-symbols-outlined text-[18px] text-red-500">favorite</span>
+                        <span>
+                            <span class="lang-vi">Theme Đỏ</span>
+                            <span class="lang-en" style="display: none;">Red Theme</span>
+                        </span>
+                    </div>
+                    <span class="material-symbols-outlined text-[16px] opacity-0 group-hover/item:opacity-100 transition-opacity text-red-500">check</span>
+                </button>
+
+                <div class="border-t border-[var(--color-border)] my-0.5"></div>
+
+                <!-- Option Mặc định -->
+                <button onclick="changeUserTheme('reset')"
+                    class="theme-option-btn flex items-center justify-between w-full px-3 py-2 rounded-lg text-xs font-medium text-[var(--color-text-sub)] hover:bg-[var(--color-background)] hover:text-[var(--color-text-main)] transition-colors group/item cursor-pointer">
+                    <div class="flex items-center gap-2.5">
+                        <span class="material-symbols-outlined text-[18px]">restart_alt</span>
+                        <span>
+                            <span class="lang-vi">Mặc định</span>
+                            <span class="lang-en" style="display: none;">Default</span>
+                        </span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SCRIPT XỬ LÝ THEME & ĐÓNG MỞ DROPDOWN -->
+<script>
+    function setCookie(name, value, days = 365) {
+        const d = new Date();
+        d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+        document.cookie = `${name}=${value};expires=${d.toUTCString()};path=/;SameSite=Lax`;
+    }
+
+    function deleteCookie(name) {
+        document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;SameSite=Lax`;
+    }
+
+    function updateChartColorsCookie() {
+        setTimeout(() => {
+            const computedStyle = getComputedStyle(document.documentElement);
+            const themeColors = {
+                primary: computedStyle.getPropertyValue('--color-primary').trim() || '#4C35B7',
+                text_main: computedStyle.getPropertyValue('--color-text-main').trim() || '#0D121B',
+                text_sub: computedStyle.getPropertyValue('--color-text-sub').trim() || '#4C669A',
+                border: computedStyle.getPropertyValue('--color-border').trim() || '#E5E7EB',
+                other_bar: computedStyle.getPropertyValue('--color-other-bar').trim() || '#CBD5E1',
+                user_line: computedStyle.getPropertyValue('--color-user-line').trim() || '#F43F5E'
+            };
+            setCookie('chart_colors', encodeURIComponent(JSON.stringify(themeColors)));
+        }, 50);
+    }
+
+    function updateThemeButtonsUI(activeTheme) {
+        const themeButtons = document.querySelectorAll('[onclick^="changeUserTheme"]');
+        themeButtons.forEach(btn => {
+            btn.classList.remove('theme-btn-active', 'border-l-4', 'border-primary', 'bg-[var(--color-background)]');
+            if (btn.getAttribute('onclick').includes(`'${activeTheme}'`)) {
+                btn.classList.add('theme-btn-active', 'border-l-4', 'border-primary', 'bg-[var(--color-background)]');
+            }
+        });
+    }
+
+    function toggleThemeDropdown(e) {
+        if (e) e.stopPropagation();
+        const menu = document.getElementById('theme-dropdown-menu');
+        const arrow = document.getElementById('themeArrow');
+        
+        if (menu.classList.contains('hidden')) {
+            menu.classList.remove('hidden');
+            arrow.classList.add('rotate-180');
+        } else {
+            menu.classList.add('hidden');
+            arrow.classList.remove('rotate-180');
+        }
+    }
+
+    function changeUserTheme(themeName) {
+        if (themeName === 'reset') {
+            localStorage.removeItem('user-custom-theme');
+            deleteCookie('theme');
+            deleteCookie('chart_colors');
+            document.documentElement.removeAttribute('data-theme');
+            location.reload();
+        } else {
+            document.documentElement.setAttribute('data-theme', themeName);
+            localStorage.setItem('user-custom-theme', themeName);
+            setCookie('theme', themeName);
+
+            updateThemeButtonsUI(themeName);
+            updateChartColorsCookie();
+        }
+
+        const themeMenu = document.getElementById('theme-dropdown-menu');
+        if (themeMenu) themeMenu.classList.add('hidden');
+        const arrow = document.getElementById('themeArrow');
+        if (arrow) arrow.classList.remove('rotate-180');
+    }
+
+    // Đóng menu khi click ra ngoài
+    window.addEventListener('click', function(e) {
+        const wrapper = document.getElementById('themeDropdownWrapper');
+        const menu = document.getElementById('theme-dropdown-menu');
+        const arrow = document.getElementById('themeArrow');
+        
+        if (wrapper && !wrapper.contains(e.target)) {
+            if (menu && !menu.classList.contains('hidden')) {
+                menu.classList.add('hidden');
+                if (arrow) arrow.classList.remove('rotate-180');
+            }
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // Đồng bộ ngôn ngữ cho phần tử trong dropdown theme
+        const currentLang = "{{ request.LANGUAGE_CODE }}" || "vi";
+        document.querySelectorAll('#theme-dropdown-menu .lang-vi').forEach(el => {
+            el.style.display = (currentLang === 'vi') ? 'inline' : 'none';
+        });
+        document.querySelectorAll('#theme-dropdown-menu .lang-en').forEach(el => {
+            el.style.display = (currentLang === 'en') ? 'inline' : 'none';
+        });
+
+        const storedTheme = localStorage.getItem('user-custom-theme');
+        if (storedTheme) {
+            document.documentElement.setAttribute('data-theme', storedTheme);
+            setCookie('theme', storedTheme);
+        }
+
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'orchid';
+        updateThemeButtonsUI(currentTheme);
+        updateChartColorsCookie();
+    });
+</script>

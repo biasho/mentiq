@@ -1,0 +1,121 @@
+<!-- COMPONENT CHỌN NGÔN NGỮ (HỖ TRỢ CẢ HOVER VÀ CLICK) -->
+{% load i18n %}
+<div class="relative inline-block text-left group" id="langDropdownWrapper">
+    <button id="lang-btn-toggle" type="button" aria-label="Chọn ngôn ngữ"
+        class="flex items-center gap-1.5 h-8 px-2.5 rounded-lg border border-[var(--color-border)] bg-[var(--color-card-bg)] text-[var(--color-text-main)] group-hover:border-[var(--color-primary)] transition-colors text-xs font-semibold cursor-pointer">
+        {% get_current_language as current_lang %}
+        {% if current_lang == 'vi' %}
+            <!-- Cờ Việt Nam SVG -->
+            <svg class="w-4 h-4 rounded-xs object-cover shadow-xs shrink-0" viewBox="0 0 640 480">
+                <path fill="#da251d" d="M0 0h640v480H0z"/>
+                <path fill="#ff0" d="m320 128-48.36 148.71L396 186.29H244l124.36 90.42z"/>
+            </svg>
+        {% else %}
+            <!-- Cờ Anh SVG -->
+            <svg class="w-4 h-4 rounded-xs object-cover shadow-xs shrink-0" viewBox="0 0 600 300">
+                <clipPath id="s_lang_fix"><path d="M0 0v300h600V0z"/></clipPath>
+                <clipPath id="t_lang_fix"><path d="M300 150v150h300V0H0v150z"/></clipPath>
+                <g clip-path="url(#s_lang_fix)">
+                    <path fill="#012169" d="M0 0v300h600V0z"/>
+                    <path stroke="#FFF" stroke-width="60" d="M0 0l600 300m0-300L0 300"/>
+                    <path stroke="#C8102E" stroke-width="40" d="M0 0l600 300m0-300L0 300" clip-path="url(#t_lang_fix)"/>
+                    <path stroke="#FFF" stroke-width="100" d="M300 0v300M0 150h600"/>
+                    <path stroke="#C8102E" stroke-width="60" d="M300 0v300M0 150h600"/>
+                </g>
+            </svg>
+        {% endif %}
+        <span class="uppercase tracking-wide">{{ current_lang }}</span>
+        <span id="lang-arrow-icon" class="material-symbols-outlined text-[16px] text-[var(--color-text-sub)] transition-transform duration-200 group-hover:rotate-180">
+            keyboard_arrow_down
+        </span>
+    </button>
+
+    <!-- Menu xổ xuống -->
+    <div id="lang-menu-dropdown" class="hidden group-hover:block absolute right-0 pt-1 w-48 z-50">
+        <div class="rounded-xl border border-[var(--color-border)] bg-[var(--color-card-bg)] p-1.5 shadow-md">
+            <div class="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-sub)] px-3 py-1.5 mb-1 bg-[var(--color-background)] rounded-lg">
+                <span class="lang-vi">Chọn ngôn ngữ</span>
+                <span class="lang-en" style="display: none;">Select language</span>
+            </div>
+
+            <div class="flex flex-col gap-1">
+                <form action="{% url 'set_language' %}" method="post" id="lang-switcher-form">
+                    {% csrf_token %}
+                    <input name="next" type="hidden" value="{{ request.get_full_path }}">
+                    
+                    {% get_available_languages as LANGUAGES %}
+                    {% for lang_code, lang_name in LANGUAGES %}
+                    <button type="submit" name="language" value="{{ lang_code }}"
+                        class="flex items-center justify-between w-full px-3 py-2 rounded-lg text-xs font-medium whitespace-nowrap {% if lang_code == current_lang %}text-[var(--color-primary)] font-bold bg-[var(--color-background)]{% else %}text-[var(--color-text-main)] hover:bg-[var(--color-background)] hover:text-[var(--color-primary)]{% endif %} transition-colors cursor-pointer">
+                        <div class="flex items-center gap-2">
+                            {% if lang_code == 'vi' %}
+                                <svg class="w-4 h-3 rounded-xs object-cover shadow-xs shrink-0" viewBox="0 0 640 480">
+                                    <path fill="#da251d" d="M0 0h640v480H0z"/>
+                                    <path fill="#ff0" d="m320 128-48.36 148.71L396 186.29H244l124.36 90.42z"/>
+                                </svg>
+                            {% else %}
+                                <svg class="w-4 h-3 rounded-xs object-cover shadow-xs shrink-0" viewBox="0 0 600 300">
+                                    <clipPath id="s2_fix"><path d="M0 0v300h600V0z"/></clipPath>
+                                    <clipPath id="t2_fix"><path d="M300 150v150h300V0H0v150z"/></clipPath>
+                                    <g clip-path="url(#s2_fix)">
+                                        <path fill="#012169" d="M0 0v300h600V0z"/>
+                                        <path stroke="#FFF" stroke-width="60" d="M0 0l600 300m0-300L0 300"/>
+                                        <path stroke="#C8102E" stroke-width="40" d="M0 0l600 300m0-300L0 300" clip-path="url(#t2_fix)"/>
+                                        <path stroke="#FFF" stroke-width="100" d="M300 0v300M0 150h600"/>
+                                        <path stroke="#C8102E" stroke-width="60" d="M300 0v300M0 150h600"/>
+                                    </g>
+                                </svg>
+                            {% endif %}
+                            <span class="uppercase">{{ lang_name }}</span>
+                        </div>
+                        {% if lang_code == current_lang %}
+                        <span class="material-symbols-outlined text-[16px] text-[var(--color-primary)]">check</span>
+                        {% endif %}
+                    </button>
+                    {% endfor %}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SCRIPT HỖ TRỢ HIỂN THỊ VÀ ĐÓNG MỞ -->
+<script>
+    function applyLangUI() {
+        const currentLang = "{{ request.LANGUAGE_CODE }}" || "vi";
+        document.querySelectorAll('.lang-vi').forEach(el => {
+            el.style.display = (currentLang === 'vi') ? 'inline' : 'none';
+        });
+        document.querySelectorAll('.lang-en').forEach(el => {
+            el.style.display = (currentLang === 'en') ? 'inline' : 'none';
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        applyLangUI();
+
+        const btnToggle = document.getElementById('lang-btn-toggle');
+        const menuDropdown = document.getElementById('lang-menu-dropdown');
+        const arrowIcon = document.getElementById('lang-arrow-icon');
+
+        if (btnToggle && menuDropdown) {
+            btnToggle.addEventListener('click', function (e) {
+                e.stopPropagation();
+                menuDropdown.classList.toggle('hidden');
+                if (arrowIcon) {
+                    arrowIcon.classList.toggle('rotate-180');
+                }
+            });
+
+            document.addEventListener('click', function (e) {
+                const wrapper = document.getElementById('langDropdownWrapper');
+                if (wrapper && !wrapper.contains(e.target)) {
+                    menuDropdown.classList.add('hidden');
+                    if (arrowIcon) {
+                        arrowIcon.classList.remove('rotate-180');
+                    }
+                }
+            });
+        }
+    });
+</script>

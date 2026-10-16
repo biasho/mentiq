@@ -1,11 +1,16 @@
 {% extends 'base.html' %}
-{% block title %}Đăng Ký Tài Khoản{% endblock %}
+{% block title %}Đăng Ký Tài Khoản - Mentiq{% endblock %}
 
 {% block content %}
-<div
-    class="max-w-md mx-auto my-10 p-6 bg-[var(--color-card-bg)] rounded-2xl shadow-sm border border-[var(--color-border)]">
-    <h2 class="text-2xl font-bold text-center text-[var(--color-text-main)] mb-2">Tạo Tài Khoản</h2>
-    <p class="text-xs text-[var(--color-text-sub)] text-center mb-6">Đăng ký để lưu trữ và quản lý kết quả khảo sát</p>
+<div class="max-w-md mx-auto my-10 p-6 bg-[var(--color-card-bg)] rounded-2xl shadow-sm border border-[var(--color-border)]">
+    <h2 class="text-2xl font-bold text-center text-[var(--color-text-main)] mb-2">
+        <span class="lang-vi">Tạo Tài Khoản</span>
+        <span class="lang-en" style="display: none;">Create Account</span>
+    </h2>
+    <p class="text-xs text-[var(--color-text-sub)] text-center mb-6">
+        <span class="lang-vi">Đăng ký để lưu trữ và quản lý kết quả khảo sát</span>
+        <span class="lang-en" style="display: none;">Register to store and manage survey results</span>
+    </p>
 
     <form method="POST" class="space-y-4">
         {% csrf_token %}
@@ -22,13 +27,18 @@
 
         <button type="submit"
             class="w-full py-2.5 bg-[var(--color-primary)] text-white rounded-xl text-xs font-semibold shadow-sm hover:opacity-90 transition-all mt-2">
-            Đăng ký tài khoản
+            <span class="lang-vi">Đăng ký tài khoản</span>
+            <span class="lang-en" style="display: none;">Register Account</span>
         </button>
     </form>
 
     <p class="text-xs text-center text-[var(--color-text-sub)] mt-6">
-        Đã có tài khoản? <a href="{% url 'users:login' %}"
-            class="text-[var(--color-primary)] font-semibold hover:underline">Đăng nhập</a>
+        <span class="lang-vi">Đã có tài khoản?</span>
+        <span class="lang-en" style="display: none;">Already have an account?</span>
+        <a href="{% url 'users:login' %}" class="text-[var(--color-primary)] font-semibold hover:underline">
+            <span class="lang-vi">Đăng nhập</span>
+            <span class="lang-en" style="display: none;">Login</span>
+        </a>
     </p>
 </div>
 {% endblock %}
