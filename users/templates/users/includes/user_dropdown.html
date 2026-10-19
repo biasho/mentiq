@@ -85,7 +85,11 @@
     </div>
 </div>
 {% else %}
-<a href="{% url 'users:login' %}"
+<!-- <a href="{% url 'users:login' %}"
+    class="hidden md:flex text-[var(--color-text-main)] text-sm font-semibold hover:text-[var(--color-primary)] px-2 whitespace-nowrap">
+    {% trans "Đăng nhập" %}
+</a> -->
+ <a href="https://app.mentiq.vn/login"
     class="hidden md:flex text-[var(--color-text-main)] text-sm font-semibold hover:text-[var(--color-primary)] px-2 whitespace-nowrap">
     {% trans "Đăng nhập" %}
 </a>

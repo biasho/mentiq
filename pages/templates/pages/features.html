@@ -1,0 +1,447 @@
+{% extends 'base.html' %}
+
+{% block title %}Tính năng - Mentiq Personalized AI Learning Agent{% endblock %}
+
+{% block content %}
+<div class="mb-6">
+    <h1 class="text-3xl font-black tracking-tight text-[var(--color-text-main)] sm:text-4xl flex items-center gap-3">
+        <span class="material-symbols-outlined text-[var(--color-primary)] text-4xl">auto_fix_high</span>
+        <span class="lang-vi">Tính năng nổi bật của Mentiq</span>
+        <span class="lang-en" style="display: none;">MENTIQ Key Features</span>
+    </h1>
+    <p class="mt-2 text-base text-[var(--color-text-sub, #64748b)]">
+        <span class="lang-vi">Khám phá các công cụ đánh giá năng lực thích ứng, chẩn đoán chính xác và thiết lập mục tiêu học tập thông minh.</span>
+        <span class="lang-en" style="display: none;">Explore adaptive competency assessment tools, precise diagnostics, and smart learning goal setting.</span>
+    </p>
+</div>
+
+<!-- Layout chia 2 cột -->
+<div class="flex flex-col lg:flex-row gap-6 lg:gap-8 items-start">
+    
+    <!-- SIDEBAR MENU (Danh sách các tính năng) -->
+    <aside class="w-full lg:w-72 shrink-0 bg-[var(--color-surface)] rounded-xl p-3 sm:p-4 sticky top-16 lg:top-20 z-30 about-aside-box shadow-md lg:shadow-sm transition-all">
+        <h3 class="hidden lg:block text-xs font-bold uppercase tracking-wider text-[var(--color-text-sub, #94a3b8)] px-3 mb-3">
+            <span class="lang-vi">Danh mục tính năng</span>
+            <span class="lang-en" style="display: none;">Feature Categories</span>
+        </h3>
+        
+        <!-- Wrapper menu trượt ngang trên mobile -->
+        <div class="about-scroll-container relative overflow-hidden">
+            <nav id="about-nav-scroll" onscroll="handleAboutMenuScroll()" class="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0 scrollbar-none w-full snap-x snap-mandatory lg:snap-none">
+                
+                <!-- Tính năng 1 -->
+                <button onclick="switchFeatureTab('feature1')" onmouseenter="handleTabHover('feature1')" onmouseleave="cancelTabHover()" id="ftab-feature1" data-tab="feature1" class="about-tab-btn shrink-0 lg:shrink flex items-center gap-2.5 px-3.5 py-2.5 lg:px-4 lg:py-3 text-left rounded-lg text-sm font-semibold transition-all about-tab-active whitespace-nowrap lg:whitespace-normal snap-center">
+                    <span class="material-symbols-outlined text-lg">quiz</span>
+                    <div class="flex flex-col">
+                        <span>
+                            <span class="lang-vi">Bài chẩn đoán thích ứng</span>
+                            <span class="lang-en" style="display: none;">Adaptive Diagnostics</span>
+                        </span>
+                        <span class="text-[10px] font-normal opacity-75">
+                            <span class="lang-vi">Toán & Tiếng Anh</span>
+                            <span class="lang-en" style="display: none;">Math & English</span>
+                        </span>
+                    </div>
+                </button>
+
+                <!-- Tính năng 2 -->
+                <button onclick="switchFeatureTab('feature2')" onmouseenter="handleTabHover('feature2')" onmouseleave="cancelTabHover()" id="ftab-feature2" data-tab="feature2" class="about-tab-btn shrink-0 lg:shrink flex items-center gap-2.5 px-3.5 py-2.5 lg:px-4 lg:py-3 text-left rounded-lg text-sm font-semibold transition-all about-tab-inactive whitespace-nowrap lg:whitespace-normal snap-center">
+                    <span class="material-symbols-outlined text-lg">analytics</span>
+                    <div class="flex flex-col">
+                        <span>
+                            <span class="lang-vi">Điểm năng lực & Độ bất định</span>
+                            <span class="lang-en" style="display: none;">Capability & Uncertainty</span>
+                        </span>
+                        <span class="text-[10px] font-normal opacity-75">
+                            <span class="lang-vi">Thống kê khoa học</span>
+                            <span class="lang-en" style="display: none;">Scientific Statistics</span>
+                        </span>
+                    </div>
+                </button>
+
+                <!-- Tính năng 3 -->
+                <button onclick="switchFeatureTab('feature3')" onmouseenter="handleTabHover('feature3')" onmouseleave="cancelTabHover()" id="ftab-feature3" data-tab="feature3" class="about-tab-btn shrink-0 lg:shrink flex items-center gap-2.5 px-3.5 py-2.5 lg:px-4 lg:py-3 text-left rounded-lg text-sm font-semibold transition-all about-tab-inactive whitespace-nowrap lg:whitespace-normal snap-center">
+                    <span class="material-symbols-outlined text-lg">flag</span>
+                    <div class="flex flex-col">
+                        <span>
+                            <span class="lang-vi">Thiết lập mục tiêu</span>
+                            <span class="lang-en" style="display: none;">Goal Setting</span>
+                        </span>
+                        <span class="text-[10px] font-normal opacity-75">
+                            <span class="lang-vi">Nguyện vọng lớp 10</span>
+                            <span class="lang-en" style="display: none;">Grade 10 Aspirations</span>
+                        </span>
+                    </div>
+                </button>
+
+                <!-- Tính năng 4 -->
+                <button onclick="switchFeatureTab('feature4')" onmouseenter="handleTabHover('feature4')" onmouseleave="cancelTabHover()" id="ftab-feature4" data-tab="feature4" class="about-tab-btn shrink-0 lg:shrink flex items-center gap-2.5 px-3.5 py-2.5 lg:px-4 lg:py-3 text-left rounded-lg text-sm font-semibold transition-all about-tab-inactive whitespace-nowrap lg:whitespace-normal snap-center">
+                    <span class="material-symbols-outlined text-lg">dashboard</span>
+                    <div class="flex flex-col">
+                        <span>
+                            <span class="lang-vi">Bảng điều khiển trung thực</span>
+                            <span class="lang-en" style="display: none;">Transparent Dashboard</span>
+                        </span>
+                        <span class="text-[10px] font-normal opacity-75">
+                            <span class="lang-vi">Dữ liệu thực tế</span>
+                            <span class="lang-en" style="display: none;">Actual Data</span>
+                        </span>
+                    </div>
+                </button>
+
+                <!-- Tính năng 5 (Bổ sung mở rộng) -->
+                <button onclick="switchFeatureTab('feature5')" onmouseenter="handleTabHover('feature5')" onmouseleave="cancelTabHover()" id="ftab-feature5" data-tab="feature5" class="about-tab-btn shrink-0 lg:shrink flex items-center gap-2.5 px-3.5 py-2.5 lg:px-4 lg:py-3 text-left rounded-lg text-sm font-semibold transition-all about-tab-inactive whitespace-nowrap lg:whitespace-normal snap-center">
+                    <span class="material-symbols-outlined text-lg">verified_user</span>
+                    <div class="flex flex-col">
+                        <span>
+                            <span class="lang-vi">Minh bạch & An toàn</span>
+                            <span class="lang-en" style="display: none;">Data Transparency</span>
+                        </span>
+                        <span class="text-[10px] font-normal opacity-75">
+                            <span class="lang-vi">Bảo mật tuyệt đối</span>
+                            <span class="lang-en" style="display: none;">Absolute Security</span>
+                        </span>
+                    </div>
+                </button>
+            </nav>
+        </div>
+
+        <!-- Thanh chỉ báo vuốt (Dots) cho Mobile -->
+        <div class="flex lg:hidden items-center justify-center gap-1.5 pt-2 border-t border-slate-200/40 mt-1">
+            <span class="scroll-dot w-5 h-1 rounded-full bg-[var(--color-primary)] transition-all duration-300" data-index="0"></span>
+            <span class="scroll-dot w-2 h-1 rounded-full bg-slate-400/50 transition-all duration-300" data-index="1"></span>
+            <span class="scroll-dot w-2 h-1 rounded-full bg-slate-400/50 transition-all duration-300" data-index="2"></span>
+            <span class="scroll-dot w-2 h-1 rounded-full bg-slate-400/50 transition-all duration-300" data-index="3"></span>
+            <span class="scroll-dot w-2 h-1 rounded-full bg-slate-400/50 transition-all duration-300" data-index="4"></span>
+        </div>
+    </aside>
+
+    <!-- NỘI DUNG CHI TIẾT (CONTENT PANEL) -->
+    <div class="flex-1 w-full bg-[var(--color-surface)] rounded-xl p-5 sm:p-8 about-content-box shadow-sm z-10">
+        
+        <!-- Nội dung 1: Bài chẩn đoán thích ứng -->
+        <div id="fcontent-feature1" class="about-content active space-y-4">
+            <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 bg-emerald-500/10 text-emerald-600 rounded-full">
+                    <span class="lang-vi">Đã có trong bản thử nghiệm</span>
+                    <span class="lang-en" style="display: none;">Available in Test Version</span>
+                </span>
+                <span class="text-sm font-semibold text-[var(--color-text-sub)]">01 / 05</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">
+                <span class="lang-vi">Bài chẩn đoán thích ứng — Toán và Tiếng Anh</span>
+                <span class="lang-en" style="display: none;">Adaptive Diagnostic Tests — Math & English</span>
+            </h2>
+            <p class="text-sm sm:text-base leading-relaxed text-[var(--color-text-sub)]">
+                <span class="lang-vi">Mỗi bài đánh giá gồm 15 câu hỏi trắc nghiệm thông minh. Các câu hỏi tiếp theo sẽ được thuật toán tự động lựa chọn dựa trực tiếp trên ước lượng năng lực hiện tại của bạn, giúp đo lường chính xác mà không mất thời gian ở những câu quá dễ hoặc quá khó.</span>
+                <span class="lang-en" style="display: none;">Each assessment consists of 15 smart multiple-choice questions. Subsequent questions are automatically selected based on your current capability estimation.</span>
+            </p>
+            <div class="p-4 bg-[var(--color-background)] border-l-4 border-[var(--color-primary)] rounded-r-lg mt-4 space-y-2">
+                <p class="text-sm text-[var(--color-text-main)] font-semibold">
+                    <span class="lang-vi">Điểm nổi bật:</span>
+                    <span class="lang-en" style="display: none;">Highlights:</span>
+                </p>
+                <ul class="list-disc list-inside text-sm text-[var(--color-text-sub)] space-y-1">
+                    <li><span class="lang-vi">Hệ thống ngân hàng câu hỏi đa dạng (75 câu Toán, 27 câu Tiếng Anh).</span><span class="lang-en" style="display: none;">Diverse question bank (75 Math, 27 English).</span></li>
+                    <li><span class="lang-vi">Thích ứng linh hoạt theo từng phản hồi của người học.</span><span class="lang-en" style="display: none;">Adapts flexibly to each user response.</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Nội dung 2: Điểm năng lực kèm độ bất định -->
+        <div id="fcontent-feature2" class="about-content space-y-4">
+            <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 bg-emerald-500/10 text-emerald-600 rounded-full">
+                    <span class="lang-vi">Khoa học dữ liệu</span>
+                    <span class="lang-en" style="display: none;">Data Science</span>
+                </span>
+                <span class="text-sm font-semibold text-[var(--color-text-sub)]">02 / 05</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">
+                <span class="lang-vi">Điểm năng lực kèm độ bất định ($\sigma$)</span>
+                <span class="lang-en" style="display: none;">Capability Score with Uncertainty ($\sigma$)</span>
+            </h2>
+            <p class="text-sm sm:text-base leading-relaxed text-[var(--color-text-sub)]">
+                <span class="lang-vi">Kết quả đánh giá hiển thị kèm theo độ bất định ($\sigma$) để bạn biết rõ mức độ chắc chắn của ước lượng năng lực. Đây là công cụ giúp người học thấu hiểu điểm rơi phong độ, không phải là điểm thi chính thức áp lực.</span>
+                <span class="lang-en" style="display: none;">Assessment results display alongside uncertainty ($\sigma$) metrics so you know how confident the estimation is.</span>
+            </p>
+            <div class="p-4 bg-[var(--color-background)] border-l-4 border-[var(--color-primary)] rounded-r-lg mt-4">
+                <p class="text-sm text-[var(--color-text-main)] font-medium">
+                    <span class="lang-vi">Chi tiết: Cung cấp góc nhìn lượng hóa khoa học về độ tin cậy của kết quả bài làm.</span>
+                    <span class="lang-en" style="display: none;">Detail: Provides a scientific quantitative perspective on test result reliability.</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Nội dung 3: Thiết lập mục tiêu -->
+        <div id="fcontent-feature3" class="about-content space-y-4">
+            <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 bg-emerald-500/10 text-emerald-600 rounded-full">
+                    <span class="lang-vi">Cá nhân hóa</span>
+                    <span class="lang-en" style="display: none;">Personalization</span>
+                </span>
+                <span class="text-sm font-semibold text-[var(--color-text-sub)]">03 / 05</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">
+                <span class="lang-vi">Thiết lập mục tiêu có thể tiếp tục</span>
+                <span class="lang-en" style="display: none;">Resumable Goal Setting</span>
+            </h2>
+            <p class="text-sm sm:text-base leading-relaxed text-[var(--color-text-sub)]">
+                <span class="lang-vi">Dễ dàng khai báo lớp học, môn học, định hướng kỳ thi và tối đa 3 nguyện vọng trong phạm vi thí điểm (như trường chuyên, lớp chọn). Hệ thống sẽ tự động lưu lại để bạn tiếp tục hành trình ôn luyện bất cứ lúc nào.</span>
+                <span class="lang-en" style="display: none;">Easily declare your class, subjects, exam orientation, and up to 3 preferences within the pilot scope.</span>
+            </p>
+            <div class="p-4 bg-[var(--color-background)] border-l-4 border-[var(--color-primary)] rounded-r-lg mt-4">
+                <p class="text-sm text-[var(--color-text-main)] font-medium">
+                    <span class="lang-vi">Chi tiết: Lưu trữ và đồng bộ hóa nguyện vọng ôn thi tuyển sinh lớp 10 tại TP. Hồ Chí Minh.</span>
+                    <span class="lang-en" style="display: none;">Detail: Store and synchronize 10th-grade entrance exam preferences in Ho Chi Minh City.</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Nội dung 4: Bảng điều khiển trung thực -->
+        <div id="fcontent-feature4" class="about-content space-y-4">
+            <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 bg-emerald-500/10 text-emerald-600 rounded-full">
+                    <span class="lang-vi">Trọng tâm cốt lõi</span>
+                    <span class="lang-en" style="display: none;">Core Focus</span>
+                </span>
+                <span class="text-sm font-semibold text-[var(--color-text-sub)]">04 / 05</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">
+                <span class="lang-vi">Bảng điều khiển trung thực (Transparent Dashboard)</span>
+                <span class="lang-en" style="display: none;">Honest Dashboard</span>
+            </h2>
+            <p class="text-sm sm:text-base leading-relaxed text-[var(--color-text-sub)]">
+                <span class="lang-vi">Hệ thống chỉ hiển thị kết quả dựa trên các bài làm thực tế của bạn. Nếu chưa có dữ liệu, Mentiq sẽ thông báo rõ ràng thay vì đưa ra các con số dự đoán ảo hoặc phỏng đoán cảm tính.</span>
+                <span class="lang-en" style="display: none;">The system only displays results based on your actual completed tests. If no data exists, Mentiq clearly communicates it.</span>
+            </p>
+            <div class="p-4 bg-[var(--color-background)] border-l-4 border-[var(--color-primary)] rounded-r-lg mt-4">
+                <p class="text-sm text-[var(--color-text-main)] font-medium">
+                    <span class="lang-vi">Chi tiết: Đảm bảo tính minh bạch tuyệt đối, nói không với dữ liệu giả lập hay phỏng đoán.</span>
+                    <span class="lang-en" style="display: none;">Detail: Absolute transparency, no fake data or estimations.</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Nội dung 5: Minh bạch dữ liệu -->
+        <div id="fcontent-feature5" class="about-content space-y-4">
+            <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 bg-blue-500/10 text-blue-600 rounded-full">
+                    <span class="lang-vi">Cam kết minh bạch</span>
+                    <span class="lang-en" style="display: none;">Commitment</span>
+                </span>
+                <span class="text-sm font-semibold text-[var(--color-text-sub)]">05 / 05</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">
+                <span class="lang-vi">Minh bạch về dữ liệu & Giới hạn hệ thống</span>
+                <span class="lang-en" style="display: none;">Data Transparency & Limitations</span>
+            </h2>
+            <p class="text-sm sm:text-base leading-relaxed text-[var(--color-text-sub)]">
+                <span class="lang-vi">Chúng tôi luôn công khai các giới hạn của phiên bản thử nghiệm: độ khó câu hỏi đang là ước tính tạm thời, chưa dự đoán khả năng trúng tuyển, và các câu hỏi tham khảo là bản tái dựng cấu trúc an toàn.</span>
+                <span class="lang-en" style="display: none;">We openly communicate testing limitations: question difficulties are temporary estimates, admission chances are not predicted.</span>
+            </p>
+            <div class="p-4 bg-[var(--color-background)] border-l-4 border-blue-500 rounded-r-lg mt-4">
+                <p class="text-sm text-[var(--color-text-main)] font-medium">
+                    <span class="lang-vi">Chi tiết: Xây dựng niềm tin khoa học thông qua sự rõ ràng và trung thực về công nghệ.</span>
+                    <span class="lang-en" style="display: none;">Detail: Building scientific trust through clarity and technological honesty.</span>
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .about-aside-box {
+        border: 1px solid var(--color-border, rgba(226, 232, 240, 0.9)) !important;
+        background-color: var(--color-surface) !important;
+        z-index: 30 !important;
+    }
+    .about-content-box {
+        border: 1px solid var(--color-border, rgba(226, 232, 240, 0.8)) !important;
+        box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.03);
+    }
+    @media (max-width: 1023px) {
+        .about-scroll-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 24px;
+            height: 100%;
+            background: linear-gradient(to right, transparent, var(--color-surface));
+            pointer-events: none;
+        }
+        .about-content-box {
+            scroll-margin-top: 120px;
+        }
+    }
+    .about-content {
+        display: none;
+        opacity: 0;
+        transform: translateY(12px);
+        transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+        will-change: opacity, transform;
+    }
+    .about-content.active {
+        display: block;
+    }
+    .about-content.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .about-tab-active {
+        background-color: var(--color-primary) !important;
+        color: #ffffff !important;
+        border: 1px solid var(--color-primary) !important;
+        box-shadow: 0 2px 8px rgba(17, 82, 212, 0.25);
+    }
+    .about-tab-inactive {
+        background-color: transparent !important;
+        color: var(--color-text-main) !important;
+        border: 1px solid transparent !important;
+    }
+    .about-tab-inactive:hover {
+        background-color: var(--color-background) !important;
+        color: var(--color-primary) !important;
+        border-color: rgba(17, 82, 212, 0.2) !important;
+    }
+    .scrollbar-none::-webkit-scrollbar {
+        display: none;
+    }
+    .scrollbar-none {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    let isUserClicking = false;
+    let scrollTimeout;
+    let hoverTimeout;
+    let currentTab = 'feature1';
+
+    function applyPageLanguage() {
+        const currentLang = "{{ request.LANGUAGE_CODE }}" || "vi";
+        
+        document.querySelectorAll('.lang-vi').forEach(el => {
+            el.style.display = (currentLang === 'vi') ? 'inline' : 'none';
+        });
+        document.querySelectorAll('.lang-en').forEach(el => {
+            el.style.display = (currentLang === 'en') ? 'inline' : 'none';
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const initialContent = document.getElementById('fcontent-feature1');
+        if (initialContent) {
+            initialContent.classList.add('show');
+        }
+        applyPageLanguage();
+    });
+
+    function handleAboutMenuScroll() {
+        if (window.innerWidth >= 1024) return;
+
+        const container = document.getElementById('about-nav-scroll');
+        if (!container) return;
+
+        const scrollLeft = container.scrollLeft;
+        const maxScrollLeft = container.scrollWidth - container.clientWidth;
+        if (maxScrollLeft > 0) {
+            const ratio = scrollLeft / maxScrollLeft;
+            const dots = document.querySelectorAll('.scroll-dot');
+            const activeIndex = Math.min(Math.floor(ratio * dots.length), dots.length - 1);
+
+            dots.forEach((dot, index) => {
+                if (index === activeIndex) {
+                    dot.classList.remove('w-2', 'bg-slate-400/50');
+                    dot.classList.add('w-5', 'bg-[var(--color-primary)]');
+                } else {
+                    dot.classList.remove('w-5', 'bg-[var(--color-primary)]');
+                    dot.classList.add('w-2', 'bg-slate-400/50');
+                }
+            });
+        }
+
+        if (isUserClicking) return;
+
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            const buttons = container.querySelectorAll('.about-tab-btn');
+            const containerCenter = container.getBoundingClientRect().left + container.clientWidth / 2;
+
+            let closestBtn = null;
+            let minDistance = Infinity;
+
+            buttons.forEach(btn => {
+                const rect = btn.getBoundingClientRect();
+                const btnCenter = rect.left + rect.width / 2;
+                const distance = Math.abs(containerCenter - btnCenter);
+
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    closestBtn = btn;
+                }
+            });
+
+            if (closestBtn) {
+                const tabId = closestBtn.getAttribute('data-tab');
+                switchFeatureTab(tabId, false);
+            }
+        }, 150);
+    }
+
+    function switchFeatureTab(tabId, shouldScrollMenu = true) {
+        if (currentTab === tabId) return;
+        currentTab = tabId;
+
+        document.querySelectorAll('.about-tab-btn').forEach(btn => {
+            btn.classList.remove('about-tab-active');
+            btn.classList.add('about-tab-inactive');
+        });
+
+        const activeBtn = document.getElementById('ftab-' + tabId);
+        if (activeBtn) {
+            activeBtn.classList.add('about-tab-active');
+            activeBtn.classList.remove('about-tab-inactive');
+            
+            if (shouldScrollMenu) {
+                isUserClicking = true;
+                activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                setTimeout(() => { isUserClicking = false; }, 500);
+            }
+        }
+
+        document.querySelectorAll('.about-content').forEach(content => {
+            content.classList.remove('show');
+            content.classList.remove('active');
+        });
+
+        const target = document.getElementById('fcontent-' + tabId);
+        if (target) {
+            target.classList.add('active');
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    target.classList.add('show');
+                });
+            });
+        }
+    }
+
+    function handleTabHover(tabId) {
+        clearTimeout(hoverTimeout);
+        hoverTimeout = setTimeout(() => {
+            switchFeatureTab(tabId);
+        }, 120);
+    }
+
+    function cancelTabHover() {
+        clearTimeout(hoverTimeout);
+    }
+</script>
+{% endblock %}

@@ -295,7 +295,38 @@ document.addEventListener('DOMContentLoaded', function () {
     {% endif %}
     <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/80 dark:via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out pointer-events-none"></span>
 </a> -->
-
+<a class="relative group overflow-hidden text-sm px-3.5 py-2 rounded-xl transition-all duration-300 whitespace-nowrap inline-flex items-center justify-center
+          {% if request.resolver_match.url_name == 'learning_journey' %}
+              text-[var(--color-primary)] font-semibold bg-[var(--color-primary)]/10
+          {% else %}
+              text-[var(--color-text-main)] font-medium hover:text-[var(--color-primary)] hover:bg-gray-100 dark:hover:bg-gray-800
+          {% endif %}"
+    href="{% url 'pages:learning_journey' %}">
+    <span class="relative z-10">
+        <span class="lang-vi">Hành trình học</span>
+        <span class="lang-en" style="display: none;">Learning Journey</span>
+    </span>
+    {% if request.resolver_match.url_name == 'learning_journey' %}
+        <span class="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-6 h-[2.5px] bg-[var(--color-primary)] rounded-full z-10"></span>
+    {% endif %}
+    <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/80 dark:via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out pointer-events-none"></span>
+</a>
+<a class="relative group overflow-hidden text-sm px-3.5 py-2 rounded-xl transition-all duration-300 whitespace-nowrap inline-flex items-center justify-center
+          {% if request.resolver_match.url_name == 'features' %}
+              text-[var(--color-primary)] font-semibold bg-[var(--color-primary)]/10
+          {% else %}
+              text-[var(--color-text-main)] font-medium hover:text-[var(--color-primary)] hover:bg-gray-100 dark:hover:bg-gray-800
+          {% endif %}"
+    href="{% url 'pages:features' %}">
+    <span class="relative z-10">
+        <span class="lang-vi">Tính năng</span>
+        <span class="lang-en" style="display: none;">Features</span>
+    </span>
+    {% if request.resolver_match.url_name == 'features' %}
+        <span class="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-6 h-[2.5px] bg-[var(--color-primary)] rounded-full z-10"></span>
+    {% endif %}
+    <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/80 dark:via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out pointer-events-none"></span>
+</a>
 <!-- Về chúng tôi -->
 <a class="relative group overflow-hidden text-sm px-3.5 py-2 rounded-xl transition-all duration-300 whitespace-nowrap inline-flex items-center justify-center
           {% if request.resolver_match.url_name == 'about_us' %}

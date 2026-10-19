@@ -1,0 +1,428 @@
+{% extends 'base.html' %}
+
+{% block title %}Hành trình học - Mentiq Personalized AI Learning Agent{% endblock %}
+
+{% block content %}
+<div class="mb-6">
+    <h1 class="text-3xl font-black tracking-tight text-[var(--color-text-main)] sm:text-4xl flex items-center gap-3">
+        <span class="material-symbols-outlined text-[var(--color-primary)] text-4xl">route</span>
+        <span class="lang-vi">Hành trình học của Mentiq</span>
+        <span class="lang-en" style="display: none;">MENTIQ's Learning Journey</span>
+    </h1>
+    <p class="mt-2 text-base text-[var(--color-text-sub, #64748b)]">
+        <span class="lang-vi">Một vòng lặp liên tục. Bốn bước đã hoạt động; bước tạo bài học cá nhân hóa đang được phát triển.</span>
+        <span class="lang-en" style="display: none;">A continuous loop. Four steps are active; the personalized lesson creation step is under development.</span>
+    </p>
+</div>
+
+<!-- Layout chia 2 cột -->
+<div class="flex flex-col lg:flex-row gap-6 lg:gap-8 items-start">
+    
+    <!-- SIDEBAR MENU (Các bước trong hành trình) -->
+    <aside class="w-full lg:w-72 shrink-0 bg-[var(--color-surface)] rounded-xl p-3 sm:p-4 sticky top-16 lg:top-20 z-30 about-aside-box shadow-md lg:shadow-sm transition-all">
+        <h3 class="hidden lg:block text-xs font-bold uppercase tracking-wider text-[var(--color-text-sub, #94a3b8)] px-3 mb-3">
+            <span class="lang-vi">Các bước thực hiện</span>
+            <span class="lang-en" style="display: none;">Journey Steps</span>
+        </h3>
+        
+        <!-- Wrapper menu trượt ngang trên mobile -->
+        <div class="about-scroll-container relative overflow-hidden">
+            <nav id="about-nav-scroll" onscroll="handleAboutMenuScroll()" class="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0 scrollbar-none w-full snap-x snap-mandatory lg:snap-none">
+                
+                <!-- Bước 1 -->
+                <button onclick="switchJourneyTab('step1')" onmouseenter="handleTabHover('step1')" onmouseleave="cancelTabHover()" id="jtab-step1" data-tab="step1" class="about-tab-btn shrink-0 lg:shrink flex items-center gap-2.5 px-3.5 py-2.5 lg:px-4 lg:py-3 text-left rounded-lg text-sm font-semibold transition-all about-tab-active whitespace-nowrap lg:whitespace-normal snap-center">
+                    <span class="material-symbols-outlined text-lg">visibility</span>
+                    <div class="flex flex-col">
+                        <span>
+                            <span class="lang-vi">Bước 1: Quan sát</span>
+                            <span class="lang-en" style="display: none;">Step 1: Observation</span>
+                        </span>
+                        <span class="text-[10px] font-normal opacity-75">Đang hoạt động</span>
+                    </div>
+                </button>
+
+                <!-- Bước 2 -->
+                <button onclick="switchJourneyTab('step2')" onmouseenter="handleTabHover('step2')" onmouseleave="cancelTabHover()" id="jtab-step2" data-tab="step2" class="about-tab-btn shrink-0 lg:shrink flex items-center gap-2.5 px-3.5 py-2.5 lg:px-4 lg:py-3 text-left rounded-lg text-sm font-semibold transition-all about-tab-inactive whitespace-nowrap lg:whitespace-normal snap-center">
+                    <span class="material-symbols-outlined text-lg">fact_check</span>
+                    <div class="flex flex-col">
+                        <span>
+                            <span class="lang-vi">Bước 2: Đánh giá</span>
+                            <span class="lang-en" style="display: none;">Step 2: Assessment</span>
+                        </span>
+                        <span class="text-[10px] font-normal opacity-75">Đang hoạt động</span>
+                    </div>
+                </button>
+
+                <!-- Bước 3 -->
+                <button onclick="switchJourneyTab('step3')" onmouseenter="handleTabHover('step3')" onmouseleave="cancelTabHover()" id="jtab-step3" data-tab="step3" class="about-tab-btn shrink-0 lg:shrink flex items-center gap-2.5 px-3.5 py-2.5 lg:px-4 lg:py-3 text-left rounded-lg text-sm font-semibold transition-all about-tab-inactive whitespace-nowrap lg:whitespace-normal snap-center">
+                    <span class="material-symbols-outlined text-lg">psychology</span>
+                    <div class="flex flex-col">
+                        <span>
+                            <span class="lang-vi">Bước 3: Chẩn đoán</span>
+                            <span class="lang-en" style="display: none;">Step 3: Diagnosis</span>
+                        </span>
+                        <span class="text-[10px] font-normal opacity-75">Đang hoạt động</span>
+                    </div>
+                </button>
+
+                <!-- Bước 4 -->
+                <button onclick="switchJourneyTab('step4')" onmouseenter="handleTabHover('step4')" onmouseleave="cancelTabHover()" id="jtab-step4" data-tab="step4" class="about-tab-btn shrink-0 lg:shrink flex items-center gap-2.5 px-3.5 py-2.5 lg:px-4 lg:py-3 text-left rounded-lg text-sm font-semibold transition-all about-tab-inactive whitespace-nowrap lg:whitespace-normal snap-center">
+                    <span class="material-symbols-outlined text-lg">auto_stories</span>
+                    <div class="flex flex-col">
+                        <span>
+                            <span class="lang-vi">Bước 4: Tạo bài học</span>
+                            <span class="lang-en" style="display: none;">Step 4: Lesson Creation</span>
+                        </span>
+                        <span class="text-[10px] font-normal opacity-75 text-amber-500">Đang phát triển</span>
+                    </div>
+                </button>
+
+                <!-- Bước 5 -->
+                <button onclick="switchJourneyTab('step5')" onmouseenter="handleTabHover('step5')" onmouseleave="cancelTabHover()" id="jtab-step5" data-tab="step5" class="about-tab-btn shrink-0 lg:shrink flex items-center gap-2.5 px-3.5 py-2.5 lg:px-4 lg:py-3 text-left rounded-lg text-sm font-semibold transition-all about-tab-inactive whitespace-nowrap lg:whitespace-normal snap-center">
+                    <span class="material-symbols-outlined text-lg">update</span>
+                    <div class="flex flex-col">
+                        <span>
+                            <span class="lang-vi">Bước 5: Cập nhật</span>
+                            <span class="lang-en" style="display: none;">Step 5: Update</span>
+                        </span>
+                        <span class="text-[10px] font-normal opacity-75">Đang hoạt động</span>
+                    </div>
+                </button>
+            </nav>
+        </div>
+
+        <!-- Thanh chỉ báo vuốt (Dots) cho Mobile -->
+        <div class="flex lg:hidden items-center justify-center gap-1.5 pt-2 border-t border-slate-200/40 mt-1">
+            <span class="scroll-dot w-5 h-1 rounded-full bg-[var(--color-primary)] transition-all duration-300" data-index="0"></span>
+            <span class="scroll-dot w-2 h-1 rounded-full bg-slate-400/50 transition-all duration-300" data-index="1"></span>
+            <span class="scroll-dot w-2 h-1 rounded-full bg-slate-400/50 transition-all duration-300" data-index="2"></span>
+            <span class="scroll-dot w-2 h-1 rounded-full bg-slate-400/50 transition-all duration-300" data-index="3"></span>
+            <span class="scroll-dot w-2 h-1 rounded-full bg-slate-400/50 transition-all duration-300" data-index="4"></span>
+        </div>
+    </aside>
+
+    <!-- NỘI DUNG CHI TIẾT (CONTENT PANEL) -->
+    <div class="flex-1 w-full bg-[var(--color-surface)] rounded-xl p-5 sm:p-8 about-content-box shadow-sm z-10">
+        
+        <!-- Bước 1 -->
+        <div id="jcontent-step1" class="about-content active space-y-4">
+            <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 bg-emerald-500/10 text-emerald-600 rounded-full">
+                    <span class="lang-vi">Đang hoạt động</span>
+                    <span class="lang-en" style="display: none;">Active</span>
+                </span>
+                <span class="text-sm font-semibold text-[var(--color-text-sub)]">Bước 1 / 5</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">
+                <span class="lang-vi">Quan sát (Observation)</span>
+                <span class="lang-en" style="display: none;">Observation</span>
+            </h2>
+            <p class="text-sm sm:text-base leading-relaxed text-[var(--color-text-sub)]">
+                <span class="lang-vi">Hệ thống ghi nhận từng câu trả lời của học sinh trong bài đánh giá để phân tích xu hướng và phản ứng tiếp cận kiến thức.</span>
+                <span class="lang-en" style="display: none;">The system records every student's answer in the assessment to analyze trends and knowledge approach responses.</span>
+            </p>
+            <div class="p-4 bg-[var(--color-background)] border-l-4 border-[var(--color-primary)] rounded-r-lg mt-4">
+                <p class="text-sm text-[var(--color-text-main)] font-medium">
+                    <span class="lang-vi">Chi tiết: Ghi nhận từng câu trả lời trong bài đánh giá.</span>
+                    <span class="lang-en" style="display: none;">Detail: Capturing each individual response during the assessment.</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Bước 2 -->
+        <div id="jcontent-step2" class="about-content space-y-4">
+            <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 bg-emerald-500/10 text-emerald-600 rounded-full">
+                    <span class="lang-vi">Đang hoạt động</span>
+                    <span class="lang-en" style="display: none;">Active</span>
+                </span>
+                <span class="text-sm font-semibold text-[var(--color-text-sub)]">Bước 2 / 5</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">
+                <span class="lang-vi">Đánh giá (Assessment)</span>
+                <span class="lang-en" style="display: none;">Assessment</span>
+            </h2>
+            <p class="text-sm sm:text-base leading-relaxed text-[var(--color-text-sub)]">
+                <span class="lang-vi">Chấm đúng hoặc sai bằng đáp án trên máy chủ một cách bảo mật, tuyệt đối không lộ đáp án trước khi người dùng trả lời.</span>
+                <span class="lang-en" style="display: none;">Scoring correctly or incorrectly via server-side answers securely, ensuring answers are never leaked beforehand.</span>
+            </p>
+            <div class="p-4 bg-[var(--color-background)] border-l-4 border-[var(--color-primary)] rounded-r-lg mt-4">
+                <p class="text-sm text-[var(--color-text-main)] font-medium">
+                    <span class="lang-vi">Chi tiết: Chấm đúng/sai bằng đáp án trên máy chủ — không lộ đáp án trước khi trả lời.</span>
+                    <span class="lang-en" style="display: none;">Detail: Server-side evaluation — answers are kept hidden prior to submission.</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Bước 3 -->
+        <div id="jcontent-step3" class="about-content space-y-4">
+            <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 bg-emerald-500/10 text-emerald-600 rounded-full">
+                    <span class="lang-vi">Đang hoạt động</span>
+                    <span class="lang-en" style="display: none;">Active</span>
+                </span>
+                <span class="text-sm font-semibold text-[var(--color-text-sub)]">Bước 3 / 5</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">
+                <span class="lang-vi">Chẩn đoán (Diagnosis)</span>
+                <span class="lang-en" style="display: none;">Diagnosis</span>
+            </h2>
+            <p class="text-sm sm:text-base leading-relaxed text-[var(--color-text-sub)]">
+                <span class="lang-vi">Sử dụng mô hình định lượng tiên tiến Rasch–Bayes để ước lượng năng lực thực tế và tự động chọn câu hỏi tiếp theo phù hợp với trình độ người học.</span>
+                <span class="lang-en" style="display: none;">Using advanced quantitative Rasch–Bayes models to estimate actual capability and dynamically select subsequent appropriate questions.</span>
+            </p>
+            <div class="p-4 bg-[var(--color-background)] border-l-4 border-[var(--color-primary)] rounded-r-lg mt-4">
+                <p class="text-sm text-[var(--color-text-main)] font-medium">
+                    <span class="lang-vi">Chi tiết: Ước lượng năng lực theo mô hình Rasch–Bayes và chọn câu hỏi tiếp theo phù hợp.</span>
+                    <span class="lang-en" style="display: none;">Detail: Estimating capability via Rasch-Bayes models and selecting tailored subsequent questions.</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Bước 4 -->
+        <div id="jcontent-step4" class="about-content space-y-4">
+            <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 bg-amber-500/10 text-amber-600 rounded-full">
+                    <span class="lang-vi">Đang phát triển</span>
+                    <span class="lang-en" style="display: none;">Under Development</span>
+                </span>
+                <span class="text-sm font-semibold text-[var(--color-text-sub)]">Bước 4 / 5</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">
+                <span class="lang-vi">Tạo bài học (Lesson Creation)</span>
+                <span class="lang-en" style="display: none;">Lesson Creation</span>
+            </h2>
+            <p class="text-sm sm:text-base leading-relaxed text-[var(--color-text-sub)]">
+                <span class="lang-vi">Cung cấp các bài luyện tập tập trung và trợ lý gia sư AI cá nhân hóa nhằm lấp đầy các lỗ hổng kiến thức cho học sinh.</span>
+                <span class="lang-en" style="display: none;">Providing focused practice exercises and personalized AI tutoring assistants to fill knowledge gaps for students.</span>
+            </p>
+            <div class="p-4 bg-[var(--color-background)] border-l-4 border-amber-500 rounded-r-lg mt-4">
+                <p class="text-sm text-[var(--color-text-main)] font-medium">
+                    <span class="lang-vi">Chi tiết: Bài luyện tập và gia sư cá nhân hóa (đang được hoàn thiện).</span>
+                    <span class="lang-en" style="display: none;">Detail: Practice exercises and personalized tutoring (currently being finalized).</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Bước 5 -->
+        <div id="jcontent-step5" class="about-content space-y-4">
+            <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 bg-emerald-500/10 text-emerald-600 rounded-full">
+                    <span class="lang-vi">Đang hoạt động</span>
+                    <span class="lang-en" style="display: none;">Active</span>
+                </span>
+                <span class="text-sm font-semibold text-[var(--color-text-sub)]">Bước 5 / 5</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-bold text-[var(--color-text-main)]">
+                <span class="lang-vi">Cập nhật (Update)</span>
+                <span class="lang-en" style="display: none;">Update</span>
+            </h2>
+            <p class="text-sm sm:text-base leading-relaxed text-[var(--color-text-sub)]">
+                <span class="lang-vi">Lưu trữ chỉ số năng lực cùng độ bất định (độ lệch chuẩn) sau mỗi bài đánh giá hoàn thành để theo dõi sự tiến bộ theo thời gian thực.</span>
+                <span class="lang-en" style="display: none;">Storing capability indices alongside uncertainty metrics after each completed assessment to track real-time progress.</span>
+            </p>
+            <div class="p-4 bg-[var(--color-background)] border-l-4 border-[var(--color-primary)] rounded-r-lg mt-4">
+                <p class="text-sm text-[var(--color-text-main)] font-medium">
+                    <span class="lang-vi">Chi tiết: Lưu năng lực và độ bất định sau mỗi bài đánh giá hoàn thành.</span>
+                    <span class="lang-en" style="display: none;">Detail: Saving capability and uncertainty scores after each completed assessment.</span>
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .about-aside-box {
+        border: 1px solid var(--color-border, rgba(226, 232, 240, 0.9)) !important;
+        background-color: var(--color-surface) !important;
+        z-index: 30 !important;
+    }
+    .about-content-box {
+        border: 1px solid var(--color-border, rgba(226, 232, 240, 0.8)) !important;
+        box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.03);
+    }
+    @media (max-width: 1023px) {
+        .about-scroll-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 24px;
+            height: 100%;
+            background: linear-gradient(to right, transparent, var(--color-surface));
+            pointer-events: none;
+        }
+        .about-content-box {
+            scroll-margin-top: 120px;
+        }
+    }
+    .about-content {
+        display: none;
+        opacity: 0;
+        transform: translateY(12px);
+        transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+        will-change: opacity, transform;
+    }
+    .about-content.active {
+        display: block;
+    }
+    .about-content.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .about-tab-active {
+        background-color: var(--color-primary) !important;
+        color: #ffffff !important;
+        border: 1px solid var(--color-primary) !important;
+        box-shadow: 0 2px 8px rgba(17, 82, 212, 0.25);
+    }
+    .about-tab-inactive {
+        background-color: transparent !important;
+        color: var(--color-text-main) !important;
+        border: 1px solid transparent !important;
+    }
+    .about-tab-inactive:hover {
+        background-color: var(--color-background) !important;
+        color: var(--color-primary) !important;
+        border-color: rgba(17, 82, 212, 0.2) !important;
+    }
+    .scrollbar-none::-webkit-scrollbar {
+        display: none;
+    }
+    .scrollbar-none {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    let isUserClicking = false;
+    let scrollTimeout;
+    let hoverTimeout;
+    let currentTab = 'step1';
+
+    function applyPageLanguage() {
+        const currentLang = "{{ request.LANGUAGE_CODE }}" || "vi";
+        
+        document.querySelectorAll('.lang-vi').forEach(el => {
+            el.style.display = (currentLang === 'vi') ? 'inline' : 'none';
+        });
+        document.querySelectorAll('.lang-en').forEach(el => {
+            el.style.display = (currentLang === 'en') ? 'inline' : 'none';
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const initialContent = document.getElementById('jcontent-step1');
+        if (initialContent) {
+            initialContent.classList.add('show');
+        }
+        applyPageLanguage();
+    });
+
+    function handleAboutMenuScroll() {
+        if (window.innerWidth >= 1024) return;
+
+        const container = document.getElementById('about-nav-scroll');
+        if (!container) return;
+
+        const scrollLeft = container.scrollLeft;
+        const maxScrollLeft = container.scrollWidth - container.clientWidth;
+        if (maxScrollLeft > 0) {
+            const ratio = scrollLeft / maxScrollLeft;
+            const dots = document.querySelectorAll('.scroll-dot');
+            const activeIndex = Math.min(Math.floor(ratio * dots.length), dots.length - 1);
+
+            dots.forEach((dot, index) => {
+                if (index === activeIndex) {
+                    dot.classList.remove('w-2', 'bg-slate-400/50');
+                    dot.classList.add('w-5', 'bg-[var(--color-primary)]');
+                } else {
+                    dot.classList.remove('w-5', 'bg-[var(--color-primary)]');
+                    dot.classList.add('w-2', 'bg-slate-400/50');
+                }
+            });
+        }
+
+        if (isUserClicking) return;
+
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            const buttons = container.querySelectorAll('.about-tab-btn');
+            const containerCenter = container.getBoundingClientRect().left + container.clientWidth / 2;
+
+            let closestBtn = null;
+            let minDistance = Infinity;
+
+            buttons.forEach(btn => {
+                const rect = btn.getBoundingClientRect();
+                const btnCenter = rect.left + rect.width / 2;
+                const distance = Math.abs(containerCenter - btnCenter);
+
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    closestBtn = btn;
+                }
+            });
+
+            if (closestBtn) {
+                const tabId = closestBtn.getAttribute('data-tab');
+                switchJourneyTab(tabId, false);
+            }
+        }, 150);
+    }
+
+    function switchJourneyTab(tabId, shouldScrollMenu = true) {
+        if (currentTab === tabId) return;
+        currentTab = tabId;
+
+        document.querySelectorAll('.about-tab-btn').forEach(btn => {
+            btn.classList.remove('about-tab-active');
+            btn.classList.add('about-tab-inactive');
+        });
+
+        const activeBtn = document.getElementById('jtab-' + tabId);
+        if (activeBtn) {
+            activeBtn.classList.add('about-tab-active');
+            activeBtn.classList.remove('about-tab-inactive');
+            
+            if (shouldScrollMenu) {
+                isUserClicking = true;
+                activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                setTimeout(() => { isUserClicking = false; }, 500);
+            }
+        }
+
+        document.querySelectorAll('.about-content').forEach(content => {
+            content.classList.remove('show');
+            content.classList.remove('active');
+        });
+
+        const target = document.getElementById('jcontent-' + tabId);
+        if (target) {
+            target.classList.add('active');
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    target.classList.add('show');
+                });
+            });
+        }
+    }
+
+    function handleTabHover(tabId) {
+        clearTimeout(hoverTimeout);
+        hoverTimeout = setTimeout(() => {
+            switchJourneyTab(tabId);
+        }, 120);
+    }
+
+    function cancelTabHover() {
+        clearTimeout(hoverTimeout);
+    }
+</script>
+{% endblock %}

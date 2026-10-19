@@ -145,7 +145,38 @@
         </div>
     </div>
 </div>
-
+<a class="w-fit flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm transition-all duration-200
+          {% if request.resolver_match.url_name == 'learning_journey' %}
+              bg-[var(--color-primary)]/10 text-[var(--color-primary)] font-semibold
+          {% else %}
+              text-[var(--color-text-main)] font-medium hover:bg-gray-100 dark:hover:bg-gray-800
+          {% endif %}"
+    href="{% url 'pages:learning_journey' %}">
+    <span class="material-symbols-outlined text-xl shrink-0">route</span>
+    <span class="relative z-10">
+        <span class="lang-vi">Hành trình học</span>
+        <span class="lang-en" style="display: none;">Learning Journey</span>
+    </span>
+    {% if request.resolver_match.url_name == 'learning_journey' %}
+        <span class="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-6 h-[2.5px] bg-[var(--color-primary)] rounded-full z-10"></span>
+    {% endif %}
+</a>
+<a class="w-fit flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm transition-all duration-200 relative
+          {% if request.resolver_match.url_name == 'features' %}
+              bg-[var(--color-primary)]/10 text-[var(--color-primary)] font-semibold
+          {% else %}
+              text-[var(--color-text-main)] font-medium hover:bg-gray-100 dark:hover:bg-gray-800
+          {% endif %}"
+    href="{% url 'pages:features' %}">
+    <span class="material-symbols-outlined text-xl shrink-0">auto_fix_high</span>
+    <span class="relative z-10">
+        <span class="lang-vi">Tính năng</span>
+        <span class="lang-en" style="display: none;">Features</span>
+    </span>
+    {% if request.resolver_match.url_name == 'features' %}
+        <span class="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-6 h-[2.5px] bg-[var(--color-primary)] rounded-full z-10"></span>
+    {% endif %}
+</a>
 <!-- Về chúng tôi -->
 <a class="w-fit flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm transition-all duration-200
           {% if request.resolver_match.url_name == 'about_us' %}
